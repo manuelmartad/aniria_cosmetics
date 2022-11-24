@@ -44,9 +44,9 @@ if (isset($_POST['cartInfo'])) {
 
     $sql = $conn->prepare("INSERT INTO orders(orderid,buyerName,totalItems,total, date)
     values(?,?,?,?,?)");
-    $sql->bind_param('isiss', $orderId, $buyerName, $cartItems, $total,$date);
+    $sql->bind_param('isiss', $orderId, $buyerName, $cartItems, $total, $date);
     if ($sql->execute()) {
         // header("location:checkout.php");
-        var_dump($sql->bind_param('isids', $orderId, $buyerName, $cartItems, $total,$date));
+        var_dump($sql->bind_param('isids', $orderId, $buyerName, $cartItems, $total, $date));
     }
 }

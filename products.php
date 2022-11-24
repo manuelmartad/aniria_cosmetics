@@ -189,46 +189,4 @@ include 'includes/templates/indexHeader.php';
     </div>
 </section>
 
-
-
-<footer class="footer section text-center">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <ul class="social-media">
-                    <li>
-                        <a href="https://www.facebook.com/">
-                            <i class="fa-brands fw-bold fa-facebook-f"></i>
-                    </li>
-                    <li>
-                        <a href="https://www.instagram.com/">
-                            <i class="fa-brands fw-bold fa-instagram"></i> </a>
-                    </li>
-                </ul>
-                <p class="copyright-text">Copyright &copy;<?php echo date('Y') ?>, Designed &amp; Developed by <a href="https://themefisher.com/">Manuel Marta</a></p>
-            </div>
-        </div>
-    </div>
-</footer>
-
-</div>
-
-<!-- Main jQuery -->
-<script src="theme/plugins/jquery/dist/jquery.min.js"></script>
-
-<!-- Main Js File -->
-<script src="theme/js/script.js"></script>
-
-<!-- Bootstrap 5.2 -->
-<script src="<?php echo ASSETS ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
-<script src="<?php echo ASSETS ?>vendor/sweetalert/sweetalert2.min.js"></script>
-
-<script src="<?php echo JS ?>scripts.js"></script>
-
-
-
-</body>
-
-</html>
+<?php include 'includes/templates/indexFooter.php' ?>
