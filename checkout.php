@@ -60,12 +60,10 @@ include 'includes/templates/indexHeader.php';
     <div class="container">
         <div class="row">
             <div class="title text-center">
-                <h2>relizar pago</h2>
+                <h2>realizar pago</h2>
             </div>
         </div>
 
-        <!-- Set up a container element for the button -->
-        <div id="paypal-button-container"></div>
 
         <form method="POST" class="needs-validation" novalidate>
 
@@ -75,7 +73,7 @@ include 'includes/templates/indexHeader.php';
                     foreach ($errors as $error) :
                         echo '<div class="alert alert-danger text-center hide"><i class="fa-solid fa-triangle-exclamation pe-2"></i>' . $error . '</div>';
                     endforeach; ?>
-                    <div class="mb-5">
+                    <div class="mb-3">
                         <h4>Detalles del pago</h4>
                         <hr>
                         <div class="mb-3">
@@ -103,7 +101,7 @@ include 'includes/templates/indexHeader.php';
                             <h4>Metodo de pago </h4>
                         </div>
                         <hr>
-                        <!-- <h6 class="text-muted mb-3">Detalles de la tarjeta de credito<span>(Pago seguro)</span></h6>
+                        <h6 class="text-muted mb-3">Detalles de la tarjeta de credito<span>(Pago seguro)</span></h6>
                         <div class="mb-3">
                             <input type="text" class="form-control" id="" required value="<?php echo $card_number ?>" name="card_number" placeholder="NUMERO DE TARJETA*">
                         </div>
@@ -115,11 +113,8 @@ include 'includes/templates/indexHeader.php';
                         </div>
                         <div>
                             <button type="submit" class="btn btn-primary text-uppercase px-4 py-2"><small>realizar pedido</small> </button>
-                        </div> -->
+                        </div>
 
-
-                        <!-- Set up a container element for the button -->
-                        <div id="paypal-button-container mb-3"></div>
                     </div>
 
                 </div>
@@ -166,6 +161,11 @@ include 'includes/templates/indexHeader.php';
                             <img src="<?php echo ASSETS ?>img/verified.png" alt="">
                         </div>
                     </div>
+
+                    <!-- Set up a container element for the button -->
+                    <div id="paypal-button-container"></div>
+
+
                 </div>
 
                 <?php

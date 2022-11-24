@@ -1,5 +1,12 @@
 <?php
 require_once '../../config/env.php';
+require_once '../../config/db.php';
+
+
+$sql = "SELECT * FROM categories";
+$categories = $conn->query($sql);
+
+
 include '../../includes/templates/header.php';
 include '../../includes/templates/nav.php';
 ?>
@@ -7,7 +14,7 @@ include '../../includes/templates/nav.php';
 <main id="main">
 
 
-    <!-- ======= Skills Section ======= -->
+    <!-- ======= Categories Section ======= -->
     <section id="skills" class="skills section-bg">
         <div class="container">
 
@@ -29,14 +36,17 @@ include '../../includes/templates/nav.php';
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="align-middle">
-                                <td>10</td>
-                                <td>Color negro mate</td>
-                                <td>Imagen</td>
-                                <td><button class="btn btn-link"><i class="fa-solid animate fs-5 fa-pen-alt text-warning"></i></button> |
-                                    <button class="btn btn-link"><i class="fa-solid animate fs-5 fa-trash text-danger"></i></button>
-                                </td>
-                            </tr>
+                            <?php while ($category = $categories->fetch_assoc()) : ?>
+                                <tr class="align-middle">
+                                    <td><?php echo $category['category_id'] ?></td>
+                                    <td><?php echo $category['category_name'] ?></td>
+                                    <td><img src="uploads/category_pictures/<?php echo $category['category_image'] ?>" alt="" width="100" height="100"></td>
+
+                                    <td><button class="btn btn-link"><i class="fa-solid animate fs-5 fa-pen-alt text-warning"></i></button> |
+                                        <button class="btn btn-link"><i class="fa-solid animate fs-5 fa-trash text-danger"></i></button>
+                                    </td>
+                                </tr>
+                            <?php endwhile; ?>
                         </tbody>
                     </table>
 
@@ -44,12 +54,7 @@ include '../../includes/templates/nav.php';
             </div>
 
         </div>
-    </section><!-- End Skills Section -->
-
-    <!-- ======= Portfolio Section ======= -->
-
-    <!-- End Portfolio Section -->
-
+    </section><!-- End Categories Section -->
 
 
 </main><!-- End #main -->

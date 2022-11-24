@@ -112,11 +112,11 @@ include 'includes/templates/indexHeader.php';
 
         <div class="row">
 			<?php while ($product = $products->fetch_assoc()) { ?>
-				<div class="col-md-4">
+				<div class="col-md-6 col-lg-4">
 					<div class="product-item">
 						<div class="product-thumb">
 							<span class="bage">Sale</span>
-							<img class="img-responsive" src="admin/products/uploads/<?php echo $product['product_image'] ?>" alt="product-img" style="height: 400px!important ;" />
+							<img class="img-responsive" src="admin/products/uploads/<?php echo $product['product_image'] ?>" alt="product-img" style="height: 300px!important ;" />
 							<div class="preview-meta">
 								<ul class="w-25">
 									<li>

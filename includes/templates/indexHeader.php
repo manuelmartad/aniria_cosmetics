@@ -62,8 +62,28 @@
       background-size: cover;
       height: 80vh;
       min-width: 340px;
-      /* z-index: -1000; */
     }
+
+    @media only screen and (max-width: 595px) {
+      .bg-image {
+        background-position: center right;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+
+      #redirect {
+        position: relative;
+        display: inline-block !important;
+        top: 300px;
+        right: 70px;
+        width: 300px !important;
+        background-color: #000;
+        color: #fff;
+        padding: -10px 100px !important;
+      }
+
+    }
+
 
     .top-header i {
       font-size: 25px !important;
@@ -84,9 +104,9 @@
     }
 
 
-    div #paypal-button-container {
-      position: relative;
-      z-index: 0 !important;
+    #paypal-button-container {
+      width: 100%;
+
     }
   </style>
 
@@ -147,12 +167,12 @@
                 </div>
               </li>
 
-              <li class="nav-item dropdown mt-sm-2 mt-lg-0">
+              <li class="nav-item dropdown mt-lg-0">
                 <a href="cart.php" class="nav-link me-2 position-relative" id="dropdownId">
                   <!-- <i class="fa-solid fa-cart-shopping pe-1"></i> -->
                   <i class='bx bx-cart-alt'></i>
                   <span class="position-absolute end-10 top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartProducts">
-                    <?php echo isset($_SESSION['cart']) ? count($_SESSION['cart']) : '0' ?>
+                    <?php echo !empty($_SESSION['cart']) ? count($_SESSION['cart']) : '0' ?>
                     <span class="visually-hidden">unread messages</span>
                   </span>
                 </a>
@@ -160,16 +180,6 @@
               </li>
 
             </ul>
-
-            <!-- <div class="dropdown open">
-              <a class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown Anchor
-              </a>
-              <div class="dropdown-menu" aria-labelledby="triggerId">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item disabled" href="#">Disabled action</a>
-              </div>
-            </div> -->
 
             <!-- / .nav .navbar-nav .navbar-right -->
           </div>

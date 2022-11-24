@@ -1,19 +1,23 @@
 <?php
 require 'config/env.php';
 
-include 'includes/templates/indexHeader.php';
 if (!$_SESSION['login']) {
     header('location:auth/login.php');
 }
 
 
-if (isset($_POST['productId'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['productId'];
 
     unset($_SESSION['cart'][$id]);
+    // $_SESSION['cart'] = $_SESSION['cart'];
+    header("location:cart.php");
 }
 
-// var_dump($_SESSION['cart']);
+// echo '<pre>';
+// var_dump(($_SESSION['cart']));
+// echo '</pre>';
+include 'includes/templates/indexHeader.php';
 
 ?>
 

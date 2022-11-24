@@ -102,16 +102,10 @@
 	paypal.Buttons({
 
 		style: {
-
 			layout: 'vertical',
-
 			color: 'black',
-
 			shape: 'rect',
-
 			label: 'paypal',
-
-			// tagline: horizontal
 		},
 
 		// Sets up the transaction when a payment button is clicked
@@ -157,6 +151,7 @@
 				// Or go to another URL: 
 				// actions.redirect('confirmation.php');
 				location.href = "confirmation.php";
+
 			});
 
 		}

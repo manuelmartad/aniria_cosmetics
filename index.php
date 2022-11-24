@@ -13,40 +13,12 @@ include 'includes/templates/indexHeader.php';
 ?>
 
 <div class="bg-image">
-	<div style="padding: 150px 100px;" class="d-none d-sm-block">
-		<h1>El maquillaje es arte,<br> la belleza es espiritu</h1>
+	<div style="padding: 150px 100px;">
+		<h1 class="d-none d-sm-block">El maquillaje es arte,<br> la belleza es espiritu</h1>
 		<a type="button" id="redirect" class="btn btn-outline-primary mt-2 text-uppercase px-4"> Empieza Ahora</a>
 	</div>
 
 </div>
-<!-- 
-<div id="carouselId" class="carousel slide" data-bs-ride="carousel">
-	<ol class="carousel-indicators">
-		<li data-bs-target="#carouselId" data-bs-slide-to="0" class="active" aria-current="true" aria-label="First slide"></li>
-		<li data-bs-target="#carouselId" data-bs-slide-to="1" aria-label="Second slide"></li>
-	</ol>
-	<div class="carousel-inner" role="listbox">
-		<div class="carousel-item active">
-			<img src="assets//img//hero-bg2.jpg" class="w-100 d-block" alt="First slide">
-		</div>
-		<div class="carousel-item">
-			<img src="assets///img///hero2.jpg" class="w-100 d-block" alt="Second slide">
-		</div>
-	
-	</div>
-	<button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
-		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-		<span class="visually-hidden">Previous</span>
-	</button>
-	<button class="carousel-control-next" type="button" data-bs-target="#carouselId" data-bs-slide="next">
-		<span class="carousel-control-next-icon" aria-hidden="true"></span>
-		<span class="visually-hidden">Next</span>
-	</button>
-</div> -->
-
-<!-- Add Swiper HTML Layout
-Now, we need to add basic Swiper layout to our app: -->
-
 
 
 <!-- product categories -->
@@ -63,8 +35,8 @@ Now, we need to add basic Swiper layout to our app: -->
 					<a href="#!">
 						<img src="theme/images/shop/category/category-1.jpg" alt="" />
 						<div class="content">
-							<h3>Clothes Sales</h3>
-							<p>Shop New Season Clothing</p>
+							<h3>Iluminadores</h3>
+							<p>Compra maquillaje de nueva temporada</p>
 						</div>
 					</a>
 				</div>
@@ -72,8 +44,8 @@ Now, we need to add basic Swiper layout to our app: -->
 					<a href="#!">
 						<img src="theme/images/shop/category/category-2.jpg" alt="" />
 						<div class="content">
-							<h3>Smart Casuals</h3>
-							<p>Get Wide Range Selection</p>
+							<h3>Polvo Fijador</h3>
+							<p>Obtenga una amplia gama de selección</p>
 						</div>
 					</a>
 				</div>
@@ -83,8 +55,8 @@ Now, we need to add basic Swiper layout to our app: -->
 					<a href="#!">
 						<img src="theme/images/shop/category//test.jpg" alt="" />
 						<div class="content">
-							<h3>Jewellery</h3>
-							<p>Special Design Comes First</p>
+							<h3>Corrector Barra</h3>
+							<p>El diseño especial es lo primero</p>
 						</div>
 					</a>
 				</div>
@@ -93,7 +65,7 @@ Now, we need to add basic Swiper layout to our app: -->
 
 	</div>
 </section>
-<!-- trendy products -->
+<!-- most liked products -->
 <section class="products section bg-gray">
 	<div class="container">
 		<div class="row">
@@ -108,7 +80,7 @@ Now, we need to add basic Swiper layout to our app: -->
 					<div class="product-item">
 						<div class="product-thumb">
 							<span class="bage">Sale</span>
-							<img class="img-responsive" src="admin/products/uploads/<?php echo $product['product_image'] ?>" alt="product-img" style="height: 400px!important ;" />
+							<img class="img-responsive" src="admin/products/uploads/<?php echo $product['product_image'] ?>" alt="product-img" style="height: 300px!important ;" />
 							<div class="preview-meta">
 								<ul class="w-25">
 									<li>

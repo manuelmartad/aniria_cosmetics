@@ -43,5 +43,5 @@ if (!isset($_SESSION['cart'])) {
 
     $_SESSION['cart'][$productId] = $producto;
 
-    $_SESSION['cart'][$productId] += $productId;
+    // $_SESSION['cart'][$productId] += $productId;
 }

@@ -3493,6 +3493,8 @@ fieldset:disabled .btn {
     --bs-gradient: none
 }
 
+
+
 .btn-outline-secondary {
     --bs-btn-color: #6c757d;
     --bs-btn-border-color: #6c757d;

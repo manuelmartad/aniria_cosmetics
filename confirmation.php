@@ -4,6 +4,8 @@ require 'config/db.php';
 require 'config/funciones.php';
 
 include 'includes/templates/indexHeader.php';
+$_SESSION['cart'] = array();
+
 ?>
 
 <section class="products section bg-gray">
