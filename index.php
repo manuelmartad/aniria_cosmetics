@@ -47,30 +47,7 @@ include 'includes/templates/indexHeader.php';
 <!-- Add Swiper HTML Layout
 Now, we need to add basic Swiper layout to our app: -->
 
-<!-- Slider main container -->
-<div class="swiper">
-	<!-- Additional required wrapper -->
-	<div class="swiper-wrapper text-center">
-		<!-- Slides -->
-		<?php while ($producto = $products->fetch_array()) : ?>
 
-			<div class="swiper-slide p-5">
-				<img src="admin/products/uploads/<?php echo $producto['product_image'] ?>" alt="product-img" height="400" width="400" />
-			</div>
-			<?php endwhile; ?>
-			<!-- <div class="swiper-slide">Slide 2</div>
-			<div class="swiper-slide">Slide 3</div> -->
-	</div>
-	<!-- If we need pagination -->
-	<!-- <div class="swiper-pagination"></div> -->
-
-	<!-- If we need navigation buttons -->
-	<div class="swiper-button-prev"></div>
-	<div class="swiper-button-next"></div>
-
-	<!-- If we need scrollbar -->
-	<!-- <div class="swiper-scrollbar"></div> -->
-</div>
 
 <!-- product categories -->
 <section class="product-category section bg-linear">
