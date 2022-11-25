@@ -44,7 +44,7 @@ include '../../includes/templates/nav.php';
                             </div>
 
                             <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
-                                <?php while ($spot = $result->fetch_assoc()) { ?>
+                                <?php while ($spot = $result->fetch_assoc()) : ?>
 
                                     <div class="col-lg-4 col-md-6 portfolio-item filter-app">
                                         <div class="portfolio-wrap">
@@ -60,29 +60,7 @@ include '../../includes/templates/nav.php';
                                         <p class="text-center fs-5 mt-3"><?php echo $spot["spot_address"] ?></p>
                                     </div>
 
-                                    <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                                    <div class="portfolio-wrap">
-                                        <img src="<?php echo ASSETS ?>img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
-                                        <div class="portfolio-links">
-                                            <a href="<?php echo ASSETS ?>img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="fa-solid fa-eye"></i></a>
-                                            <a href="#" title="More Details"><i class="fa-solid fa-pen-alt"></i></a>
-                                            <a href="#" title="More Details"><i class="fa-solid fa-trash"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                                    <div class="portfolio-wrap">
-                                        <img src="<?php echo ASSETS ?>img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
-                                        <div class="portfolio-links">
-                                            <a href="<?php echo ASSETS ?>img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2">
-                                                <i class="fa-solid fa-eye"></i></a>
-                                            <a href="#" title="More Details"><i class="fa-solid fa-pen-alt"></i></a>
-                                            <a href="#" title="More Details"><i class="fa-solid fa-trash"></i></a>
-                                        </div>
-                                    </div>
-                                </div> -->
-                                <?php } ?>
+                                <?php endwhile; ?>
 
                             </div>
 
