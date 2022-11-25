@@ -60,7 +60,7 @@
       background-image: url("<?php echo ASSETS ?>img/hero2.jpg");
       background-position: center center;
       background-size: cover;
-      height: 80vh;
+      min-height: 600px;
       min-width: 340px;
     }
 
@@ -69,13 +69,15 @@
         background-position: center right;
         background-size: cover;
         background-repeat: no-repeat;
+        height: 540px;
       }
 
       #redirect {
         position: relative;
         display: inline-block !important;
-        top: 300px;
-        right: 70px;
+        top: 400px;
+        right: 0;
+        left: 0;
         width: 300px !important;
         background-color: #000;
         color: #fff;

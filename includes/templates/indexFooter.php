@@ -12,7 +12,7 @@
 							<i class="fa-brands fw-bold fa-instagram"></i> </a>
 					</li>
 				</ul>
-				<p class="copyright-text">Copyright &copy;<?php echo date('Y') ?>, Designed &amp; Developed by <a href="https://themefisher.com/">TRW71</a></p>
+				<p class="copyright-text">Copyright &copy;<?php echo date('Y') ?>, Designed &amp; Developed by <a href="https://facebook.com/">TRW71</a></p>
 			</div>
 		</div>
 	</div>
@@ -99,64 +99,49 @@
 
 
 <script>
-	paypal.Buttons({
+	$(function() {
+		paypal.Buttons({
+			style: {
+				layout: 'vertical',
+				color: 'black',
+				shape: 'rect',
+				label: 'paypal',
+			},
+			// Sets up the transaction when a payment button is clicked
+			createOrder: (data, actions) => {
 
-		style: {
-			layout: 'vertical',
-			color: 'black',
-			shape: 'rect',
-			label: 'paypal',
-		},
+				return actions.order.create({
 
-		// Sets up the transaction when a payment button is clicked
+					purchase_units: [{
 
-		createOrder: (data, actions) => {
+						amount: {
 
-			return actions.order.create({
+							value: '<?php echo $subtotal * $iva ?>' // Can also reference a variable or function
 
-				purchase_units: [{
+						}
 
-					amount: {
+					}]
 
-						value: <?php echo $total ?> // Can also reference a variable or function
+				});
 
-					}
-
-				}]
-
-			});
-
-		},
-
-		// Finalize the transaction after payer approval
-
-		onApprove: (data, actions) => {
-
-			return actions.order.capture().then(function(orderData) {
-
-				// Successful capture! For dev/demo purposes:
-
-				console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
-
-				const transaction = orderData.purchase_units[0].payments.captures[0];
-
-				// alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
-
-				// When ready to go live, remove the alert and show a success message within this page. For example:
-
-				// const element = document.getElementById('paypal-button-container');
-
-				// element.innerHTML = '<h3>Thank you for your payment!</h3>';
-
-				// Or go to another URL: 
-				// actions.redirect('confirmation.php');
-				location.href = "confirmation.php";
-
-			});
-
-		}
-
-	}).render('#paypal-button-container');
+			},
+			// Finalize the transaction after payer approval
+			onApprove: (data, actions) => {
+				return actions.order.capture().then(function(orderData) {
+					// Successful capture! For dev/demo purposes:
+					console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+					const transaction = orderData.purchase_units[0].payments.captures[0];
+					// alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
+					// When ready to go live, remove the alert and show a success message within this page. For example:
+					// const element = document.getElementById('paypal-button-container');
+					// element.innerHTML = '<h3>Thank you for your payment!</h3>';
+					// Or go to another URL: 
+					// actions.redirect('confirmation.php');
+					location.href = "confirmation.php";
+				});
+			}
+		}).render('#paypal-button-container');
+	});
 </script>
 
 

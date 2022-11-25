@@ -124,15 +124,16 @@ include 'includes/templates/indexHeader.php';
                     <div class="mb-5">
                         <h4>resumen del pedido</h4>
                         <hr>
-                        <?php $subtotal = 0;
+                        <?php
+                        $subtotal = 0;
                         $total = 0;
                         $iva = 1.16;
                         foreach ($_SESSION['cart'] as $key => $producto) : ?>
                             <div class="row">
-                                <div class="col-4">
+                                <div class="col-md-12 col-lg-4 mb-3">
                                     <img src="<?php echo ADMIN ?>products/uploads/<?php echo $producto['productImage'] ?>" alt="" width="150" height="150">
                                 </div>
-                                <div class="col-8">
+                                <div class="col-md-12 col-lg-4">
                                     <p><?php echo $producto['productName'] ?></p>
                                     <p><?php echo $producto['productQty'] ?> x $<?php echo $producto['productPrice'] ?></p>
                                     <!-- <a href="#">Eliminar</a> -->
@@ -141,7 +142,7 @@ include 'includes/templates/indexHeader.php';
                             <hr>
                         <?php
 
-                            $subtotal = $subtotal + ($producto['productQty'] * number_format($producto['productPrice'], 2));
+                            $subtotal = $subtotal + ($producto['productQty'] * $producto['productPrice']);
                         endforeach; ?>
                         <div class="row">
                             <div class="col-6">
@@ -154,7 +155,8 @@ include 'includes/templates/indexHeader.php';
 
                                 <p>$<?php echo number_format($subtotal, 2) ?></p>
                                 <p><s>Gratis</s></p>
-                                <p class="fs-4 text-success">$<?php echo number_format($subtotal * $iva, 2) ?></p>
+                                <?php $total = $total + ($subtotal * $iva) ?>
+                                <p class="fs-4 text-success">$<?php echo number_format($total, 2) ?></p>
                                 <!-- <div class="py-3"><button class="btn btn-primary w-100">Aceptar</button>
                         </div> -->
                             </div>
@@ -169,16 +171,12 @@ include 'includes/templates/indexHeader.php';
                 </div>
 
                 <?php
-                $total = number_format($subtotal * $iva, 2);
+                $total = number_format($total, 2);
                 $orderid =  date('His') . rand(1111, 9999);
                 $cartItems = count($_SESSION['cart']);
                 $buyerName = $_SESSION['name'];
-                //  print_r(!isset($_SESSION['cart']))
-                // echo $orderid . '<br>';
-                // echo $cartItems . '<br>';
-                // echo $total . '<br>';
-                // echo $buyerName;
                 ?>
+
                 <input type="hidden" name="total" value="<?php echo $total ?>">
                 <input type="hidden" name="orderId" value="<?php echo $orderid ?>">
                 <input type="hidden" name="cartItems" value="<?php echo $cartItems ?>">
