@@ -44,8 +44,43 @@
         *:not(i) {
             font-family: 'Montserrat', sans-serif !important;
         }
-        .navbar .bx{
-            font-size: 35px!important;
+
+        .navbar .bx {
+            font-size: 35px !important;
+        }
+
+        @media only screen and (max-width:900px) {
+
+            #no-more-tables tbody,
+            #no-more-tables tr,
+            #no-more-tables td {
+                display: block;
+                padding: 10px;
+            }
+
+            #no-more-tables thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            #no-more-tables td {
+                position: relative;
+                padding-left: 50%;
+                border: none;
+                border-bottom: 1px solid #eee;
+            }
+
+            #no-more-tables td:before {
+                content: attr(data-title);
+                position: absolute;
+                left: 6px;
+                font-weight: bold;
+            }
+
+            #no-more-tables tr {
+                border-bottom: 1px solid #ccc;
+            }
         }
     </style>
 </head>

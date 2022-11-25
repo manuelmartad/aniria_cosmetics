@@ -10,7 +10,7 @@ if ($_SESSION['role'] !== 'admin') {
 }
 
 $sql = "SELECT a.product_id, a.product_name, a.product_price, a.product_image, b.category_name FROM products a
-JOIN categories b ON a.category_id = b.category_id ORDER by a.product_id ASC limit 8";
+JOIN categories b ON a.category_id = b.category_id ORDER by a.product_id ASC";
 $data = $conn->query($sql);
 
 
@@ -32,10 +32,10 @@ include '../../includes/templates/nav.php';
                         Producto</a>
                 </div>
                 <div class="card-body">
-                    <?php echo $_SESSION["success"] ?? null;
-                    unset($_SESSION["success"]) ?>
+                    <!-- <?php echo $_SESSION["success"] ?? null;
+                    unset($_SESSION["success"]) ?> -->
                     <!-- <div id="response" class="alert alert-success text-center d-none"><small></small></div> -->
-                    <table class="table table-bordered table-hover text-center" id="productsTable">
+                    <table class="table table-bordered table-hover text-center" id="no-more-tables">
                         <thead style="background:#020202;color:#fdfdfd">
                             <tr>
                                 <td>ID</td>
@@ -50,16 +50,16 @@ include '../../includes/templates/nav.php';
                             <?php if ($data->num_rows > 0) {
                                 while ($row = $data->fetch_assoc()) { ?>
                                     <tr class="align-middle">
-                                        <td><?php echo $row['product_id']; ?></td>
-                                        <td><?php echo $row['product_name']; ?></td>
-                                        <td><?php echo $row['product_price']; ?></td>
+                                        <td data-title="ID"><?php echo $row['product_id']; ?></td>
+                                        <td data-title="Nombre"><?php echo $row['product_name']; ?></td>
+                                        <td data-title="Precio"><?php echo $row['product_price']; ?></td>
 
-                                        <td><?php echo $row['category_name']; ?></td>
+                                        <td data-title="Categoria"><?php echo $row['category_name']; ?></td>
 
-                                        <td><img src="uploads/<?php echo $row['product_image']; ?>" width="150" height="150" class="rounded-0"></td>
+                                        <td data-title="Imagen"><img src="uploads/<?php echo $row['product_image']; ?>" width="150" height="150" class="rounded-0"></td>
 
 
-                                        <td><a href="product_edit.php?id=<?php echo $row['product_id'] ?>" class="btn btn-primary"><i class="fa-solid fa-pen"></i></a>
+                                        <td data-title="Acción"><a href="product_edit.php?id=<?php echo $row['product_id'] ?>" class="btn btn-primary"><i class="fa-solid fa-pen"></i></a>
                                             <button class="btn btn-danger deleteProduct" name="deleteProduct" data-id="<?php echo $row['product_id'] ?>"><i class="fa-solid fa-trash"></i></button>
                                         </td>
                                     </tr>

@@ -26,7 +26,7 @@ include '../../includes/templates/nav.php';
                         Categoria</a>
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered table-hover text-center">
+                    <table class="table table-bordered table-hover text-center" id="no-more-tables">
                         <thead style="background:linear-gradient(#020202, #464646);color:#fdfdfd">
                             <tr>
                                 <td>ID</td>
@@ -38,11 +38,11 @@ include '../../includes/templates/nav.php';
                         <tbody>
                             <?php while ($category = $categories->fetch_assoc()) : ?>
                                 <tr class="align-middle">
-                                    <td><?php echo $category['category_id'] ?></td>
-                                    <td><?php echo $category['category_name'] ?></td>
-                                    <td><img src="uploads/category_pictures/<?php echo $category['category_image'] ?>" alt="" width="100" height="100"></td>
+                                    <td data-title="ID"><?php echo $category['category_id'] ?></td>
+                                    <td data-title="Nombre"><?php echo $category['category_name'] ?></td>
+                                    <td data-title="Imagen"><img src="uploads/category_pictures/<?php echo $category['category_image'] ?>" alt="" width="100" height="100"></td>
 
-                                    <td><button class="btn btn-link"><i class="fa-solid animate fs-5 fa-pen-alt text-warning"></i></button> |
+                                    <td data-title="Acción"><button class="btn btn-link"><i class="fa-solid animate fs-5 fa-pen-alt text-warning"></i></button> |
                                         <button class="btn btn-link"><i class="fa-solid animate fs-5 fa-trash text-danger"></i></button>
                                     </td>
                                 </tr>

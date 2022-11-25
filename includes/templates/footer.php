@@ -163,16 +163,16 @@
                               id: product
                           },
                           success: function(response) {
-                              $("#productsTable").load(location.href + " #productsTable>*");
-
-                              setTimeout(() => {
-
-                              }, 2000);
+                              $("#no-more-tables").load(location.href + " #no-more-tables>*");
                               Swal.fire(
                                   'Eliminado!',
                                   'El producto ha sido eliminado.',
                                   'success'
                               )
+                              setTimeout(() => {
+
+                              }, 2000);
+
                           }
                       });
                   }
