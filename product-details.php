@@ -55,7 +55,8 @@ include 'includes/templates/indexHeader.php';
                             <!-- me art lab slider -->
                             <div class='carousel-inner'>
                                 <div class='item active'>
-                                    <img src="admin/products/uploads/<?php echo $product['product_image'] ?>" alt='' data-zoom-image="admin/products/uploads/<?php echo $product['product_image'] ?>" />
+                                    <img src="admin/products/uploads/<?php echo $product['product_image'] ?>" 
+                                    style="height:475px!important;width:100%!important" alt=''>
                                 </div>
 
                             </div>
@@ -77,20 +78,6 @@ include 'includes/templates/indexHeader.php';
                     </p>
 
 
-                    <div class="product-quantity">
-                        <span>Cantidad:</span>
-                        <div class="product-quantity-slider">
-                            <input id="product-quantity" class="form-control" type="number" value="1" min="1" max="20" name="product-quantity">
-                        </div>
-                    </div>
-                    <div class="product-category">
-                        <span>Categoria:</span>
-                        <ul class="ms-0 ps-0">
-                            <li><a href="#"><?php echo $product['category_name'] ?></a></li>
-
-                        </ul>
-
-                    </div>
                     <div class="mt-3">
                         <ul>
                             <li>
@@ -100,7 +87,27 @@ include 'includes/templates/indexHeader.php';
                     </div>
                     <p class="my-3 text-dark"> <span id="like_counter"></span></p>
 
-                    <a href="cart.html" class="btn btn-primary mt-2">Agregar al carrito</a>
+                    <div class="d-flex gap-3">
+                        <p>Categoria:</p>
+                        <ul class="ms-0 ps-0">
+                            <li><a href="#"><?php echo $product['category_name'] ?></a></li>
+
+                        </ul>
+
+                    </div>
+
+                    <form method="post" id="form_cart">
+                        <input type="hidden" name="productId" value="<?php echo $product['product_id'] ?>">
+                        <input type="hidden" name="productPrice" value="<?php echo $product["product_price"] ?>">
+                        <input type="hidden" name="productName" value="<?php echo $product["product_name"] ?>">
+                        <input type="hidden" name="productImage" value="<?php echo $product["product_image"] ?>">
+                        <div class="d-flex gap-3 align-items-center">
+                            <p>Cantidad:</p>
+                            <input type="number" name="productQty" value="1" min="1" max="20" class="form-control form-control-sm w-25 mb-3">
+                        </div>
+                        <button type="submit" class="btn btn-primary my-3 px-4"><i class="fa-solid fa-cart-shopping pe-2"></i>Agregar al Carrito</button>
+                    </form>
+                    <!-- <a href="cart.html" class="btn btn-primary mt-2">Agregar al carrito</a> -->
 
                 </div>
             </div>
@@ -112,15 +119,17 @@ include 'includes/templates/indexHeader.php';
                         <div id="comment-section">
 
                             <?php
-                            $comments = $conn->query("SELECT * FROM comments WHERE product_id = '$id'");
+                            $comments = $conn->query("SELECT a.*, b.* FROM comments a
+                            JOIN users b ON a.user_id = b.id 
+                            WHERE product_id = '$id'");
                             foreach ($comments as $comment) : // fetch data 
-                                // var_dump($comment);
+                                var_dump($_SESSION);
 
                             ?>
                                 <ul class="d-flex align-content-center gap-3">
                                     <li><img src="theme//images//blog//avater-1.jpg" style="border-radius:50% ;" alt="" width="60" height="60"></li>
                                     <li>
-                                        <p class="mb-1">Manuel Marta</p>
+                                        <p class="mb-1"><?php echo $comment['fname'] .' '. $comment['lname'] ?></p>
                                         <span><?php echo $comment['date'] ?></span>
                                         <p class="text-justify">
                                             <?php echo $comment['comment_text'] ?>
@@ -133,6 +142,7 @@ include 'includes/templates/indexHeader.php';
                         <div class="mb-3 pe-2">
                             <form method="post" id="comment-form">
                                 <input type="hidden" name="productid" value="<?php echo $product['product_id'] ?>">
+                                <input type="hidden" name="userid" value="<?php echo $_SESSION['id'] ?>">
                                 <div class="mb-3">
                                     <input type="text" class="form-control form-control-sm" name="comment" id="comment" placeholder="Agregar un comentario..">
                                 </div>

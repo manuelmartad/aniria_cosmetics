@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     header('location:../index.php');
                 }
             } else {
-                $error = "hay un error con tu contraseña";
+                $error = "Hay un error con tu contraseña";
             }
         } else {
             $error = "Hay un error con tu cuenta";
@@ -72,7 +72,7 @@ include '../includes/templates/header.php';
     <div class="container">
 
 
-        <div class="card p-2 shadow-lg border-0 col-md-5 mx-auto mt-0">
+        <div class="card p-2 shadow-lg border-0 col-lg-5 col-md-8 mx-auto mt-0" id="login-card">
 
 
             <div class="card-title">
@@ -84,20 +84,23 @@ include '../includes/templates/header.php';
                     <div class="mb-3">
                         <!-- <label for="" class="form-label">Usuario</label> -->
                         <input type="text" class="form-control" name="username" id="username" required placeholder="Usuario" value="<?= $username ?>">
+                        <small class="invalid-feedback">Este campo es obligatorio</small>
                     </div>
 
                     <div class="mb-3">
                         <!-- <label for="" class="form-label">Password</label> -->
-                        <input type="password" class="form-control" name="password" id="password" required placeholder="Password">
+                        <input type="password" class="form-control" name="password" id="password" required placeholder="Contraseña">
+                        <small class="invalid-feedback">Este campo es obligatorio</small>
+
                     </div>
                     <?php echo isset($mensaje) ? $mensaje : '';
                     unset($mensaje) ?>
                     <div class="mt-4">
-                        <button type="submit" class="btn btn-primary w-100">Iniciar</button>
+                        <button type="submit" class="btn btn-primary w-100">Iniciar sesión</button>
                     </div>
                 </form>
-                <div class="d-flex align-items-center mt-2 justify-content-center">
-                    <span>No tienes cuenta?</span><a href="register.php" class="btn btn-link">Registrate</a>
+                <div class="row align-items-center text-center mt-3">
+                    <span class="col-md-6">¿Aún no tienes cuenta?</span><a href="register.php" class="btn btn-link col-md-6">Registrate</a>
                 </div>
 
             </div>

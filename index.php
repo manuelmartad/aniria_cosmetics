@@ -33,7 +33,7 @@ include 'includes/templates/indexHeader.php';
 			<div class="col-md-6">
 				<div class="category-box">
 					<a href="#!">
-						<img src="theme/images/shop/category/category-1.jpg" alt="" />
+						<img src="assets//img//main-1.jpg" alt="" />
 						<div class="content">
 							<h3>Iluminadores</h3>
 							<p>Compra maquillaje de nueva temporada</p>
@@ -53,7 +53,7 @@ include 'includes/templates/indexHeader.php';
 			<div class="col-md-6">
 				<div class="category-box category-box-2">
 					<a href="#!">
-						<img src="theme/images/shop/category//test.jpg" alt="" />
+					<img src="assets//img//main-3.jpg" alt="" class="w-100" />
 						<div class="content">
 							<h3>Corrector Barra</h3>
 							<p>El diseño especial es lo primero</p>
@@ -80,16 +80,14 @@ include 'includes/templates/indexHeader.php';
 					<div class="product-item">
 						<div class="product-thumb">
 							<span class="bage">Sale</span>
-							<img class="img-responsive" src="admin/products/uploads/<?php echo $product['product_image'] ?>" alt="product-img" style="height: 300px!important ;" />
+							<img class="img-responsive" src="admin/products/uploads/<?php echo $product['product_image'] ?>" alt="product-img" style="height: 375px!important ;" />
 							<div class="preview-meta">
 								<ul class="w-25">
 									<li>
 										<span data-bs-toggle="modal" data-bs-target="#product-modal<?php echo $product['product_id'] ?>">
 											<i class="fa-solid fa-magnifying-glass"></i> </span>
 									</li>
-									<!-- <li>
-										<a type="button" class="like" data-id="<?php echo $product['product_id'] ?>"><i class="fa-solid fa-heart"></i></a>
-									</li> -->
+								
 									<li>
 										<a href="cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
 									</li>

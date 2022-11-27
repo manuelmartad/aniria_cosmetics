@@ -32,9 +32,10 @@ if (isset($_POST['productId'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $com = $_POST['comment'];
     $id = $_POST['productid'];
-    //   $date = date()
+    $userid = $_POST['userid'];
+    $date = date("F j, Y, g:i a");
 
-    $sql = "INSERT INTO comments(comment_text, date, product_id) VALUES('$com', NOW(), '$id')";
+    $sql = "INSERT INTO comments(comment_text, date, product_id, user_id) VALUES('$com', '$date', '$id', '$userid')";
     if ($conn->query($sql)) {
         echo 200;
     }

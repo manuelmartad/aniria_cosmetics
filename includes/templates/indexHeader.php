@@ -98,6 +98,14 @@
       text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
     }
 
+    .main-title {
+      font-family: 'Dancing Script', cursive !important;
+      font-weight: 500 !important;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+      text-transform: capitalize !important;
+      font-size: 60px;
+    }
+
     .swiper {
       width: 100%;
       height: 400px;
@@ -192,9 +200,6 @@
         <div class="row">
           <div class="col-md-4 col-xs-12 col-sm-4">
             <div class="contact-number d-flex">
-              <!-- <i class="tf-ion-ios-telephone"></i> -->
-              <!-- <i class="fa-solid fa-phone"></i> -->
-              <!-- <i class='bx bx-phone'></i> -->
               <i class='bx bxs-phone'></i>
               <p>+52 (656) 461-51-34</p>
             </div>
@@ -204,7 +209,7 @@
             <div class="logo text-center">
               <a href="index.php">
                 <!-- replace logo here -->
-                <h2 style="font-family:Montserrat; font-weight:500;">ANIRIA COSMETIC'S</h2>
+                <h2 class="main-title">aniria cosmetic's</h2>
               </a>
             </div>
           </div>
@@ -289,9 +294,6 @@
             <?php else : ?>
               <li class="nav-item dropdown">
                 <a class="nav-link" href="account.php" id="dropdownId">Mi Cuenta</a>
-                <!-- <div class="dropdown-menu animate__animated animate__bounceIn animate__faster" aria-labelledby="dropdownId">
-                <a class="dropdown-item" href="#">Mi Password</a>
-              </div> -->
               </li>
               <li class="nav-item"> <a id="logout" class="dropdown-item" type="button">Cerrar sesión</a>
               </li> <?php endif  ?>

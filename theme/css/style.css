@@ -330,7 +330,7 @@ input[type=tel]:focus {
 }
 
 .category-box img {
-  transition: all 0.8s ease-in-out;
+  transition: all 0.1s ease-in-out;
   width: 100%;
   height: auto;
   -webkit-backface-visibility: hidden;
@@ -364,9 +364,11 @@ input[type=tel]:focus {
 
 .category-box .content h3 {
   margin: 0;
-  color: #333;
-  font-size: 20px;
+  color: #0c0c0c;
+  font-size: 25px;
   font-weight: 500;
+  /* text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8); */
+
 }
 
 @media (max-width: 768px) {
@@ -377,6 +379,9 @@ input[type=tel]:focus {
 
 .category-box .content p {
   margin: 6px 0 0;
+  color: #fdfdfd;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+
 }
 
 .page-header {

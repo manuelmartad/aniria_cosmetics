@@ -75,9 +75,9 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     <div class="container">
         <?php echo isset($_SESSION['message']) ? $_SESSION['message'] : '';
         unset($_SESSION['message']) ?>
-        <div class="card mb-3 p-2 shadow-lg border-0 mx-auto mt-0 col-md-10">
+        <div class="card mb-3 p-2 shadow-lg border-0 mx-auto mt-0 col-lg-8 col-md-12" id="login-card">
             <div class="row g-0">
-                <div class="col-md-6">
+                <div class="col-md-6 d-none d-md-block">
                     <img src="<?php echo ASSETS ?>img/aniria.jpg" class="img-fluid pt-5" alt="aniria-logo">
                 </div>
                 <div class="col-md-6">
@@ -86,39 +86,50 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
                             <div class="mb-3">
                                 <!-- <label for="" class="form-label">Nombre</label> -->
                                 <input type="text" class="form-control" name="fname" id="" placeholder="Nombre" required value="<?= $fname ?>">
+                                <small class="invalid-feedback">Este campo es obligatorio</small>
+
                             </div>
                             <div class="mb-3">
                                 <!-- <label for="" class="form-label">Apellido</label> -->
                                 <input type="text" class="form-control" name="lname" id="" placeholder="Apellido" required value="<?= $lname ?>">
+                                <small class="invalid-feedback">Este campo es obligatorio</small>
+
                             </div>
 
                             <div class="mb-3">
                                 <!-- <label for="" class="form-label">Username</label> -->
                                 <input type="text" class="form-control" name="username" id="" placeholder="Username" required value="<?= $username ?>">
+                                <small class="invalid-feedback">Este campo es obligatorio</small>
+
                             </div>
 
                             <div class="mb-3">
                                 <!-- <label for="" class="form-label">Telefono</label> -->
-                                <input type="text" class="form-control" name="phone" id="" placeholder="Telefono" required value="<?= $phone ?>">
+                                <input type="text" class="form-control" name="phone" id="" placeholder="Teléfono" required value="<?= $phone ?>">
+                                <small class="invalid-feedback">Este campo es obligatorio</small>
+
                             </div>
 
                             <div class="mb-3">
                                 <!-- <label for="" class="form-label">Password</label> -->
-                                <input type="text" class="form-control" name="password" id="" placeholder="Password" required value="<?= $password ?>">
+                                <input type="text" class="form-control" name="password" id="" placeholder="Contraseña" required value="<?= $password ?>">
+                                <small class="invalid-feedback">Este campo es obligatorio</small>
+
                             </div>
 
                             <div class="mb-3">
                                 <!-- <label for="" class="form-label">Repite Password</label> -->
-                                <input type="text" class="form-control" name="password_two" id="" placeholder="Repite Password" required>
+                                <input type="text" class="form-control" name="password_two" id="" placeholder="Repite tu Contraseña" required>
+                                <small class="invalid-feedback">Este campo es obligatorio</small>
+
                             </div>
 
                             <div class="mt-4">
                                 <button type="submit" class="btn btn-primary w-100">Registarse</button>
                             </div>
                         </form>
-                        <div class="d-flex align-items-center mt-2 justify-content-center">
-                            <span>Ya tienes cuenta?</span><a href="login.php" class="btn btn-link">Inicia
-                                Sesion</a>
+                        <div class="row align-items-center text-center mt-3">
+                            <span class="col-md-6">¿Ya tienes una cuenta?</span><a href="login.php" class="btn btn-link col-md-6">Iniciar sesión</a>
                         </div>
                     </div>
                 </div>

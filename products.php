@@ -34,7 +34,7 @@ include 'includes/templates/indexHeader.php';
 					<div class="product-item">
 						<div class="product-thumb">
 							<span class="bage">Sale</span>
-							<img class="img-responsive" src="admin/products/uploads/<?php echo $product['product_image'] ?>" alt="product-img" style="height: 300px!important ;" />
+							<img class="img-responsive" src="admin/products/uploads/<?php echo $product['product_image'] ?>" alt="product-img" style="height: 375px!important ;" />
 							<div class="preview-meta">
 								<ul class="w-25">
 									<li>

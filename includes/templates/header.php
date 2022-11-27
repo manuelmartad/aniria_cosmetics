@@ -66,7 +66,7 @@
 
             }
 
-        
+
             #no-more-tables td {
                 position: relative;
                 padding-left: 50%;
@@ -87,6 +87,10 @@
                 margin-top: 40px;
                 border-bottom: 1px solid #ccc;
 
+            }
+
+            #login-card {
+                margin-top: 120px !important;
             }
         }
     </style>
