@@ -2,7 +2,7 @@
 require_once '../../config/db.php';
 
 
-$sql = "SELECT * FROM payment";
+$sql = "SELECT * FROM orders";
 $orders = $conn->query($sql);
 
 
@@ -13,18 +13,24 @@ include '../../includes/templates/nav.php';
 <main id="main">
     <!-- ======= Skills Section ======= -->
     <section id="skills" class="skills section-bg">
-        <div class="container p-3">
+        <div class="container">
 
             <div class="card shadow-lg">
 
                 <div class="card-body p-3 px-4">
                     <h5 class="py-3">Vista de Pedidos</h5>
-                    <table class="table table-striped w-100 border-dark align-middle text-center">
+                    <table class="table w-100 border-dark align-middle text-center" id="no-more-tables">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Usuario</th>
-                                <!-- <th>Teléfono</th> -->
+                            <!-- <th>ID</th> -->
+
+                            <th>Usuario</th>
+                            <th>Calle</th>
+                            <th>Colonia</th>
+                            <th>Codigo Postal</th>
+                            <th>Ciudad</th>
+                            <th>Pais</th>
+                                <th>Teléfono</th>
                                 <th>Fecha</th>
                                 <th>Artículos</th>
                                 <th>Precio total</th>
@@ -36,12 +42,17 @@ include '../../includes/templates/nav.php';
                         <tbody>
                             <?php while ($order = $orders->fetch_assoc()) : ?>
                                 <tr>
-                                    <td><span>#</span><?php echo $order['orderId'] ?></td>
-                                    <td><?php echo $order['buyerName'] ?></td>
-                                    <!-- <td>656 461 51 35</td> -->
-                                    <td><?php echo $order['date'] ?></td>
-                                    <td><?php echo $order['cartItems'] ?></td>
-                                    <td>$<?php echo $order['total'] ?></td>
+                                <!-- <td data-title="ID"><?php echo $order['transaction_id'] ?></td> -->
+                                <td data-title="Usuario"><?php echo $order['name'] ?></td>
+                                <td data-title="Calle"><?php echo $order['address'] ?></td>
+                                <td data-title="Colonia"><?php echo $order['address1'] ?></td>
+                                <td data-title="Codigo Postal"><?php echo $order['zip'] ?></td>
+                                <td data-title="Ciudad"><?php echo $order['city'] ?></td>
+                                <td data-title="Pais"><?php echo $order['country'] ?></td>
+                                    <td data-title="Teléfono">656 461 51 35</td>
+                                    <td data-title="Fecha"><?php echo $order['date'] ?></td>
+                                    <td data-title="Artículos"><?php echo $order['totalItems'] ?></td>
+                                    <td data-title="Precio total">$<?php echo $order['total'] ?></td>
                                     <!-- <td><span class="badge bg-primary">En Proceso</span> -->
                                     <!-- </td>
                         <td><button type="button" class="btn btn-primary py-1" data-bs-toggle="modal" data-bs-target="#modalId"><i class="fa-solid fa-magnifying-glass pe-1"></i>Visualizar</td> -->

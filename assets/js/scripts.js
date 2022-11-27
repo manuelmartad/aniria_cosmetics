@@ -31,7 +31,6 @@ $(function () {
 
     // INDEX
     $("#logout").click(function () {
-
         Swal.fire({
             title: '¿Estás seguro?',
             icon: 'warning',
@@ -52,8 +51,7 @@ $(function () {
         })
     })
 
-    $(document).on('click', '.like', function (e) {
-        e.stopPropagation()
+    $('.like').click(function () {
         var id = $(this).attr("data-id")
         $.ajax({
             type: "POST",
@@ -62,11 +60,29 @@ $(function () {
                 productId: id
             },
             success: function (response) {
-                $('.like').parent().html(`<a type="button" class="like"><i class="fa-solid fa-heart text-danger"></i></a>`)
-                console.log(response)
+                if (response == 200) {
+                    $('.like').css('color', 'red')
+                    $('#like_counter').text("A 200 personas les gusta este producto");
+                }
+
             }
         });
     })
+
+    if (top.location.pathname === '/aniria_cosmetics/product-details.php') {
+        var id = $('.like').attr("data-id")
+        $.ajax({
+            type: "GET",
+            url: "response.php",
+            data: { id: id },
+            success: function (response) {
+                if (response == 200) {
+                    $('.like').css('color', 'red')
+                    console.log(response);
+                }
+            }
+        });
+    }
 
     $(document).on('submit', '#form_cart', function (e) {
         e.preventDefault()
@@ -82,58 +98,32 @@ $(function () {
                 )
                 $('.product-modal').modal('hide')
                 $("#top-bar").load(location.href + " #top-bar>*");
-
-                setTimeout(() => {
-                    // location.href = "index.php"
-                }, 1000);
             }
 
         });
 
     })
 
-    // $(document).on('click', '#removeBtn', function () {
-    //     // e.preventDefault()
-    //     var item = $(this).attr("data-id")
-    //     // var productId = $("#productId").val()
-    //     $.ajax({
-    //         type: "post",
-    //         url: "response.php",
-    //         data: { item: item },
-    //         // datatype: "html",
-    //         success: function (response) {
-    //             // console.log()
-    //             Swal.fire(
-    //                 'Eliminado!',
-    //                 'El producto ha sido eliminado del carrito.',
-    //                 'success'
-    //             )
+   
+    // $("#comment").click(function () {
+    $("#comment-form").submit(function (e) {
+        e.preventDefault();
+        var comment = $("#comment").val()
+        if (comment.length == 0) {
+            return false;
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "response.php",
+                data: $(this).serialize(),
+                success: function (response) {
+                    if (response == 200) {
+                        $("#comment-form")[0].reset()
+                        $("#comment-section").load(location.href + " #comment-section>*");
+                    }
+                }
+            });
+        }
+    });
 
-    //             // $('.product-modal').modal('hide')
-    //             $("#top-bar").load(location.href + " #top-bar>*");
-    //             $("#cartTable").load(location.href + " #cartTable>*");
-    //             var html = `<section class="empty-cart page-wrapper">
-    //                         <div class="container">
-    //                             <div class="row justify-content-center">
-    //                                 <div class="col-md-6 col-md-offset-3">
-    //                                     <div class="block text-center">
-    //                                         <i class="tf-ion-ios-cart-outline"></i>
-    //                                         <h2 class="text-center">Su carrito está vacío.</h2>
-    //                                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, sed.</p>
-    //                                         <a href="index.php" class="btn btn-primary mt-20">Volver a la tienda</a>
-    //                                     </div>
-    //                                 </div>
-    //                             </div>
-    //                         </section>`;
-
-    //             $("#response").append(html)
-
-    //             setTimeout(() => {
-    //                 // location.href = "index.php"
-    //             }, 1000);
-    //         }
-
-    //     });
-
-    // })
 });

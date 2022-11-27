@@ -5,32 +5,27 @@ require 'config/funciones.php';
 
 $name = "";
 $address = "";
+$address1 = "";
 $zip = "";
 $city = "";
 $country = "";
-$card_number = "";
-$expiration_date = "";
-$card_pin = "";
+
 $errors = array();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+    $transactionId = $_POST['payment_id'];
     $name = $conn->real_escape_string(sanitizeData($_POST['name']));
     $address = $conn->real_escape_string(sanitizeData($_POST['address']));
+    $address1 = $conn->real_escape_string(sanitizeData($_POST['address1']));
     $zip = $conn->real_escape_string(sanitizeData($_POST['zip']));
     $city = $conn->real_escape_string(sanitizeData($_POST['city']));
     $country = $conn->real_escape_string(sanitizeData($_POST['country']));
-    $card_number = $conn->real_escape_string(sanitizeData($_POST['card_number']));
-    $expiration_date = $conn->real_escape_string(sanitizeData($_POST['expiration_date']));
-    $card_pin = $conn->real_escape_string(sanitizeData($_POST['card_pin']));
-
-    $buyerName = $conn->real_escape_string(sanitizeData($_POST['buyerName']));
     $cartItems = $conn->real_escape_string(sanitizeData($_POST['cartItems']));
-    $orderId = $conn->real_escape_string(sanitizeData($_POST['orderId']));
     $total = $conn->real_escape_string(sanitizeData($_POST['total']));
     $date = date('d-m-Y');
 
-    if (empty($name) || empty($address) || empty($zip) || empty($city) || empty($country) || empty($card_number) || empty($expiration_date) || empty($card_pin)) {
+    if (empty($name) || empty($address) || empty($address1) || empty($zip) || empty($city) || empty($country)) {
         $errors[] = "Hay un error en los campos.";
     }
 
@@ -39,22 +34,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (empty($errors)) {
-        $sql = $conn->prepare("INSERT INTO payment(name,address,zip,city,country,card_number,expiration_date,cvc,buyerName,cartItems,orderId,total,date)
-       VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
-        $sql->bind_param('ssissisisiiss', $name, $address, $zip, $city, $country, $card_number, $expiration_date, $card_pin, $buyerName, $cartItems, $orderId, $total, $date);
+
+        $sql = $conn->prepare("INSERT INTO orders(transaction_id,name,address,address1,zip,city,country,totalItems,total,date)
+            VALUES(?,?,?,?,?,?,?,?,?,?)");
+        $sql->bind_param('ssssisssss', $transactionId, $name, $address, $address1, $zip, $city, $country, $cartItems, $total, $date);
         if ($sql->execute()) {
+            echo 201;
             $_SESSION['cart'] = array();
-            header("location:confirmation.php");
+        } else {
+            echo "bad";
         }
     }
 }
 
-// $_SESSION['message'] =  $errors;
-// $mensaje = '<div class="alert alert-danger text-center hide"><i class="fa-solid fa-triangle-exclamation pe-2"></i>' . $errors . '</div>';
-
 include 'includes/templates/indexHeader.php';
 ?>
-
 
 <section class="products section bg-gray">
     <div class="container">
@@ -65,10 +59,10 @@ include 'includes/templates/indexHeader.php';
         </div>
 
 
-        <form method="POST" class="needs-validation" novalidate>
+        <form method="POST" novalidate>
 
             <div class="row g-5">
-                <div class="col-md-7">
+                <div class="col-md-6">
                     <?php
                     foreach ($errors as $error) :
                         echo '<div class="alert alert-danger text-center hide"><i class="fa-solid fa-triangle-exclamation pe-2"></i>' . $error . '</div>';
@@ -77,50 +71,41 @@ include 'includes/templates/indexHeader.php';
                         <h4>Detalles del pago</h4>
                         <hr>
                         <div class="mb-3">
-                            <input type="text" class="form-control" id="" required value="<?php echo $name ?>" name="name" placeholder="NOMBRE COMPLETO*">
+                            <input type="text" class="form-control" id="name" required value="<?php echo $name ?>" name="name" placeholder="NOMBRE Y APELLIDO*">
+                            <small class="text-danger name"></small>
                         </div>
                         <div class="mb-3">
-                            <input type="text" class="form-control" id="" required value="<?php echo $address ?>" name="address" placeholder="DOMICILIO*">
+                            <input type="text" class="form-control" id="address" required value="<?php echo $address ?>" name="address" placeholder="CALLE Y NUMERO*">
+                            <small class="text-danger address"></small>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="address1" required value="<?php echo $address1 ?>" name="address1" placeholder="COLONIA*">
+                            <small class="text-danger address1"></small>
                         </div>
                         <div class="row">
                             <div class="mb-3 col-md-6">
-                                <input type="text" class="form-control" id="" required value="<?php echo $zip ?>" name="zip" placeholder="CODIGO POSTAL*">
+                                <input type="text" class="form-control" id="zip" required value="<?php echo $zip ?>" name="zip" placeholder="CODIGO POSTAL*">
+                                <small class="text-danger zip"></small>
                             </div>
                             <div class="mb-3 col-md-6">
-                                <input type="text" class="form-control" id="" required value="<?php echo $city ?>" name="city" placeholder="CIUDAD*">
+                                <input type="text" class="form-control" id="city" required value="<?php echo $city ?>" name="city" placeholder="CIUDAD*">
+                                <small class="text-danger city"></small>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <input type="text" class="form-control" id="" required value="<?php echo $country ?>" name="country" placeholder="PAIS*">
+                            <input type="text" class="form-control" id="country" required value="<?php echo $country ?>" name="country" placeholder="PAIS*">
+                            <small class="text-danger country"></small>
                         </div>
                     </div>
 
-
-                    <div class="mb-sm-4">
-                        <div class="d-flex align-items-center">
-                            <h4>Metodo de pago </h4>
-                        </div>
-                        <hr>
-                        <h6 class="text-muted mb-3">Detalles de la tarjeta de credito<span>(Pago seguro)</span></h6>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="" required value="<?php echo $card_number ?>" name="card_number" placeholder="NUMERO DE TARJETA*">
-                        </div>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="" required value="<?php echo $expiration_date ?>" name="expiration_date" placeholder="FECHA DE EXPIRACION (MM/YYYY)*">
-                        </div>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="" required value="<?php echo $card_pin ?>" name="card_pin" placeholder="PIN CVC*">
-                        </div>
-                        <div>
-                            <button type="submit" class="btn btn-primary text-uppercase px-4 py-2"><small>realizar pedido</small> </button>
-                        </div>
-
-                    </div>
+                    <!-- Set up a container element for the button -->
+                    <div id="paypal-button-container"></div>
 
                 </div>
 
-                <div class="col-md-5">
 
+
+                <div class="col-md-6">
                     <div class="mb-5">
                         <h4>resumen del pedido</h4>
                         <hr>
@@ -157,30 +142,25 @@ include 'includes/templates/indexHeader.php';
                                 <p><s>Gratis</s></p>
                                 <?php $total = $total + ($subtotal * $iva) ?>
                                 <p class="fs-4 text-success">$<?php echo number_format($total, 2) ?></p>
-                                <!-- <div class="py-3"><button class="btn btn-primary w-100">Aceptar</button>
-                        </div> -->
+
                             </div>
                             <img src="<?php echo ASSETS ?>img/verified.png" alt="">
                         </div>
                     </div>
 
-                    <!-- Set up a container element for the button -->
-                    <div id="paypal-button-container"></div>
 
 
                 </div>
 
                 <?php
                 $total = number_format($total, 2);
-                $orderid =  date('His') . rand(1111, 9999);
+                $orderid =  date('His') . rand(00, 99);
                 $cartItems = count($_SESSION['cart']);
-                $buyerName = $_SESSION['name'];
                 ?>
 
-                <input type="hidden" name="total" value="<?php echo $total ?>">
-                <input type="hidden" name="orderId" value="<?php echo $orderid ?>">
-                <input type="hidden" name="cartItems" value="<?php echo $cartItems ?>">
-                <input type="hidden" name="buyerName" value="<?php echo $buyerName ?>">
+                <input type="hidden" name="total" id="total" value="<?php echo $total ?>">
+                <input type="hidden" name="cartItems" id="cartItems" value="<?php echo $cartItems ?>">
+                <input type="hidden" name="paypal" id="paypal" value="paypal">
             </div>
 
         </form>

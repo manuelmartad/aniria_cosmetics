@@ -101,6 +101,75 @@
 <script>
 	$(function() {
 		paypal.Buttons({
+			onClick() {
+
+				var name = $("#name").val()
+				var address = $("#address").val()
+				var address1 = $("#address1").val()
+				var zip = $("#zip").val()
+				var city = $("#city").val()
+				var country = $("#country").val()
+
+				if (name.length == 0) {
+
+					$("#name").css("border-color", "red");
+					$(".name").text("Este campo es obligatorio");
+				} else {
+					$("#name").css("border-color", "#fdfdfd");
+					$(".name").text("");
+
+				}
+
+				if (address.length == 0) {
+
+					$("#address").css("border-color", "red");
+					$(".address").text("Este campo es obligatorio");
+				} else {
+					$("#address").css("border-color", "#fdfdfd");
+					$(".address").text("");
+
+				}
+				if (address1.length == 0) {
+
+					$("#address1").css("border-color", "red");
+					$(".address1").text("Este campo es obligatorio");
+				} else {
+					$("#address1").css("border-color", "#fdfdfd");
+					$(".address1").text("");
+
+				}
+				if (zip.length == 0) {
+
+					$("#zip").css("border-color", "red");
+					$(".zip").text("Este campo es obligatorio");
+				} else {
+					$("#zip").css("border-color", "#fdfdfd");
+					$(".zip").text("");
+
+				}
+				if (city.length == 0) {
+
+					$("#city").css("border-color", "red");
+					$(".city").text("Este campo es obligatorio");
+				} else {
+					$("#city").css("border-color", "#fdfdfd");
+					$(".city").text("");
+
+				}
+				if (country.length == 0) {
+
+					$("#country").css("border-color", "red");
+					$(".country").text("Este campo es obligatorio");
+				} else {
+					$("#country").css("border-color", "#fdfdfd");
+					$(".country").text("");
+
+				}
+
+				if (name.length == 0 || address.length == 0 || address1.length == 0 || zip.length == 0 || city.length == 0 || country.length == 0) {
+					return false;
+				}
+			},
 			style: {
 				layout: 'vertical',
 				color: 'black',
@@ -129,7 +198,7 @@
 			onApprove: (data, actions) => {
 				return actions.order.capture().then(function(orderData) {
 					// Successful capture! For dev/demo purposes:
-					console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+					// console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
 					const transaction = orderData.purchase_units[0].payments.captures[0];
 					// alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
 					// When ready to go live, remove the alert and show a success message within this page. For example:
@@ -137,7 +206,43 @@
 					// element.innerHTML = '<h3>Thank you for your payment!</h3>';
 					// Or go to another URL: 
 					// actions.redirect('confirmation.php');
-					location.href = "confirmation.php";
+
+					var name = $("#name").val()
+					var address = $("#address").val()
+					var address1 = $("#address1").val()
+					var zip = $("#zip").val()
+					var city = $("#city").val()
+					var country = $("#country").val()
+					var cartItems = $("#cartItems").val()
+					var total = $("#total").val()
+
+					var data = {
+						'name': name,
+						'address': address,
+						'address1': address1,
+						'zip': zip,
+						'city': city,
+						'country': country,
+						'payment_id': transaction.id,
+						'cartItems': cartItems,
+						'total': total,
+						// 'paypal': true,
+					};
+
+					$.ajax({
+						type: "POST",
+						url: "checkout.php",
+						data: data,
+						success: function(response) {
+							if (response == 201) {
+								console.log(response)
+							} else{
+								console.log(response);
+							}
+							location.href = "confirmation.php";
+
+						}
+					});
 				});
 			}
 		}).render('#paypal-button-container');

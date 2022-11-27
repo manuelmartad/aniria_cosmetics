@@ -3347,7 +3347,7 @@ fieldset:disabled .btn {
     --bs-btn-hover-color: #fff;
     --bs-btn-hover-bg: #000;
     --bs-btn-hover-border-color: #000;
-    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    /* --bs-btn-focus-shadow-rgb: 49, 132, 253; */
     --bs-btn-active-color: #fff;
     --bs-btn-active-bg: #000;
     --bs-btn-active-border-color: #000;
@@ -3482,7 +3482,7 @@ fieldset:disabled .btn {
     --bs-btn-hover-color: #fff;
     --bs-btn-hover-bg: #000;
     --bs-btn-hover-border-color: #000;
-    --bs-btn-focus-shadow-rgb: 13, 110, 253;
+    /* --bs-btn-focus-shadow-rgb: 13, 110, 253; */
     --bs-btn-active-color: #fff;
     --bs-btn-active-bg: #000;
     --bs-btn-active-border-color: #000;
@@ -3626,7 +3626,7 @@ fieldset:disabled .btn {
     --bs-btn-disabled-color: #6c757d;
     --bs-btn-disabled-border-color: transparent;
     --bs-btn-box-shadow: none;
-    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    /* --bs-btn-focus-shadow-rgb: 49, 132, 253; */
     text-decoration: underline
 }
 
@@ -4191,7 +4191,7 @@ fieldset:disabled .btn {
     font-weight: var(--bs-nav-link-font-weight);
     color: var(--bs-nav-link-color);
     text-decoration: none;
-    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
 }
 
 @media (prefers-reduced-motion:reduce) {

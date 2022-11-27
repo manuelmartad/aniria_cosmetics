@@ -22,31 +22,20 @@ if (isset($_POST['productId'])) {
     $productId = $_POST['productId'];
 
     $sql = "UPDATE products SET stars = stars + 1 WHERE product_id = '$productId'";
-    $conn->query($sql);
-
-    // $msg = json_encode("El usuario ha sido bloqueado");
-    // echo trim($msg, '"');
-    // $_SESSION["success"] = '<div class="alert alert-success alert-dismissible show text-center" role="alert">
-    //     <small> <i class="fa-solid fa-check"></i>Usuario Eliminado</small>
-    // </div>';
-    // $i = 1;
-    // $i=+1;
-
-    // echo $i;
+    if ($conn->multi_query($sql)) {
+        echo 200;
+    }
 }
 
-if (isset($_POST['cartInfo'])) {
-    $buyerName = $conn->real_escape_string(sanitizeData($_POST['buyerName']));
-    $cartItems = $conn->real_escape_string(sanitizeData($_POST['cartItems']));
-    $orderId = $conn->real_escape_string(sanitizeData($_POST['orderId']));
-    $total = $conn->real_escape_string(sanitizeData($_POST['total']));
-    $date = date('d-m-Y');
 
-    $sql = $conn->prepare("INSERT INTO orders(orderid,buyerName,totalItems,total, date)
-    values(?,?,?,?,?)");
-    $sql->bind_param('isiss', $orderId, $buyerName, $cartItems, $total, $date);
-    if ($sql->execute()) {
-        // header("location:checkout.php");
-        var_dump($sql->bind_param('isids', $orderId, $buyerName, $cartItems, $total, $date));
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $com = $_POST['comment'];
+    $id = $_POST['productid'];
+    //   $date = date()
+
+    $sql = "INSERT INTO comments(comment_text, date, product_id) VALUES('$com', NOW(), '$id')";
+    if ($conn->query($sql)) {
+        echo 200;
     }
 }

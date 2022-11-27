@@ -55,20 +55,24 @@
             #no-more-tables tr,
             #no-more-tables td {
                 display: block;
-                padding: 10px;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+
             }
 
             #no-more-tables thead tr {
                 position: absolute;
                 top: -9999px;
                 left: -9999px;
+
             }
 
+        
             #no-more-tables td {
                 position: relative;
                 padding-left: 50%;
                 border: none;
-                border-bottom: 1px solid #eee;
+                border: 1px solid #ccc;
+
             }
 
             #no-more-tables td:before {
@@ -79,7 +83,10 @@
             }
 
             #no-more-tables tr {
+                /* padding-top: 20px; */
+                margin-top: 40px;
                 border-bottom: 1px solid #ccc;
+
             }
         }
     </style>

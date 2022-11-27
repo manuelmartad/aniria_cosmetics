@@ -87,9 +87,9 @@ include 'includes/templates/indexHeader.php';
 										<span data-bs-toggle="modal" data-bs-target="#product-modal<?php echo $product['product_id'] ?>">
 											<i class="fa-solid fa-magnifying-glass"></i> </span>
 									</li>
-									<li>
+									<!-- <li>
 										<a type="button" class="like" data-id="<?php echo $product['product_id'] ?>"><i class="fa-solid fa-heart"></i></a>
-									</li>
+									</li> -->
 									<li>
 										<a href="cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
 									</li>
@@ -137,7 +137,7 @@ include 'includes/templates/indexHeader.php';
 												<input type="number" name="productQty" value="1" min="1" max="20" class="form-control form-control-sm w-50">
 												<button type="submit" class="btn btn-primary my-3 px-4"><i class="fa-solid fa-cart-shopping pe-2"></i>Agregar al Carrito</button>
 											</form>
-											<a href="#" class="btn btn-link ps-0">Ver Detalles del Producto</a>
+											<a href="product-details.php?productId=<?php echo $product['product_id'] ?>" class="btn btn-link ps-0">Ver Detalles del Producto</a>
 										</div>
 									</div>
 

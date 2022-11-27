@@ -110,6 +110,75 @@
       width: 100%;
 
     }
+
+    @media only screen and (max-width:900px) {
+
+      /* *:not(tfoot), */
+      #no-more-tables tbody,
+      #no-more-tables tr,
+      #no-more-tables td {
+        display: block;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+      }
+
+      #no-more-tables thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+      }
+
+
+      #no-more-tables tbody td {
+        position: relative;
+        padding-left: 50%;
+        border: 1px solid #000;
+
+      }
+
+      #no-more-tables td:last-child {
+        border-bottom: none;
+      }
+
+      #no-more-tables td:first-child {
+        border-top: 2px solid;
+      }
+
+
+
+      #no-more-tables td:before {
+        content: attr(data-title);
+        position: absolute;
+        left: 6px;
+        font-weight: bold;
+      }
+
+      #no-more-tables tr {
+        margin-top: 40px;
+        border-bottom: 1px solid #000;
+
+      }
+
+      #no-more-tables tfoot td {
+        border: none;
+        display: inline-table;
+      }
+
+      #no-more-tables tfoot tr {
+        border: 1px solid;
+        margin: 0px;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 10px;
+
+      }
+
+      #no-more-tables tfoot td:first-child {
+        border-top: none;
+      }
+
+
+
+    }
   </style>
 
 </head>

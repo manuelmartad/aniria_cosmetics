@@ -29,7 +29,7 @@ include 'includes/templates/indexHeader.php';
 
 
             <div class="table-responsive">
-                <table class="table table-bordered border-dark border-2 border text-center align-middle" id="cartTable">
+                <table class="table border-dark  text-center align-middle" id="no-more-tables">
                     <thead>
                         <tr>
                             <th scope="col">Producto</th>
@@ -39,19 +39,19 @@ include 'includes/templates/indexHeader.php';
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="">
                         <?php
                         $total = 0;
                         $subtotal = 0;
                         $iva = 1.16;
                         foreach ($_SESSION["cart"] as $key => $item) : ?>
                             <tr class="">
-                                <td><img src="<?php echo ADMIN ?>products/uploads/<?php echo $item["productImage"] ?>" alt="" width="100" height="100"></td>
-                                <td scope="row"><?php echo $key . ' ' . $item["productName"] ?></td>
-                                <td><?php echo $item["productQty"] ?></td>
-                                <td><span>$</span><?php echo $item["productQty"] * number_format($item["productPrice"], 2) ?></td>
+                                <td data-title="Producto"><img src="<?php echo ADMIN ?>products/uploads/<?php echo $item["productImage"] ?>" alt="" width="100" height="100"></td>
+                                <td scope="row" data-title="Nombre"><?php echo $key . ' ' . $item["productName"] ?></td>
+                                <td data-title="Cantidad"><?php echo $item["productQty"] ?></td>
+                                <td data-title="Precio"><span>$</span><?php echo $item["productQty"] * number_format($item["productPrice"], 2) ?></td>
 
-                                <td>
+                                <td data-title="Acciones">
                                     <form method="POST">
                                         <input type="hidden" name="productId" value="<?php echo $item['productId'] ?>">
                                         <button type="submit" class="text-danger btn btn-link">Eliminar</button>
@@ -69,40 +69,20 @@ include 'includes/templates/indexHeader.php';
                             <td colspan="2" class="text-start text-success">16%</td>
                         </tr>
                         <tr class="fw-bold fs-5">
-                            <td colspan="3" class="text-end">Sub Total</td>
+                            <td Total" colspan="3" class="text-end">Sub Total</td>
                             <td colspan="2" class="text-start">$<?php echo number_format($subtotal, 2) ?></td>
                         </tr>
-
                         <tr class="fw-bold fs-4">
                             <td colspan="3" class="text-end">Total</td>
                             <td colspan="2" class="text-start text-success">$<?php echo number_format($subtotal * $iva, 2) ?></td>
 
                         </tr>
 
-                        <?php
-                        // $total = number_format($subtotal * $iva, 2);
-                        // $orderid =  date('His') . rand(1111, 9999);
-                        // $cartItems = count($_SESSION['cart']);
-                        // $buyerName = $_SESSION['name'];
-                        // echo $orderid . '<br>';
-                        // echo $cartItems . '<br>';
-                        // echo $total . '<br>';
-                        // echo $buyerName;
-
-
-                        ?>
                     </tfoot>
                 </table>
-                <a href="checkout.php" name="cartInfo" class="btn btn-primary float-end">Siguiente</a>
-
-                <!-- <form action="response.php" method="post">
-                    <input type="hidden" name="total" value="<?php echo $total ?>">
-                    <input type="hidden" name="orderId" value="<?php echo $orderid ?>">
-                    <input type="hidden" name="cartItems" value="<?php echo $cartItems ?>">
-                    <input type="hidden" name="buyerName" value="<?php echo $buyerName ?>">
-                    <button type="submit" name="cartInfo" class="btn btn-primary float-end">Siguiente</button>
-                </form> -->
-
+                <div>
+                    <a href="checkout.php" name="cartInfo" class="btn btn-primary">Siguiente</a>
+                </div>
 
             </div>
         <?php   } else { ?>

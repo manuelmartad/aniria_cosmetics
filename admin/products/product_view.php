@@ -26,16 +26,16 @@ include '../../includes/templates/nav.php';
         <div class="container">
 
             <div class="card p-3 shadow-lg" id="reload">
-                <div class="card-title d-flex justify-content-between">
+                <div class="card-title d-md-flex justify-content-between">
                     <span class="fs-4 ms-3">Administrar Productos</span>
-                    <a href="product_add.php" class="btn btn-link"><i class="fa-solid fa-plus me-1"></i> Agregar
+                    <a href="product_add.php" class="btn btn-outline-primary me-3"><i class='bx bx-folder-plus pe-2'></i>Agregar
                         Producto</a>
                 </div>
                 <div class="card-body">
                     <!-- <?php echo $_SESSION["success"] ?? null;
                     unset($_SESSION["success"]) ?> -->
                     <!-- <div id="response" class="alert alert-success text-center d-none"><small></small></div> -->
-                    <table class="table table-bordered table-hover text-center" id="no-more-tables">
+                    <table class="table table-bordered text-center" id="no-more-tables">
                         <thead style="background:#020202;color:#fdfdfd">
                             <tr>
                                 <td>ID</td>
@@ -56,7 +56,7 @@ include '../../includes/templates/nav.php';
 
                                         <td data-title="Categoria"><?php echo $row['category_name']; ?></td>
 
-                                        <td data-title="Imagen"><img src="uploads/<?php echo $row['product_image']; ?>" width="150" height="150" class="rounded-0"></td>
+                                        <td data-title="Imagen"><img src="uploads/<?php echo $row['product_image']; ?>" width="150" height="150" class="rounded-0 pe-3"></td>
 
 
                                         <td data-title="Acción"><a href="product_edit.php?id=<?php echo $row['product_id'] ?>" class="btn btn-primary"><i class="fa-solid fa-pen"></i></a>

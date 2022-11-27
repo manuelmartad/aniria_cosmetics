@@ -33,7 +33,7 @@ include '../../includes/templates/nav.php';
         <div class="animate__animated animate__fadeIn alert alert-danger text-center d-none w-50 mx-auto" id="response"><small></small></div>
 
           <div class="table-responsive">
-            <table class="table table-bordered table-hover text-center" id="usersTable">
+            <table class="table table-bordered table-hover text-center" id="no-more-tables">
               <thead style="background:linear-gradient(#020202, #464646);color:#fdfdfd">
                 <tr>
                   <th scope="col">#</th>
@@ -54,12 +54,12 @@ include '../../includes/templates/nav.php';
                     $uname = $row['username'];
                     $role = $row['role']; ?>
                     <tr class="align-middle">
-                      <td><?php echo $id ?></td>
-                      <td><?php echo $fname ?></td>
-                      <td><?php echo $lname ?></td>
-                      <td><?php echo $uname ?></td>
-                      <td class="<?php echo $role == 'admin' ? 'text-danger fw-bold' : 'fw-bold' ?>"><?php echo $role ?></td>
-                      <td class="d-flex justify-content-center gap-1">
+                      <td data-title="ID de Usuario"><?php echo $id ?></td>
+                      <td data-title="Nombre"><?php echo $fname ?></td>
+                      <td data-title="Apellido"><?php echo $lname ?></td>
+                      <td data-title="Usuario"><?php echo $uname ?></td>
+                      <td data-title="Rol" class="<?php echo $role == 'admin' ? 'text-danger fw-bold' : 'fw-bold' ?>"><?php echo $role ?></td>
+                      <td data-title="Acción" class="d-flex justify-content-center gap-1">
                         <button class="btn btn-danger" id="delete__user" data-id="<?php echo $id; ?>"><i class="fa-solid fa-trash"></i></button>
                         <?php
                         $query = $conn->prepare("SELECT * FROM users WHERE blacklist = 'Y' AND username = ? and id = ?");
