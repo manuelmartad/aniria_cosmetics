@@ -1,9 +1,9 @@
 <?php
 require 'config/env.php';
 require 'config/db.php';
-if (!$_SESSION['login']) {
-	header('location:auth/login.php');
-}
+// if (!$_SESSION['login']) {
+// 	header('location:auth/login.php');
+// }
 
 $sql = "SELECT * FROM products WHERE stars <> 0 ORDER BY stars DESC LIMIT 6";
 $products = $conn->query($sql);

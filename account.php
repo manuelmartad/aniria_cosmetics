@@ -56,8 +56,8 @@ include 'includes/templates/indexHeader.php';
     <div class="border">
         <div class="row p-3 align-items-center gap-3">
             <div class="col-md-3 text-lg-end pt-3">
-                <img src="admin/users/uploads/<?php echo $user_data['image'] ?>" alt="" class="rounded-circle" height="200" width="200">
-                <a type="button" data-bs-toggle="modal" data-bs-target="#modalId" class="d-block my-3 text-justify">Cambiar imagen</a>
+                <img src="admin/users/uploads/<?php echo $user_data['image'] ?>" alt="" class="rounded-circle" height="170" width="170">
+                <a type="button" data-bs-toggle="modal" data-bs-target="#modalId" class="d-block mt-3 pe-4">Cambiar imagen</a>
             </div>
             <div class="col-md-7">
                 <div class="d-flex gap-2">

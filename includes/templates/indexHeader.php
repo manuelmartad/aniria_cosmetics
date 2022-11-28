@@ -103,7 +103,7 @@
       font-weight: 500 !important;
       text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
       text-transform: capitalize !important;
-      font-size: 60px;
+      font-size: 40px;
     }
 
     .swiper {
@@ -265,7 +265,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
-        <a class="navbar-brand" href="#"><i class='bx bx-shopping-bag px-1 fs-4'></i>ANIRIA</a>
+        <a class="navbar-brand" href="index.nvbhvng vn x vphp"><i class='bx bx-shopping-bag px-1 fs-4'></i>ANIRIA</a>
         <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
           <i class="fa-solid fa-bars"></i>
         </button>
@@ -276,7 +276,7 @@
             </li>
 
 
-            <?php if ($_SESSION['role'] == 'admin') : ?>
+            <?php if (isset($_SESSION['login']) == true && $_SESSION['role'] == 'admin') : ?>
               <li class="nav-item">
                 <a class="nav-link" href="admin/dashboard/dashboard.php">Admin</a>
               </li>
@@ -285,7 +285,7 @@
           </ul>
           <ul class="d-lg-flex gap-3 d-grid">
 
-            <?php if ($_SESSION['login'] == false) : ?>
+            <?php if (isset($_SESSION) && isset($_SESSION['login']) == false) : ?>
               <li class="nav-item mt-lg-0 mt-sm-1"> <a href="auth/login.php" class="dropdown-item" type="button">Iniciar sesión</a>
               </li>
               <li class="nav-item mt-lg-0 mt-sm-1"> <a href="auth/register.php" class="dropdown-item" type="button">Registrate</a>
