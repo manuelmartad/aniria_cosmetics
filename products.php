@@ -15,20 +15,23 @@ include 'includes/templates/indexHeader.php';
 
 <section class="products section bg-gray">
 	<div class="container">
-		<form action="" method="post" class="col-md-6  mx-auto">
-			<div class="input-group mb-3">
-				<input type="text" class="form-control" placeholder="Buscar.." aria-label="Button" aria-describedby="">
-				<button class="btn btn-primary" type="button" id="">Buscar</button>
-
-			</div>
-		</form>
 		<div class="row">
 			<div class="title text-center">
 				<h2>productos</h2>
 			</div>
 		</div>
+		<form action="" method="post" class="col-md-6 mx-auto mb-5">
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" name="input" placeholder="Buscar.." id="search-bar">
+				<button class="btn btn-primary" type="button" id=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);transform: ;msFilter:;">
+						<path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"></path>
+					</svg></button>
+			</div>
+		</form>
 
-		<div class="row">
+
+		<div id="products-response"></div>
+		<div class="row" id="hidden-card">
 			<?php while ($product = $products->fetch_assoc()) { ?>
 				<div class="col-md-6 col-lg-4">
 					<div class="product-item">
@@ -42,7 +45,8 @@ include 'includes/templates/indexHeader.php';
 											<i class="fa-solid fa-magnifying-glass"></i> </span>
 									</li>
 									<!-- <li>
-										<a type="button" class="like" data-id="<?php echo $product['product_id'] ?>"><i class="fa-solid fa-heart"></i></a>
+										<a type="button" class="like" data-id="<?php //echo $product['product_id'] 
+																				?>"><i class="fa-solid fa-heart"></i></a>
 									</li> -->
 									<li>
 										<a href="cart.php"><i class="fa-solid fa-cart-shopping"></i></a>

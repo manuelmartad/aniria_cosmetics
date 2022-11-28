@@ -9,6 +9,9 @@ $sql = "SELECT * FROM products WHERE stars <> 0 ORDER BY stars DESC LIMIT 6";
 $products = $conn->query($sql);
 
 include 'includes/templates/indexHeader.php';
+// echo '<code>';
+// print_r($_SERVER);
+// echo '</code>';
 
 ?>
 

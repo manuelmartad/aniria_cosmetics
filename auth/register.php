@@ -15,6 +15,7 @@ $lname = "";
 $username = "";
 $phone = "";
 $password = "";
+$errors = array();
 
 if ($_SERVER["REQUEST_METHOD"] === 'POST') {
 
@@ -26,25 +27,26 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     $phone = $conn->real_escape_string(sanitizeData($_POST['phone']));
 
     if (empty($fname) || empty($lname) || empty($password) || empty($username) || empty($phone)) {
-        alertMessage("danger", "Hay un error en los campos.");
-    }
-    // password validation
-    if (strlen($password) <= 6) {
-        alertMessage("danger", "El password debe ser mayor a 6 caracteres!");
-    }
-
-    if ($password !== $password_two) {
-        alertMessage("danger", "El password no coincide");
+        $errors[] = "Hay un error en los campos";
     } else {
+        // password validation
+        if (strlen($password) <= 6) {
+            $errors[] = "La contraseña debe ser mayor a 6 caracteres";
+        }
 
-        $hashed_pass = password_hash($password, PASSWORD_BCRYPT);
-    }
-    // ends password validation
-    if (strlen($phone) != 10) {
-        alertMessage("danger", "El telefono debe ser de 10 digitos!");
-    }
-    if (!preg_match("/^[0-9]+$/", $phone)) {
-        alertMessage("danger", "Ingresa un numero de telefono valido!");
+        if ($password !== $password_two) {
+            $errors[] = "La contraseña no coincide";
+        } else {
+
+            $hashed_pass = password_hash($password, PASSWORD_BCRYPT);
+        }
+        // ends password validation
+        if (strlen($phone) != 10) {
+            $errors[] = "El teléfono debe tener 10 dígitos";
+        }
+        if (!preg_match("/^[0-9]+$/", $phone)) {
+            $errors[] = "El teléfono debe ser solo números";
+        }
     }
     if (empty($errors)) {
 
@@ -52,15 +54,14 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
-
-            alertMessage("danger", 'Este usuario ya existe.');
+            $errors[] = "Este usuario ya existe";
         } else {
             $sql = $conn->prepare("INSERT INTO users(fname,lname,username,password,phone) 
             VALUES(?,?,?,?,?)");
             $sql->bind_param("ssssi", $fname, $lname, $username, $hashed_pass, $phone);
 
             if ($sql->execute()) {
-                alertMessage("success", "Usuario creado con exito!");
+                header("location:login.php?success=1");
             }
             $sql->close();
             $conn->close();
@@ -73,16 +74,21 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
 <!-- ======= Skills Section ======= -->
 <section id="skills" class="skills vh-100 pt-2 pt-xxl-5" style="  background: linear-gradient(#fdfbfd, #ffacb3, #4b4b4b );">
     <div class="container">
-        <?php echo isset($_SESSION['message']) ? $_SESSION['message'] : '';
-        unset($_SESSION['message']) ?>
+
         <div class="card mb-3 p-2 shadow-lg border-0 mx-auto mt-0 col-lg-8 col-md-12" id="login-card">
+
             <div class="row g-0">
                 <div class="col-md-6 d-none d-md-block">
                     <img src="<?php echo ASSETS ?>img/aniria.jpg" class="img-fluid pt-5" alt="aniria-logo">
                 </div>
                 <div class="col-md-6">
                     <div class="card-body p-3">
-                        <form action="" method="post" class="needs-validation" novalidate>
+                        <?php foreach ($errors as $error) : ?>
+                            <div class="alert alert-danger alert-dismissible text-center">
+                                <small><?php echo $error; ?></small>
+                            </div>
+                        <?php endforeach; ?>
+                        <form action="" method="post" class="needs-validaton" novalidate>
                             <div class="mb-3">
                                 <!-- <label for="" class="form-label">Nombre</label> -->
                                 <input type="text" class="form-control" name="fname" id="" placeholder="Nombre" required value="<?= $fname ?>">
@@ -112,14 +118,14 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
 
                             <div class="mb-3">
                                 <!-- <label for="" class="form-label">Password</label> -->
-                                <input type="text" class="form-control" name="password" id="" placeholder="Contraseña" required value="<?= $password ?>">
+                                <input type="password" class="form-control" name="password" id="" placeholder="Contraseña" required value="<?= $password ?>">
                                 <small class="invalid-feedback">Este campo es obligatorio</small>
 
                             </div>
 
                             <div class="mb-3">
                                 <!-- <label for="" class="form-label">Repite Password</label> -->
-                                <input type="text" class="form-control" name="password_two" id="" placeholder="Repite tu Contraseña" required>
+                                <input type="password" class="form-control" name="password_two" id="" placeholder="Repite tu Contraseña" required>
                                 <small class="invalid-feedback">Este campo es obligatorio</small>
 
                             </div>

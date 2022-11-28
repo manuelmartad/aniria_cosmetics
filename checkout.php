@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $city = $conn->real_escape_string(sanitizeData($_POST['city']));
     $country = $conn->real_escape_string(sanitizeData($_POST['country']));
     $cartItems = $conn->real_escape_string(sanitizeData($_POST['cartItems']));
-    $total = $conn->real_escape_string(sanitizeData($_POST['total']));
+    $total = $_POST['total'];
     $date = date('d-m-Y');
 
     if (empty($name) || empty($address) || empty($address1) || empty($zip) || empty($city) || empty($country)) {
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $sql = $conn->prepare("INSERT INTO orders(transaction_id,name,address,address1,zip,city,country,totalItems,total,date)
             VALUES(?,?,?,?,?,?,?,?,?,?)");
-        $sql->bind_param('ssssisssss', $transactionId, $name, $address, $address1, $zip, $city, $country, $cartItems, $total, $date);
+        $sql->bind_param('ssssisssds', $transactionId, $name, $address, $address1, $zip, $city, $country, $cartItems, $total, $date);
         if ($sql->execute()) {
             echo 201;
             $_SESSION['cart'] = array();
@@ -153,12 +153,12 @@ include 'includes/templates/indexHeader.php';
                 </div>
 
                 <?php
-                $total = number_format($total, 2);
+                // $total = $total;
                 $orderid =  date('His') . rand(00, 99);
                 $cartItems = count($_SESSION['cart']);
                 ?>
 
-                <input type="hidden" name="total" id="total" value="<?php echo $total ?>">
+                <input type="hidden" name="total" id="total" value="<?php echo doubleval($total) ?>">
                 <input type="hidden" name="cartItems" id="cartItems" value="<?php echo $cartItems ?>">
                 <input type="hidden" name="paypal" id="paypal" value="paypal">
             </div>

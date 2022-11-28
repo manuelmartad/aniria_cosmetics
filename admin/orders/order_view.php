@@ -52,7 +52,7 @@ include '../../includes/templates/nav.php';
                                     <td data-title="Teléfono">656 461 51 35</td>
                                     <td data-title="Fecha"><?php echo $order['date'] ?></td>
                                     <td data-title="Artículos"><?php echo $order['totalItems'] ?></td>
-                                    <td data-title="Precio total">$<?php echo $order['total'] ?></td>
+                                    <td data-title="Precio total">$<?php echo number_format($order['total'],2) ?></td>
                                     <!-- <td><span class="badge bg-primary">En Proceso</span> -->
                                     <!-- </td>
                         <td><button type="button" class="btn btn-primary py-1" data-bs-toggle="modal" data-bs-target="#modalId"><i class="fa-solid fa-magnifying-glass pe-1"></i>Visualizar</td> -->

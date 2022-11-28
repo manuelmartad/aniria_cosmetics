@@ -121,13 +121,13 @@ include 'includes/templates/indexHeader.php';
                             <?php
                             $comments = $conn->query("SELECT a.*, b.* FROM comments a
                             JOIN users b ON a.user_id = b.id 
-                            WHERE product_id = '$id'");
+                            WHERE product_id = '$id' ORDER BY date ASC");
                             foreach ($comments as $comment) : // fetch data 
-                                var_dump($_SESSION);
+                                // var_dump($_SESSION);
 
                             ?>
                                 <ul class="d-flex align-content-center gap-3">
-                                    <li><img src="theme//images//blog//avater-1.jpg" style="border-radius:50% ;" alt="" width="60" height="60"></li>
+                                    <li><img src="admin///users//uploads/<?php echo $comment['image'] ?>" style="border-radius:50% ;" alt="" width="60" height="60"></li>
                                     <li>
                                         <p class="mb-1"><?php echo $comment['fname'] .' '. $comment['lname'] ?></p>
                                         <span><?php echo $comment['date'] ?></span>

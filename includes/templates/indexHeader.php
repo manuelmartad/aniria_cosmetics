@@ -217,10 +217,9 @@
             <!-- Cart -->
             <ul class="float-end d-flex">
 
-              <li class="nav-item mx-3">
+              <!-- <li class="nav-item mx-3">
                 <div class="dropdown open">
                   <a type="button" class="nav-link position-relative me-2" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <!-- <i class="fa-solid fa-bell"></i> -->
                     <i class='bx bx-bell'></i>
                     <span class="position-absolute end-10 top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartProducts">
                       4 <span class="visually-hidden">unread messages</span>
@@ -241,7 +240,7 @@
                     </a>
                   </div>
                 </div>
-              </li>
+              </li> -->
 
               <li class="nav-item dropdown mt-lg-0">
                 <a href="cart.php" class="nav-link me-2 position-relative" id="dropdownId">

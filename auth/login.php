@@ -60,7 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $_SESSION['message'] =  $error;
     $mensaje = '<div class="alert alert-danger text-center"><i class="fa-solid fa-triangle-exclamation pe-2"></i>' . $error . '</div>';
-
 }
 
 include '../includes/templates/header.php';
@@ -74,11 +73,17 @@ include '../includes/templates/header.php';
 
         <div class="card p-2 shadow-lg border-0 col-lg-5 col-md-8 mx-auto mt-0" id="login-card">
 
+        <?php if (isset($_GET["success"]) == 1) : ?>
+                    <div class="alert alert-success text-center">
+                        <small>¡Usuario creado con éxito!</small>
+                    </div>
 
+                <?php endif; ?>
             <div class="card-title">
                 <img src="<?php echo ASSETS ?>img/aniria.jpg" class="img-fluid" alt="aniria-logo">
             </div>
             <div class="card-body p-3">
+         
                 <form method="post" class="needs-validation" novalidate>
 
                     <div class="mb-3">
@@ -99,8 +104,8 @@ include '../includes/templates/header.php';
                         <button type="submit" class="btn btn-primary w-100">Iniciar sesión</button>
                     </div>
                 </form>
-                <div class="row align-items-center text-center mt-3">
-                    <span class="col-md-6">¿Aún no tienes cuenta?</span><a href="register.php" class="btn btn-link col-md-6">Registrate</a>
+                <div class="align-items-center text-center mt-3">
+                    <p class="mb-0">¿Aún no tienes cuenta?</p><a href="register.php" class="btn btn-link">Registrate</a>
                 </div>
 
             </div>

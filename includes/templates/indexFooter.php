@@ -236,7 +236,7 @@
 						success: function(response) {
 							if (response == 201) {
 								console.log(response)
-							} else{
+							} else {
 								console.log(response);
 							}
 							location.href = "confirmation.php";
@@ -249,6 +249,35 @@
 	});
 </script>
 
+<script>
+	$(function() {
+		$("#search-bar").keyup(function() {
+			// e.preventDefault();
+			var input = $("#search-bar").val()
+
+			$.ajax({
+				type: "POST",
+				url: "response.php",
+				data: {
+					input: input
+				},
+				dataType: "html",
+				success: function(response) {
+					if (response) {
+						$("#products-response").html(response);
+						$('#products-response').css('display', 'd-block')
+						$("#hidden-card").addClass("d-none");
+					} else {
+						$('#products-response').css('display', 'd-none')
+
+					}
+				}
+			});
+
+
+		});
+	});
+</script>
 
 
 </body>
