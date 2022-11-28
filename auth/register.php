@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
                                 <small><?php echo $error; ?></small>
                             </div>
                         <?php endforeach; ?>
-                        <form action="" method="post" class="needs-validaton" novalidate>
+                        <form action="" method="post" class="needs-validation" novalidate>
                             <div class="mb-3">
                                 <!-- <label for="" class="form-label">Nombre</label> -->
                                 <input type="text" class="form-control" name="fname" id="" placeholder="Nombre" required value="<?= $fname ?>">
@@ -134,8 +134,8 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
                                 <button type="submit" class="btn btn-primary w-100">Registarse</button>
                             </div>
                         </form>
-                        <div class="row align-items-center text-center mt-3">
-                            <span class="col-md-6">¿Ya tienes una cuenta?</span><a href="login.php" class="btn btn-link col-md-6">Iniciar sesión</a>
+                        <div class="text-center mt-3">
+                            <span class="d-block">¿Ya tienes una cuenta?</span><a href="login.php" class="btn btn-link">Iniciar sesión</a>
                         </div>
                     </div>
                 </div>

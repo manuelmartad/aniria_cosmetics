@@ -56,7 +56,7 @@ include 'includes/templates/indexHeader.php';
 			<div class="col-md-6">
 				<div class="category-box category-box-2">
 					<a href="#!">
-					<img src="assets//img//main-3.jpg" alt="" class="w-100" />
+						<img src="assets//img//main-3.jpg" alt="" class="w-100" />
 						<div class="content">
 							<h3>Corrector Barra</h3>
 							<p>El diseño especial es lo primero</p>
@@ -90,7 +90,7 @@ include 'includes/templates/indexHeader.php';
 										<span data-bs-toggle="modal" data-bs-target="#product-modal<?php echo $product['product_id'] ?>">
 											<i class="fa-solid fa-magnifying-glass"></i> </span>
 									</li>
-								
+
 									<li>
 										<a href="cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
 									</li>
@@ -130,17 +130,31 @@ include 'includes/templates/indexHeader.php';
 											<p class="text-justify fs-6">
 												Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem iusto nihil cum. Illo laborum numquam rem aut officia dicta cumque.
 											</p>
-											<form method="post" id="form_cart">
-												<input type="hidden" name="productId" value="<?php echo $product['product_id'] ?>">
-												<input type="hidden" name="productPrice" value="<?php echo $product["product_price"] ?>">
-												<input type="hidden" name="productName" value="<?php echo $product["product_name"] ?>">
-												<input type="hidden" name="productImage" value="<?php echo $product["product_image"] ?>">
-												<input type="number" name="productQty" value="1" min="1" max="20" class="form-control form-control-sm w-50">
-												<button type="submit" class="btn btn-primary my-3 px-4"><i class="fa-solid fa-cart-shopping pe-2"></i>Agregar al Carrito</button>
-											</form>
-											<a href="product-details.php?productId=<?php echo $product['product_id'] ?>" class="btn btn-link ps-0">Ver Detalles del Producto</a>
+											<?php if (isset($_SESSION['login']) && $_SESSION['login'] == true) : ?>
+
+												<form method="post" id="form_cart">
+													<input type="hidden" name="productId" value="<?php echo $product['product_id'] ?>">
+													<input type="hidden" name="productPrice" value="<?php echo $product["product_price"] ?>">
+													<input type="hidden" name="productName" value="<?php echo $product["product_name"] ?>">
+													<input type="hidden" name="productImage" value="<?php echo $product["product_image"] ?>">
+													<input type="number" name="productQty" value="1" min="1" max="20" class="form-control form-control-sm w-50">
+													<button type="submit" class="btn btn-primary my-3 px-4"><i class="fa-solid fa-cart-shopping pe-2"></i>Agregar al Carrito</button>
+												</form>
+
+												<a href="product-details.php?productId=<?php echo $product['product_id'] ?>" class="btn btn-link ps-0">Ver Detalles del Producto</a>
+
+
+											<?php else : //var_dump($_SESSION) 
+											?>
+												<a href="auth/login.php" class="btn btn-primary my-3 px-4">Inicia sesión</a>
+											<?php endif; ?>
 										</div>
 									</div>
+
+									<!-- Button trigger modal -->
+
+
+
 
 								</div>
 							</div>

@@ -265,7 +265,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
-        <a class="navbar-brand" href="index.nvbhvng vn x vphp"><i class='bx bx-shopping-bag px-1 fs-4'></i>ANIRIA</a>
+        <a class="navbar-brand" href="index.php"><i class='bx bx-shopping-bag px-1 fs-4'></i>ANIRIA</a>
         <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
           <i class="fa-solid fa-bars"></i>
         </button>

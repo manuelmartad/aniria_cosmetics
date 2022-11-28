@@ -86,14 +86,17 @@ include 'includes/templates/indexHeader.php';
 											<p class="text-justify fs-6">
 												Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem iusto nihil cum. Illo laborum numquam rem aut officia dicta cumque.
 											</p>
+
 											<form method="post" id="form_cart">
-												<input type="hidden" name="productId" value="<?php echo $product['product_id'] ?>">
-												<input type="hidden" name="productPrice" value="<?php echo $product["product_price"] ?>">
-												<input type="hidden" name="productName" value="<?php echo $product["product_name"] ?>">
-												<input type="hidden" name="productImage" value="<?php echo $product["product_image"] ?>">
-												<input type="number" name="productQty" value="1" min="1" max="20" class="form-control form-control-sm w-50">
-												<button type="submit" class="btn btn-primary my-3 px-4"><i class="fa-solid fa-cart-shopping pe-2"></i>Agregar al Carrito</button>
-											</form>
+													<input type="hidden" name="productId" value="<?php echo $product['product_id'] ?>">
+													<input type="hidden" name="productPrice" value="<?php echo $product["product_price"] ?>">
+													<input type="hidden" name="productName" value="<?php echo $product["product_name"] ?>">
+													<input type="hidden" name="productImage" value="<?php echo $product["product_image"] ?>">
+													<input type="number" name="productQty" value="1" min="1" max="20" class="form-control form-control-sm w-50">
+													<button type="submit" class="btn btn-primary my-3 px-4"><i class="fa-solid fa-cart-shopping pe-2"></i>Agregar al Carrito</button>
+												</form>
+										
+
 											<a href="product-details.php?productId=<?php echo $product['product_id'] ?>" class="btn btn-link ps-0">Ver Detalles del Producto</a>
 										</div>
 									</div>
