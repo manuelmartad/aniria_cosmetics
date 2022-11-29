@@ -22,7 +22,7 @@ if (isset($_POST['productId'])) {
     $productId = $_POST['productId'];
 
     $sql = "UPDATE products SET stars = stars + 1 WHERE product_id = '$productId'";
-    if ($conn->multi_query($sql)) {
+    if ($conn->query($sql)) {
         echo 200;
     }
 }

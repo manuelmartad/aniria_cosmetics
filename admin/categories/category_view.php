@@ -21,13 +21,13 @@ include '../../includes/templates/nav.php';
 
             <div class="card p-3 shadow-lg">
                 <div class="card-title d-flex justify-content-between">
-                    <span class="fs-4 ms-3">Administrar Categorias</span>
-                    <a href="category_add.php" class="btn btn-link"><i class="fa-solid fa-plus me-1"></i> Agregar
+                    <!-- <span class="fs-4 ms-3">Administrar Categorias</span> -->
+                    <a href="category_add.php" class="btn btn-link"><i class="fa-solid fa-plus ms-1"></i> Agregar
                         Categoria</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered table-hover text-center" id="no-more-tables">
-                        <thead style="background:linear-gradient(#020202, #464646);color:#fdfdfd">
+                        <thead class="fw-bold">
                             <tr>
                                 <td>ID</td>
                                 <td>Nombre</td>

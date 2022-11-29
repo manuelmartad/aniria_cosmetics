@@ -27,16 +27,16 @@ include '../../includes/templates/nav.php';
     <div class="container">
       <div class="card p-3 border-0 shadow-lg">
         <div class="card-title">
-          <span class="fs-4 ms-3">Administrar Usuarios</span>
+          <!-- <span class="fs-4 ms-3">Administrar Usuarios</span> -->
         </div>
         <div class="card-body">
-        <div class="animate__animated animate__fadeIn alert alert-danger text-center d-none w-50 mx-auto" id="response"><small></small></div>
+          <div class="animate__animated animate__fadeIn alert alert-danger text-center d-none w-50 mx-auto" id="response"><small></small></div>
 
           <div class="table-responsive">
             <table class="table table-bordered table-hover text-center" id="no-more-tables">
-              <thead style="background:linear-gradient(#020202, #464646);color:#fdfdfd">
+              <thead>
                 <tr>
-                  <th scope="col">#</th>
+                  <th scope="col">ID</th>
                   <th scope="col">Nombre</th>
                   <th scope="col">Apellido</th>
                   <th scope="col">Usuario</th>
@@ -60,7 +60,7 @@ include '../../includes/templates/nav.php';
                       <td data-title="Usuario"><?php echo $uname ?></td>
                       <td data-title="Rol" class="<?php echo $role == 'admin' ? 'text-danger fw-bold' : 'fw-bold' ?>"><?php echo $role ?></td>
                       <td data-title="Acción" class="d-flex justify-content-center gap-1">
-                        <button class="btn btn-danger" id="delete__user" data-id="<?php echo $id; ?>"><i class="fa-solid fa-trash"></i></button>
+                        <a type="button" id="delete__user" data-id="<?php echo $id; ?>"><i class='bx bx-trash text-danger fs-3 px-2'></i></a>
                         <?php
                         $query = $conn->prepare("SELECT * FROM users WHERE blacklist = 'Y' AND username = ? and id = ?");
                         $query->bind_param('si', $uname, $id);
@@ -68,14 +68,11 @@ include '../../includes/templates/nav.php';
                         $result = $query->get_result();
                         $result->fetch_assoc();
 
-                        if ($result->num_rows === 1) { ?>
-                          <button data-id="<?php echo $id; ?>" class="btn btn-success unblock"><i class="fa-solid fa-ban"></i></button>
-
-                        <?php  } else { ?>
-                          <button data-id="<?php echo $id; ?>" class="btn btn-primary blacklist"><i class="fa-solid fa-ban"></i></button>
-                        <?php    }
-
-                        ?>
+                        if ($result->num_rows === 1) : ?>
+                          <a type="button" data-id="<?php echo $id; ?>" class="unblock"><i class='bx bx-lock-open-alt fs-3 px-2'></i></a>
+                        <?php else : ?>
+                          <a type="button" data-id="<?php echo $id; ?>" class="blacklist"><i class='bx bx-lock-alt fs-3 text-warning px-2'></i></a>
+                        <?php endif; ?>
 
                       </td>
                     </tr>

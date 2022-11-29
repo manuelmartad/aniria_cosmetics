@@ -55,8 +55,7 @@ include 'includes/templates/indexHeader.php';
                             <!-- me art lab slider -->
                             <div class='carousel-inner'>
                                 <div class='item active'>
-                                    <img src="admin/products/uploads/<?php echo $product['product_image'] ?>" 
-                                    style="height:475px!important;width:100%!important" alt=''>
+                                    <img src="admin/products/uploads/<?php echo $product['product_image'] ?>" style="height:475px!important;width:100%!important" alt=''>
                                 </div>
 
                             </div>
@@ -81,11 +80,15 @@ include 'includes/templates/indexHeader.php';
                     <div class="mt-3">
                         <ul>
                             <li>
-                                <a type="button" class="like" data-id="<?php echo $product['product_id'] ?>"><i class="fa-solid fa-heart fs-3"></i></a>
+                                <a type="button" id="like" data-id="<?php echo $product['product_id'] ?>"><i id="icon" class='bx bx-heart fs-2'></i></a>
+                                <?php $likes = $conn->query("SELECT stars FROM products WHERE product_id = '{$id}'");
+                                $like = $likes->fetch_column(); ?>
+                                <span id="numlikes"> <?php print_r($like); ?>
+                                </span>
                             </li>
                         </ul>
                     </div>
-                    <p class="my-3 text-dark"> <span id="like_counter"></span></p>
+                    <!-- <p class="my-3 text-dark"> <span id="like_counter"></span></p> -->
 
                     <div class="d-flex gap-3">
                         <p>Categoria:</p>
@@ -129,7 +132,7 @@ include 'includes/templates/indexHeader.php';
                                 <ul class="d-flex align-content-center gap-3">
                                     <li><img src="admin///users//uploads/<?php echo $comment['image'] ?>" style="border-radius:50% ;" alt="" width="60" height="60"></li>
                                     <li>
-                                        <p class="mb-1"><?php echo $comment['fname'] .' '. $comment['lname'] ?></p>
+                                        <p class="mb-1"><?php echo $comment['fname'] . ' ' . $comment['lname'] ?></p>
                                         <span><?php echo $comment['date'] ?></span>
                                         <p class="text-justify">
                                             <?php echo $comment['comment_text'] ?>

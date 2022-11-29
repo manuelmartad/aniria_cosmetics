@@ -51,7 +51,8 @@ $(function () {
         })
     })
 
-    $('.like').click(function () {
+    $('#like').click(function (e) {
+        e.stopPropagation()
         var id = $(this).attr("data-id")
         $.ajax({
             type: "POST",
@@ -61,28 +62,29 @@ $(function () {
             },
             success: function (response) {
                 if (response == 200) {
-                    $('.like').css('color', 'red')
-                    $('#like_counter').text("A 200 personas les gusta este producto");
+                    $('#icon').addClass('text-danger bx bxs-heart')
+                    // $("#numlikes").load(location.href + " #numlikes>*");
+
                 }
 
             }
         });
     })
 
-    if (top.location.pathname === '/aniria_cosmetics/product-details.php') {
-        var id = $('.like').attr("data-id")
-        $.ajax({
-            type: "GET",
-            url: "response.php",
-            data: { id: id },
-            success: function (response) {
-                if (response == 200) {
-                    $('.like').css('color', 'red')
-                    console.log(response);
-                }
-            }
-        });
-    }
+    // if (top.location.pathname === '/aniria_cosmetics/product-details.php') {
+    //     var id = $('.like').attr("data-id")
+    //     $.ajax({
+    //         type: "GET",
+    //         url: "response.php",
+    //         data: { id: id },
+    //         success: function (response) {
+    //             if (response == 200) {
+    //                 $('.like').css('color', 'red')
+    //                 console.log(response);
+    //             }
+    //         }
+    //     });
+    // }
 
     $(document).on('submit', '#form_cart', function (e) {
         e.preventDefault()

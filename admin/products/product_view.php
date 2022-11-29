@@ -27,8 +27,8 @@ include '../../includes/templates/nav.php';
 
             <div class="card p-3 shadow-lg" id="reload">
                 <div class="card-title d-md-flex justify-content-between">
-                    <span class="fs-4 ms-3">Administrar Productos</span>
-                    <a href="product_add.php" class="btn btn-outline-primary me-3"><i class='bx bx-folder-plus pe-2'></i>Agregar
+                    <!-- <span class="fs-4 ms-3">Administrar Productos</span> -->
+                    <a href="product_add.php" class="btn btn-outline-primary ms-3"><i class='bx bx-folder-plus pe-2'></i>Agregar
                         Producto</a>
                 </div>
                 <div class="card-body">
@@ -36,7 +36,7 @@ include '../../includes/templates/nav.php';
                     unset($_SESSION["success"]) ?> -->
                     <!-- <div id="response" class="alert alert-success text-center d-none"><small></small></div> -->
                     <table class="table table-bordered text-center" id="no-more-tables">
-                        <thead style="background:#020202;color:#fdfdfd">
+                        <thead class="fw-bold">
                             <tr>
                                 <td>ID</td>
                                 <td>Nombre</td>
