@@ -60,25 +60,26 @@
       background-image: url("<?php echo ASSETS ?>img/aniria-hero.jpg");
       background-position: center center;
       background-size: cover;
-      min-height: 600px;
-      min-width: 340px;
+      height: 100vh;
+      width: auto;
     }
 
     @media only screen and (max-width: 595px) {
       .bg-image {
-        background-position: center right;
+        background-position: center center;
         background-size: cover;
         background-repeat: no-repeat;
-        height: 540px;
+        height: 200px; 
+        width: auto;
       }
 
       #redirect {
         position: relative;
         display: inline-block !important;
-        top: 400px;
+        top: 160px;
         right: 0;
         left: 0;
-        width: 300px !important;
+        width: 100% !important;
         background-color: #000;
         color: #fff;
         padding: -10px 100px !important;

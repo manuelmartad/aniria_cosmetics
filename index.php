@@ -38,7 +38,7 @@ include 'includes/templates/indexHeader.php';
 					<a href="#!">
 						<img src="assets//img//main-1.jpg" alt="" />
 						<div class="content">
-							<h3>Iluminadores</h3>
+							<!-- <h3>Iluminadores</h3> -->
 							<p>Compra maquillaje de nueva temporada</p>
 						</div>
 					</a>
@@ -47,7 +47,7 @@ include 'includes/templates/indexHeader.php';
 					<a href="#!">
 						<img src="theme/images/shop/category/category-2.jpg" alt="" />
 						<div class="content">
-							<h3>Polvo Fijador</h3>
+							<!-- <h3>Polvo Fijador</h3> -->
 							<p>Obtenga una amplia gama de selección</p>
 						</div>
 					</a>
@@ -58,7 +58,7 @@ include 'includes/templates/indexHeader.php';
 					<a href="#!">
 						<img src="assets//img//main-3.jpg" alt="" class="w-100" />
 						<div class="content">
-							<h3>Corrector Barra</h3>
+							<!-- <h3>Corrector Barra</h3> -->
 							<p>El diseño especial es lo primero</p>
 						</div>
 					</a>

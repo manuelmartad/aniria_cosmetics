@@ -8,15 +8,11 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <!-- <script src="//vendor/purecounter/purecounter_vanilla.js"></script> -->
   <!-- <script src="/vendor/aos/aos.js"></script> -->
   <script src="<?php echo ASSETS ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="<?php echo ASSETS ?>vendor/glightbox/js/glightbox.min.js"></script>
   <script src="<?php echo ASSETS ?>vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="<?php echo ASSETS ?>vendor/swiper/swiper-bundle.min.js"></script>
-  <!-- <script src="//vendor/typed.js/typed.min.js"></script>
-  <script src="//vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="//vendor/php-email-form/validate.js"></script> -->
 
   <!-- Template Main JS File -->
   <script src="<?php echo JS ?>main.js"></script>
@@ -26,7 +22,7 @@
   <script src="<?php echo JS ?>scripts.js"></script>
   <script type="text/javascript" src="<?php echo ASSETS ?>vendor/datatables/datatables.min.js"></script>
 
-
+  <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 
 
@@ -48,6 +44,14 @@
               $(this).removeClass('animate__animated animate__pulse animate__faster');
           });
 
+          $(".card-animated").hover(function() {
+              $(".card-animated").addClass('animate__animated animate__pulse animate__faster');
+
+
+
+          }, function() {
+              $(".card-animated").removeClass('animate__pulse')
+          });
           $(document).on('click', '.unblock', (function(e) {
 
               Swal.fire({
@@ -67,12 +71,12 @@
                               unblock: unblock
                           },
                           success: function(response) {
-                              $('#response').removeClass('d-none')
-                              $('#response').html(response)
                               $("#reload").load(location.href + " #reload>*");
-                              setTimeout(() => {
-                                  $('#response').addClass('d-none');
-                              }, 3000);
+                              Swal.fire(
+                                  'Exito!',
+                                  'El usuario ha sido desbloqueado.',
+                                  'success'
+                              )
                           }
                       });
                   }
@@ -98,12 +102,12 @@
                               block: block
                           },
                           success: function(response) {
-                              $('#response').removeClass('d-none')
-                              $('#response').html(response)
                               $("#reload").load(location.href + " #reload>*");
-                              setTimeout(() => {
-                                  $('#response').addClass('d-none');
-                              }, 3000);
+                              Swal.fire(
+                                  'Exito!',
+                                  'El usuario ha sido bloqueado.',
+                                  'success'
+                              )
                           }
                       });
                   }
@@ -130,12 +134,12 @@
                               user: user
                           },
                           success: function(response) {
-                              $('#response').removeClass('d-none')
-                              $('#response').html(response);
                               $("#reload").load(location.href + " #reload>*");
-                              setTimeout(() => {
-                                  $('#response').addClass('d-none');
-                              }, 3000);
+                              Swal.fire(
+                                  'Exito!',
+                                  'El usuario ha sido eliminado.',
+                                  'success'
+                              )
                           }
                       });
                   }
@@ -168,43 +172,47 @@
                                   'Eliminado!',
                                   'El producto ha sido eliminado.',
                                   'success'
-                              )
-                              setTimeout(() => {
-
-                              }, 2000);
-
+                              );
                           }
                       });
                   }
               })
 
           }))
-          //   var 
-          //   frm = $("#addProduct").submit(function(e) {
-          //       e.preventDefault();
-          //       var formData = new FormData(this);
 
-          //       $.ajax({
-          //           async: true,
-          //           type: frm.attr('method'),
-          //           url: frm.attr('action'),
-          //           data: formData,
-          //           cache: false,
-          //           processData: false,
-          //           contentType: false,
-          //           dataType: "json",
+          $(document).on('click', '.makemeadmin', (function() {
 
-          //           success: function(data) {
-          //               console.log(data.message)
-          //               $("#response").html(data.message);
-          //           },
-          //           error: function(request, status, error) {
-          //               console.log("error")
-          //           }
-          //       });
+              Swal.fire({
+                  title: '¿Estás seguro?',
+                  icon: 'warning',
+                  text: '¿Quieres hacer a este usuario administrador?',
+                  showCancelButton: true,
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Aceptar',
+                  cancelButtonText: 'Cancelar'
+              }).then((result) => {
+                  if (result.isConfirmed) {
+                      var user = $(this).attr('data-id');
+                      $.ajax({
+                          type: "post",
+                          url: "../../response.php",
+                          data: {
+                              admin: user
+                          },
+                          success: function(response) {
+                              $("#no-more-tables").load(location.href + " #no-more-tables>*");
+                              Swal.fire(
+                                  'Exito!',
+                                  'El usuario ahora tiene privilegios de administrador.',
+                                  'success'
+                              )
+                              //   toastr.info('Are you the 6 fingered man?')
+                          }
+                      });
+                  }
+              })
 
-          //   });
-
+          }))
 
       });
   </script>

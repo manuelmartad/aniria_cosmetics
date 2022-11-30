@@ -18,6 +18,15 @@ if (isset($_POST['id'])) {
     echo json_encode($_SESSION["success"]);
 }
 
+if (isset($_POST['admin'])) {
+    $id = $_POST['admin'];
+
+    $sql = "UPDATE users SET role = 'admin' WHERE id = $id";
+    if ($conn->query($sql)) {
+        echo 200;
+    }
+}
+
 if (isset($_POST['productId'])) {
     $productId = $_POST['productId'];
 

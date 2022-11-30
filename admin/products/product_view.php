@@ -28,7 +28,7 @@ include '../../includes/templates/nav.php';
             <div class="card p-3 shadow-lg" id="reload">
                 <div class="card-title d-md-flex justify-content-between">
                     <!-- <span class="fs-4 ms-3">Administrar Productos</span> -->
-                    <a href="product_add.php" class="btn btn-outline-primary ms-3"><i class='bx bx-folder-plus pe-2'></i>Agregar
+                    <a href="product_add.php" class="ms-3"><i class='bx bx-folder-plus pe-2'></i>Agregar
                         Producto</a>
                 </div>
                 <div class="card-body">
@@ -52,15 +52,13 @@ include '../../includes/templates/nav.php';
                                     <tr class="align-middle">
                                         <td data-title="ID"><?php echo $row['product_id']; ?></td>
                                         <td data-title="Nombre"><?php echo $row['product_name']; ?></td>
-                                        <td data-title="Precio"><?php echo $row['product_price']; ?></td>
-
+                                        <td data-title="Precio">$<?php echo $row['product_price']; ?></td>
                                         <td data-title="Categoria"><?php echo $row['category_name']; ?></td>
+                                        <td data-title="Imagen"><img src="uploads/<?php echo $row['product_image']; ?>" width="100" height="100" class="rounded-0 pe-3"></td>
 
-                                        <td data-title="Imagen"><img src="uploads/<?php echo $row['product_image']; ?>" width="150" height="150" class="rounded-0 pe-3"></td>
 
-
-                                        <td data-title="Acción"><a href="product_edit.php?id=<?php echo $row['product_id'] ?>" class="btn btn-primary"><i class="fa-solid fa-pen"></i></a>
-                                            <button class="btn btn-danger deleteProduct" name="deleteProduct" data-id="<?php echo $row['product_id'] ?>"><i class="fa-solid fa-trash"></i></button>
+                                        <td data-title="Acción"><a href="product_edit.php?id=<?php echo $row['product_id'] ?>"><i class="fa-solid fa-pen fs-3 text-warning"></i></a> |
+                                            <a type="button" class="deleteProduct" name="deleteProduct" data-id="<?php echo $row['product_id'] ?>"><i class="fa-solid fa-trash fs-3 text-danger"></i></a>
                                         </td>
                                     </tr>
                             <?php }
@@ -71,11 +69,11 @@ include '../../includes/templates/nav.php';
                     </table>
                     <nav>
                         <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Anterior</a></li>
                             <li class="page-item"><a class="page-link" href="#">1</a></li>
                             <li class="page-item"><a class="page-link" href="#">2</a></li>
                             <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
                         </ul>
                     </nav>
                 </div>

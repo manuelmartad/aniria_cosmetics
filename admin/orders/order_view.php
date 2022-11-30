@@ -22,14 +22,15 @@ include '../../includes/templates/nav.php';
                     <table class="table w-100 align-middle text-center" id="no-more-tables">
                         <thead>
                             <tr>
-                            <!-- <th>ID</th> -->
+                                <!-- <th>ID</th> -->
 
-                            <th>Usuario</th>
-                            <th>Calle</th>
-                            <th>Colonia</th>
-                            <th>Codigo Postal</th>
-                            <th>Ciudad</th>
-                            <th>Pais</th>
+                                <th>Usuario</th>
+                                <th>Calle</th>
+                                <th>Colonia</th>
+                                <th>Codigo Postal</th>
+                                <th>Ciudad</th>
+                                <th>Pais</th>
+                                <th>Punto de venta</th>
                                 <th>Teléfono</th>
                                 <th>Fecha</th>
                                 <th>Artículos</th>
@@ -42,17 +43,18 @@ include '../../includes/templates/nav.php';
                         <tbody>
                             <?php while ($order = $orders->fetch_assoc()) : ?>
                                 <tr>
-                                <!-- <td data-title="ID"><?php echo $order['transaction_id'] ?></td> -->
-                                <td data-title="Usuario"><?php echo $order['name'] ?></td>
-                                <td data-title="Calle"><?php echo $order['address'] ?></td>
-                                <td data-title="Colonia"><?php echo $order['address1'] ?></td>
-                                <td data-title="Codigo Postal"><?php echo $order['zip'] ?></td>
-                                <td data-title="Ciudad"><?php echo $order['city'] ?></td>
-                                <td data-title="Pais"><?php echo $order['country'] ?></td>
+                                    <!-- <td data-title="ID"><?php echo $order['transaction_id'] ?></td> -->
+                                    <td data-title="Usuario"><?php echo $order['name'] ?></td>
+                                    <td data-title="Calle"><?php echo $order['address'] ?></td>
+                                    <td data-title="Colonia"><?php echo $order['address1'] ?></td>
+                                    <td data-title="Codigo Postal"><?php echo $order['zip'] ?></td>
+                                    <td data-title="Ciudad"><?php echo $order['city'] ?></td>
+                                    <td data-title="Pais"><?php echo $order['country'] ?></td>
+                                    <td>1 o 2</td>
                                     <td data-title="Teléfono">656 461 51 35</td>
                                     <td data-title="Fecha"><?php echo $order['date'] ?></td>
                                     <td data-title="Artículos"><?php echo $order['totalItems'] ?></td>
-                                    <td class="text-success fw-bold" data-title="Precio total"><span class="text-dark">$</span> <?php echo number_format($order['total'],2) ?></td>
+                                    <td class="text-success fw-bold" data-title="Precio total"><span class="text-dark">$</span> <?php echo number_format($order['total'], 2) ?></td>
                                     <!-- <td><span class="badge bg-primary">En Proceso</span> -->
                                     <!-- </td>
                         <td><button type="button" class="btn btn-primary py-1" data-bs-toggle="modal" data-bs-target="#modalId"><i class="fa-solid fa-magnifying-glass pe-1"></i>Visualizar</td> -->

@@ -77,7 +77,7 @@ include '../../includes/templates/nav.php';
         <div class="container">
             <div class="col-md-6 px-3 mx-auto">
 
-                <div class="card shadow mt-3 mb-3">
+                <div class="card shadow-lg mt-3 mb-3">
                     <!-- <div class="card-header pt-3">
                         <h3>Agregar Producto</h3>
                     </div> -->
@@ -92,17 +92,17 @@ include '../../includes/templates/nav.php';
 
                             <div class="mb-3">
                                 <label for="" class="form-label">Nombre</label>
-                                <input type="text" class="form-control form-control-sm" required name="prod_name" id="prod_name" placeholder="Nombre Producto" value="<?= $prod_name; ?>">
+                                <input type="text" class="form-control" required name="prod_name" id="prod_name" placeholder="Nombre Producto" value="<?= $prod_name; ?>">
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Precio</label>
-                                <input type="text" class="form-control form-control-sm" required name="prod_price" placeholder="$ 0.00" value="<?= $prod_price ?>">
+                                <input type="text" class="form-control" required name="prod_price" placeholder="$ 0.00" value="<?= $prod_price ?>">
                             </div>
 
 
                             <div class="mb-3">
                                 <label for="" class="form-label">Elegir imagen</label>
-                                <input type="file" class="form-control form-control-sm" id="image" name="image" required>
+                                <input type="file" class="form-control" id="image" name="image" required>
                             </div>
 
                             <div class="mb-3">
@@ -111,7 +111,7 @@ include '../../includes/templates/nav.php';
                                 if ($num->num_rows > 0) {
                                 ?>
                                     <label class="form-label p-0">Categoria</label>
-                                    <select class="form-select form-select-sm" name="category" id="">
+                                    <select class="form-select" name="category" id="">
                                         <option selected disabled>--Seleccione una categoria--</option>
                                         <?php
                                         $row = $num->fetch_all(MYSQLI_ASSOC);
@@ -125,7 +125,7 @@ include '../../includes/templates/nav.php';
                                     </select>
                             </div>
 
-                            <button class="btn btn-primary float-end" type="submit">guardar<i class="fa-solid fa-save ps-2"></i></button>
+                            <button class="btn btn-primary float-end" type="submit">Guardar<i class="fa-solid fa-save ps-2"></i></button>
                         </form>
                     </div>
                 </div>
