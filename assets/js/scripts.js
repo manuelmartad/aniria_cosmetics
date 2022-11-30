@@ -51,8 +51,8 @@ $(function () {
         })
     })
 
-    $('#like').click(function (e) {
-        e.stopPropagation()
+    $('#like').click(function () {
+
         var id = $(this).attr("data-id")
         $.ajax({
             type: "POST",
@@ -62,8 +62,8 @@ $(function () {
             },
             success: function (response) {
                 if (response == 200) {
-                    $('#icon').addClass('text-danger bx bxs-heart')
-                    // $("#numlikes").load(location.href + " #numlikes>*");
+                    $('#icon').addClass('text-danger bxs-heart')
+                    $("#numlikes").load(location.href + " #numlikes");
 
                 }
 
@@ -106,7 +106,7 @@ $(function () {
 
     })
 
-   
+
     // $("#comment").click(function () {
     $("#comment-form").submit(function (e) {
         e.preventDefault();

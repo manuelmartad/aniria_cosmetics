@@ -79,12 +79,20 @@ include 'includes/templates/indexHeader.php';
 
                     <div class="mt-3">
                         <ul>
-                            <li>
-                                <a type="button" id="like" data-id="<?php echo $product['product_id'] ?>"><i id="icon" class='bx bx-heart fs-2'></i></a>
-                                <?php $likes = $conn->query("SELECT stars FROM products WHERE product_id = '{$id}'");
-                                $like = $likes->fetch_column(); ?>
-                                <span id="numlikes"> <?php print_r($like); ?>
-                                </span>
+                            <li id="numlikes">
+                                <?php $likes = $conn->query("SELECT * FROM likes WHERE product_id = {$product['product_id']} AND user_id = {$_SESSION['id']}");
+                                if ($likes->num_rows > 0) {
+                                    echo '<a type="button">';
+                                    echo "<i id='icon' class='bx bx-heart fs-2 text-danger bxs-heart'></i>";
+                                    echo '</a>';
+                                    $fetchLikes = $conn->query("SELECT COUNT(likes) AS LOVE FROM likes WHERE product_id = {$product['product_id']} AND user_id != {$_SESSION['id']} ");
+                                    $numlikes = $fetchLikes->fetch_column();
+                                    echo " A ti y a " . $numlikes  . " les gusta este producto..";
+                                } else {
+                                    echo '<a disabled type="button" id="like" data-id="' . $product['product_id'] . '">';
+                                    echo "<i id='icon' class='bx bx-heart fs-2'></i>";
+                                    echo '</a>';
+                                } ?>
                             </li>
                         </ul>
                     </div>

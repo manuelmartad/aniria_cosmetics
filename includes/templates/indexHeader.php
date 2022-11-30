@@ -57,7 +57,7 @@
 
   <style>
     .bg-image {
-      background-image: url("<?php echo ASSETS ?>img/hero2.jpg");
+      background-image: url("<?php echo ASSETS ?>img/aniria-hero.jpg");
       background-position: center center;
       background-size: cover;
       min-height: 600px;

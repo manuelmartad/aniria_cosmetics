@@ -21,7 +21,7 @@ if (isset($_POST['id'])) {
 if (isset($_POST['productId'])) {
     $productId = $_POST['productId'];
 
-    $sql = "UPDATE products SET stars = stars + 1 WHERE product_id = '$productId'";
+    $sql = "INSERT INTO likes(likes,product_id,user_id) VALUES(1,$productId,{$_SESSION['id']})";
     if ($conn->query($sql)) {
         echo 200;
     }
@@ -97,7 +97,8 @@ if (isset($_POST['input'])) {
                                     <div class="col-md-4 col-sm-6 col-xs-12">
                                         <div class="mt-3">
                                             <h2 class="fs-2"><?php echo $product['product_name'] ?></h2>
-                                            <p class="my-3 text-dark"> <span>A <?php echo $product['stars'] ?> </span>les gusta este producto</p>
+                                            <!-- <p class="my-3 text-dark"> <span>A <?php //echo $product['stars'] 
+                                                                                    ?> </span>les gusta este producto</p> -->
                                             <p class="fs-3 my-3 text-dark">$<?php echo number_format($product['product_price'], 2) ?></p>
                                             <p class="text-justify fs-6">
                                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem iusto nihil cum. Illo laborum numquam rem aut officia dicta cumque.
@@ -127,7 +128,9 @@ if (isset($_POST['input'])) {
         <div class="text-center">
             <p class="text-light bg-danger p-3 w-100">No hay nada relacionado con tu busqueda..</p>
             <!-- <i class='bx bx-sad' style="font-size:180px;"></i> -->
-            <svg class="w-6 h-6" width="250" height="250" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <svg class="w-6 h-6" width="250" height="250" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
         </div>
 <?php }
 } ?>

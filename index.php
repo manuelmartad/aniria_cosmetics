@@ -5,7 +5,7 @@ require 'config/db.php';
 // 	header('location:auth/login.php');
 // }
 
-$sql = "SELECT * FROM products WHERE stars <> 0 ORDER BY stars DESC LIMIT 6";
+$sql = "SELECT * FROM products LIMIT 6";
 $products = $conn->query($sql);
 
 include 'includes/templates/indexHeader.php';
@@ -82,7 +82,7 @@ include 'includes/templates/indexHeader.php';
 				<div class="col-md-6 col-lg-4">
 					<div class="product-item">
 						<div class="product-thumb">
-							<span class="bage">Sale</span>
+							<span class="bage">Venta</span>
 							<img class="img-responsive" src="admin/products/uploads/<?php echo $product['product_image'] ?>" alt="product-img" style="height: 375px!important ;" />
 							<div class="preview-meta">
 								<ul class="w-25">
@@ -98,8 +98,8 @@ include 'includes/templates/indexHeader.php';
 							</div>
 						</div>
 						<div class="product-content">
-							<h4><a href="product-single.html">Reef Boardsport</a></h4>
-							<p class="price">$200</p>
+							<h4><a href="product-single.html"><?php echo $product['product_name'] ?></a></h4>
+							<p class="price">$<?php echo number_format($product['product_price'],2) ?></p>
 						</div>
 					</div>
 				</div>
@@ -125,7 +125,7 @@ include 'includes/templates/indexHeader.php';
 									<div class="col-md-4 col-sm-6 col-xs-12">
 										<div class="mt-3">
 											<h2 class="fs-2"><?php echo $product['product_name'] ?></h2>
-											<p class="my-3 text-dark"> <span>A <?php echo $product['stars'] ?> </span>les gusta este producto</p>
+											<!-- <p class="my-3 text-dark"> <span>A <?php //echo $product['stars'] ?> </span>les gusta este producto</p> -->
 											<p class="fs-3 my-3 text-dark">$<?php echo number_format($product['product_price'], 2) ?></p>
 											<p class="text-justify fs-6">
 												Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem iusto nihil cum. Illo laborum numquam rem aut officia dicta cumque.
