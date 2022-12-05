@@ -73,7 +73,12 @@ include '../../includes/templates/nav.php';
                         <?php else : ?>
                           <a type="button" data-id="<?php echo $id; ?>" class="blacklist"><i class='bx bx-lock-alt fs-3 text-warning px-2'></i></a>
                         <?php endif; ?>
-                        <a type="button" class="makemeadmin" data-id="<?php echo $id; ?>"><i class='bx bxl-android px-2 fs-2'></i></a>
+
+                        <?php if ($role == 'user') : ?>
+                          <a type="button" class="makemeadmin" data-id="<?php echo $id; ?>"><i class='bx bxl-android px-2 fs-2 text-danger'></i></a>
+                        <?php else : ?>
+                          <a type="button" data-id="<?php echo $id; ?>"><i class='bx bx-cool px-2 fs-2'></i></a>
+                        <?php endif; ?>
                       </td>
                     </tr>
                 <?php endwhile;

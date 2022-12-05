@@ -66,11 +66,13 @@ include '../../includes/templates/nav.php';
 
 
             <div class="card p-3 shadow-lg col-md-10 col-lg-6 mx-auto">
-                <div class="card-title d-flex justify-content-between">
-                    <span class="fs-4 ms-3">Agregar Categoria</span>
-                    <a href="category_view.php" class="btn btn-link">
-                        Regresar</a>
+                <div class="d-flex justify-content-between">
+                    <a href="category_view.php" class="btn btn-outline-danger ms-3 py-1">
+                    <i class='bx bx-arrow-back fw-bold' ></i></a>
+                    <span class="fs-4 me-3 d-block">Agregar Categoria</span>
+
                 </div>
+                <hr>
                 <div class="card-body">
                     <?php foreach ($errors as $error) { ?>
                         <div class="alert alert-danger alert-dismissible show text-center" role="alert">
@@ -79,18 +81,21 @@ include '../../includes/templates/nav.php';
 
                     <?php   } ?>
                     <form action="" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+
                         <div class="mb-4">
                             <label for="" class="form-label">Nombre Categoria</label>
                             <input type="text" class="form-control" name="category_name" id="" aria-describedby="helpId" placeholder="" required>
+                            <small class="invalid-feedback">La categoria es obligatoria*</small>
                         </div>
 
 
                         <div class="mb-3">
                             <!-- <label for="" class="form-label">Imagen</label> -->
                             <input type="file" class="form-control" name="imagen" id="" placeholder="" required>
+                            <small class="invalid-feedback">La imagen es obligatoria*</small>
                         </div>
 
-                        <button type="submit" class="btn btn-primary px-5 mt-3"><i class="fa-solid fa-save pe-2"></i>Agregar</button>
+                        <button type="submit" class="btn btn-primary px-5 mt-3 w-100 w-lg-50"><i class="fa-solid fa-save pe-2"></i>Agregar</button>
                     </form>
 
                 </div>

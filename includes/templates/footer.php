@@ -44,13 +44,14 @@
               $(this).removeClass('animate__animated animate__pulse animate__faster');
           });
 
-          $(".card-animated").hover(function() {
-              $(".card-animated").addClass('animate__animated animate__pulse animate__faster');
+          $(".card-animated").hover(function(e) {
+              e.stopPropagation()
+              $(this).addClass('animate__animated animate__pulse animate__faster');
 
 
 
           }, function() {
-              $(".card-animated").removeClass('animate__pulse')
+              $(this).removeClass('animate__pulse')
           });
           $(document).on('click', '.unblock', (function(e) {
 
@@ -88,6 +89,7 @@
               Swal.fire({
                   title: '¿Estás seguro?',
                   icon: 'warning',
+                  text: 'Este usuario no podrá iniciar sesión ',
                   showCancelButton: true,
                   cancelButtonColor: '#d33',
                   confirmButtonText: 'Bloquear',
@@ -120,6 +122,7 @@
               Swal.fire({
                   title: '¿Estás seguro?',
                   icon: 'warning',
+                  text: 'Este usuario no podrá iniciar sesión más',
                   showCancelButton: true,
                   cancelButtonColor: '#d33',
                   confirmButtonText: 'Eliminar',
@@ -180,6 +183,25 @@
 
           }))
 
+
+          //   toastr.options = {
+          //       "closeButton": false,
+          //       "debug": false,
+          //       "newestOnTop": false,
+          //       "progressBar": false,
+          //       "positionClass": "toast-top-full-width",
+          //       "preventDuplicates": true,
+          //       "onclick": null,
+          //       "showDuration": "300",
+          //       "hideDuration": "1000",
+          //       "timeOut": "5000",
+          //       "extendedTimeOut": "2000",
+          //       "showEasing": "swing",
+          //       "hideEasing": "linear",
+          //       "showMethod": "fadeIn",
+          //       "hideMethod": "fadeOut"
+          //   }
+
           $(document).on('click', '.makemeadmin', (function() {
 
               Swal.fire({
@@ -212,7 +234,90 @@
                   }
               })
 
-          }))
+          }));
+
+
+          $('#addnewstock').click(function() {
+
+              var qty = $('#qty').val()
+              var product = $('#product').val()
+              var salespot = $('#salespot').val()
+
+
+              //   if (qty == 0) {
+              //       $('#qty').css('border-color', 'red');
+              //       $(".validateinput").text("Este campo es obligatorio");
+              //   } else {
+              //       $('#qty').css('border-color', '#000');
+              //       $(".validateinput").text("");
+              //   }
+
+              //   if (!product) {
+              //       $('#product').css('border-color', 'red');
+              //       $(".validateinput").text("Este campo es obligatorio");
+
+              //   } else {
+              //       $('#product').css('border-color', '#000');
+              //       $(".validateinput").text("");
+              //   }
+
+              //   if (!salespot) {
+              //       $('select#salespot').css('border-color', 'red');
+              //       $(".validateinput").text("Este campo es obligatorio");
+
+
+
+              if (qty == 0 || product == null || salespot == null) {
+                  $(".validateinput").removeClass("d-none");
+                  $(".validateinput").text("Por favor, rellene todos los campos*");
+                  $('#product').css('border-color', 'red');
+                  $('#salespot').css('border-color', 'red');
+                  $('#qty').css('border-color', 'red');
+
+                  return false;
+
+              } else {
+
+
+                  $("#addstocktoproduct").submit(function(e) {
+                      e.preventDefault()
+                      $.ajax({
+                          type: "post",
+                          url: "add_stock.php",
+                          data: {
+                              qty: qty,
+                              product: product,
+                              salespot: salespot
+                          },
+                          success: function(response) {
+                              $("#no-more-tables").load(location.href + " #no-more-tables>*");
+                              Swal.fire(
+                                  'Exito!',
+                                  'Stock agregado al producto.',
+                                  'success'
+                              )
+
+                              //   toastr["success"]("Nuevo stock agregado")                              //   location.href = "view_stock.php?added-stock=1"
+                              $("#addstocktoproduct")[0].reset()
+                              //   $("#modalId")[0].reset()
+                              $(".validateinput").addClass("d-none");
+                              $('#product').css('border-color', '#ced4da');
+                              $('#salespot').css('border-color', '#ced4da');
+                              $('#qty').css('border-color', '#ced4da');
+
+                              $("#modalId").modal("hide")
+
+                          }
+                      });
+
+
+                  })
+
+              }
+
+
+
+          })
 
       });
   </script>

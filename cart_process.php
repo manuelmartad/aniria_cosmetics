@@ -10,8 +10,6 @@ if (!isset($_SESSION['cart'])) {
     $productQty = $_POST["productQty"];
     $productImage = $_POST["productImage"];
 
-    
-
     /*Añadimos el producto a la sesion 'cart'*/
     $producto = array(
         "productId" => $productId,

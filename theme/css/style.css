@@ -270,12 +270,12 @@ input[type=tel]:focus {
 .bg-gray {
   /* background: #f9f9f9; */
   /* background: linear-gradient(#ffecfb, #ffacb3, #5f5f5f); */
-  background: linear-gradient(#ffecfb, #ffbec3);
+  background: linear-gradient(#ffeefc, #ffe0e3);
 
 }
 
 .bg-linear {
-  background: linear-gradient(#ffbec3, #ffecfb);
+  background: linear-gradient(#a694c0, #ffecfb);
 
 }
 

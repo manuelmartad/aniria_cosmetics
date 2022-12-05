@@ -3,7 +3,7 @@ require_once '../../config/env.php';
 require_once '../../config/db.php';
 
 
-$sql = "SELECT * FROM sell_spot";
+$sql = "SELECT * FROM sale_spot";
 $result = $conn->query($sql);
 
 
@@ -20,7 +20,7 @@ include '../../includes/templates/nav.php';
         <div class="container">
 
 
-            <div class="card p-3 shadow-lg">
+            <div class="card p-3 shadow-lg col-10 mx-auto">
                 <div class="card-title d-flex justify-content-between">
                     <!-- <span class="fs-4 ms-3">Administrar Categorias</span>
                     <a href="category_add.php" class="btn btn-link"><i class="fa-solid fa-plus me-1"></i> Agregar
@@ -34,7 +34,7 @@ include '../../includes/templates/nav.php';
                             <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
                                 <?php while ($spot = $result->fetch_assoc()) : ?>
 
-                                    <div class="col-lg-4 col-md-6 portfolio-item">
+                                    <div class="col-lg-6 col-md-6 portfolio-item">
                                         <div class="portfolio-wrap">
                                             <img src="<?php echo $spot['location'] ?>" class="img-fluid" alt="">
                                             <iframe src="<?php echo $spot['location'] ?>" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="card-img-top" alt="image desc" width="400" height="300"></iframe>

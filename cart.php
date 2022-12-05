@@ -81,7 +81,7 @@ include 'includes/templates/indexHeader.php';
                     </tfoot>
                 </table>
                 <div>
-                    <a href="checkout.php" name="cartInfo" class="btn btn-primary">Siguiente</a>
+                    <a href="choose.php" name="cartInfo" class="btn btn-primary">Siguiente</a>
                 </div>
 
             </div>

@@ -3,6 +3,8 @@ require_once "config/db.php";
 require_once "config/funciones.php";
 session_start();
 
+
+
 if (isset($_POST['id'])) {
     $id = $_POST['id'];
 
@@ -62,7 +64,6 @@ if (isset($_POST['input'])) {
                 <div class="col-md-6 col-lg-4">
                     <div class="product-item">
                         <div class="product-thumb">
-                            <span class="bage">Sale</span>
                             <img class="img-responsive" src="admin/products/uploads/<?php echo $product['product_image'] ?>" alt="product-img" style="height: 375px!important ;" />
                             <div class="preview-meta">
                                 <ul class="w-25">

@@ -36,7 +36,6 @@ include 'includes/templates/indexHeader.php';
 				<div class="col-md-6 col-lg-4">
 					<div class="product-item">
 						<div class="product-thumb">
-							<span class="bage">Sale</span>
 							<img class="img-responsive" src="admin/products/uploads/<?php echo $product['product_image'] ?>" alt="product-img" style="height: 375px!important ;" />
 							<div class="preview-meta">
 								<ul class="w-25">
@@ -88,12 +87,12 @@ include 'includes/templates/indexHeader.php';
 											</p>
 
 											<form method="post" id="form_cart">
-													<input type="hidden" name="productId" value="<?php echo $product['product_id'] ?>">
+													<input type="hidden" name="productId" id="productId" value="<?php echo $product['product_id'] ?>">
 													<input type="hidden" name="productPrice" value="<?php echo $product["product_price"] ?>">
 													<input type="hidden" name="productName" value="<?php echo $product["product_name"] ?>">
 													<input type="hidden" name="productImage" value="<?php echo $product["product_image"] ?>">
-													<input type="number" name="productQty" value="1" min="1" max="20" class="form-control form-control-sm w-50">
-													<button type="submit" class="btn btn-primary my-3 px-4"><i class="fa-solid fa-cart-shopping pe-2"></i>Agregar al Carrito</button>
+													<input type="number" name="productQty" id="productQty" value="1" min="1" max="20" class="form-control form-control-sm w-50">
+													<button type="submit" class="addtocart btn btn-primary my-3 px-4"><i class="fa-solid fa-cart-shopping pe-2"></i>Agregar al Carrito</button>
 												</form>
 										
 

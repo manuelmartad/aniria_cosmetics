@@ -24,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cartItems = $conn->real_escape_string(sanitizeData($_POST['cartItems']));
     $total = $_POST['total'];
     $date = date('d-m-Y');
+    $sale_spot = $_SESSION['spot'];
 
     if (empty($name) || empty($address) || empty($address1) || empty($zip) || empty($city) || empty($country)) {
         $errors[] = "Hay un error en los campos.";
@@ -35,17 +36,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (empty($errors)) {
 
-        $sql = $conn->prepare("INSERT INTO orders(transaction_id,name,address,address1,zip,city,country,totalItems,total,date)
-            VALUES(?,?,?,?,?,?,?,?,?,?)");
-        $sql->bind_param('ssssisssds', $transactionId, $name, $address, $address1, $zip, $city, $country, $cartItems, $total, $date);
+        $sql = $conn->prepare("INSERT INTO orders(transaction_id,name,address,address1,zip,city,country,spot_id,totalItems,total,date)
+            VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+        $sql->bind_param('ssssissisds', $transactionId, $name, $address, $address1, $zip, $city, $country, $sale_spot, $cartItems, $total, $date);
         if ($sql->execute()) {
             echo 201;
-            $_SESSION['cart'] = array();
         } else {
             echo "bad";
         }
+
+        foreach ($_SESSION['cart'] as $item) {
+            echo '<pre>';
+            var_dump($item);
+            echo '</pre>';
+            $conn->query("UPDATE product_spot SET quantity = quantity - '{$item['productQty']}' 
+            WHERE product_id = '{$item['productId']}' AND spot_id = '{$_SESSION['spot']}' ");
+        }
+
+        $_SESSION['cart'] = array();
+        $_SESSION['spot'] = array();
     }
 }
+
+// echo '<pre>';
+// var_dump($_SESSION);
+// echo '</pre>';
+
 
 include 'includes/templates/indexHeader.php';
 ?>
@@ -153,6 +169,7 @@ include 'includes/templates/indexHeader.php';
                 </div>
 
                 <?php
+                //   $sale  $_SESSION['salespot']
                 // $total = $total;
                 $orderid =  date('His') . rand(00, 99);
                 $cartItems = count($_SESSION['cart']);

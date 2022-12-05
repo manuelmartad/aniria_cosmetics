@@ -16,8 +16,8 @@ include 'includes/templates/indexHeader.php';
 ?>
 
 <div class="bg-image">
-	<div class="p-5">
-		<h1 class="d-none d-sm-block">El maquillaje es arte,<br> la belleza es espiritu</h1>
+	<div class="pb-5 ps-5 pt-3">
+		<h1 class="d-none d-lg-block">El maquillaje es arte,<br> la belleza es espiritu</h1>
 		<a type="button" id="redirect" class="btn btn-outline-primary mt-2 text-uppercase px-4"> Empieza Ahora</a>
 	</div>
 

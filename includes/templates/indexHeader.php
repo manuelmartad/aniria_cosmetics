@@ -58,76 +58,39 @@
   <style>
     .bg-image {
       background-image: url("<?php echo ASSETS ?>img/aniria-hero.jpg");
-      background-position: center center;
+      background-position: top;
       background-size: cover;
-      height: 100vh;
+      height: 70vh;
       width: auto;
+      padding-top: 0;
     }
 
     @media only screen and (max-width: 595px) {
       .bg-image {
-        background-position: center center;
+        background-position: left;
         background-size: cover;
         background-repeat: no-repeat;
-        height: 200px; 
-        width: auto;
+        height: 220px;
+        width: auto !important;
       }
 
       #redirect {
         position: relative;
         display: inline-block !important;
-        top: 160px;
+        top: 165px;
         right: 0;
-        left: 0;
+        left: -20px;
         width: 100% !important;
         background-color: #000;
         color: #fff;
         padding: -10px 100px !important;
       }
 
-    }
-
-
-    .top-header i {
-      font-size: 25px !important;
-    }
-
-    div h1 {
-      font-family: 'Dancing Script', cursive !important;
-      font-size: 70px;
-      font-weight: 700;
-      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
-    }
-
-    .main-title {
-      font-family: 'Dancing Script', cursive !important;
-      font-weight: 500 !important;
-      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
-      text-transform: capitalize !important;
-      font-size: 40px;
-    }
-
-    .swiper {
-      width: 100%;
-      height: 400px;
-      /* background: linear-gradient(#ffbec3, #ffecfb) */
-      background: #ffbec3;
-    }
-
-
-    #paypal-button-container {
-      width: 100%;
-
-    }
-
-    @media only screen and (max-width:900px) {
-
-      /* *:not(tfoot), */
-      #no-more-tables tbody,
+        /* *:not(tfoot), */
+        #no-more-tables tbody,
       #no-more-tables tr,
       #no-more-tables td {
         display: block;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
       }
 
       #no-more-tables thead tr {
@@ -140,7 +103,7 @@
       #no-more-tables tbody td {
         position: relative;
         padding-left: 50%;
-        border: 1px solid #000;
+        border-bottom: 1px solid #000;
 
       }
 
@@ -148,9 +111,9 @@
         border-bottom: none;
       }
 
-      #no-more-tables td:first-child {
+      /* #no-more-tables td:first {
         border-top: 2px solid;
-      }
+      } */
 
 
 
@@ -173,11 +136,11 @@
       }
 
       #no-more-tables tfoot tr {
-        border: 1px solid;
+        border-bottom: 1px solid;
         margin: 0px;
         display: flex;
         justify-content: space-between;
-        padding: 0 10px;
+        padding: 0 20px;
 
       }
 
@@ -186,6 +149,117 @@
       }
 
 
+    }
+
+    .top-header i {
+      font-size: 25px !important;
+    }
+
+    div h1 {
+      font-family: 'Dancing Script', cursive !important;
+      font-size: 70px;
+      font-weight: 700;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+    }
+
+    .main-title {
+      font-family: 'Dancing Script', cursive !important;
+      font-weight: 500 !important;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+      text-transform: capitalize !important;
+      font-size: 40px;
+    }
+
+    #paypal-button-container {
+      width: 100%;
+
+    }
+
+    @media only screen and (max-width:900px) and (min-width:450px) {
+
+      .bg-image {
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 400px;
+        width: auto;
+      }
+
+      #redirect {
+        position: relative;
+        display: inline-block !important;
+        top: 320px;
+        right: 0;
+        left: 60px;
+        width: 80% !important;
+        background-color: #000;
+        color: #fff;
+        padding: -10px 100px !important;
+        /* margin: 0 auto; */
+        /* text-align: center; */
+      }
+
+      /* *:not(tfoot), */
+      #no-more-tables tbody,
+      #no-more-tables tr,
+      #no-more-tables td {
+        display: block;
+      }
+
+      #no-more-tables thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+      }
+
+
+      #no-more-tables tbody td {
+        position: relative;
+        padding-left: 50%;
+        border-bottom: 1px solid #000;
+
+      }
+
+      #no-more-tables td:last-child {
+        border-bottom: none;
+      }
+
+      /* #no-more-tables td:first {
+        border-top: 2px solid;
+      } */
+
+
+
+      #no-more-tables td:before {
+        content: attr(data-title);
+        position: absolute;
+        left: 6px;
+        font-weight: bold;
+      }
+
+      #no-more-tables tr {
+        margin-top: 40px;
+        border-bottom: 1px solid #000;
+
+      }
+
+      #no-more-tables tfoot td {
+        border: none;
+        display: inline-table;
+      }
+
+      #no-more-tables tfoot tr {
+        border-bottom: 1px solid;
+        margin: 0px;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 20px;
+
+      }
+
+      #no-more-tables tfoot td:first-child {
+        border-top: none;
+      }
 
     }
   </style>
@@ -193,7 +267,7 @@
 </head>
 
 <body id="body">
-  <div class="container-fluid">
+  <div class="container">
 
     <!-- Start Top Header Bar -->
     <section class="top-header">
@@ -268,8 +342,7 @@
       <div class="container">
         <a class="navbar-brand" href="index.php"><i class='bx bx-shopping-bag px-1 fs-4'></i>ANIRIA</a>
         <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
-          <i class="fa-solid fa-bars"></i>
-        </button>
+          <i class='bx bx-menu fs-1'></i></button>
         <div class="collapse navbar-collapse d-lg-flex" id="collapsibleNavId">
           <ul class="navbar-nav me-auto mt-2 mt-lg-0">
             <li class="nav-item">

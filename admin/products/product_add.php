@@ -26,8 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $prod_price =  sanitizeData($_POST['prod_price']);
     $image = $_FILES['image'];
     $category = isset($_POST['category']);
-
-
+    
     if (empty($prod_name) || empty($prod_price) || empty($category)) {
         $errors[] = "Todos los campos son obligatorios";
     }
@@ -53,12 +52,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $sql = $conn->prepare("INSERT INTO products(product_name, product_price, product_image, category_id)VALUES(?,?,?,?)");
         $sql->bind_param('sdsi', $prod_name, $prod_price, $image_name, $category);
+      
 
-        if ($sql->execute()) {
-            $_SESSION["success"] = '<div class="alert alert-success alert-dismissible show text-center" role="alert">
+            if ($sql->execute()) {
+                $_SESSION["success"] = '<div class="alert alert-success alert-dismissible show text-center" role="alert">
             <small> <i class="fa-solid fa-check pe-2"></i>Producto Agregado</small>
         </div>';
-            header("location:product_view.php");
+                header("location:product_view.php");
+            
         }
     }
 }
@@ -75,12 +76,17 @@ include '../../includes/templates/nav.php';
     <!-- ======= Skills Section ======= -->
     <section id="skills" class="skills section-bg">
         <div class="container">
-            <div class="col-md-6 px-3 mx-auto">
+            <div class="col-md-8 px-3 mx-auto">
 
-                <div class="card shadow-lg mt-3 mb-3">
-                    <!-- <div class="card-header pt-3">
-                        <h3>Agregar Producto</h3>
-                    </div> -->
+                <div class="card p-3 shadow-lg mt-3 mb-3">
+                <div class="d-flex justify-content-between">
+                    <a href="product_view.php" class="btn btn-outline-danger ms-3 py-1">
+                    <i class='bx bx-arrow-back fw-bold px-3' ></i></a>
+                    <span class="fs-4 me-3 d-block">Agregar Producto</span>
+
+                </div>
+                <hr>
+
                     <div class="card-body">
                         <?php foreach ($errors as $error) { ?>
                             <div class="alert alert-danger alert-dismissible show text-center" role="alert">
@@ -88,44 +94,51 @@ include '../../includes/templates/nav.php';
                             </div>
 
                         <?php   } ?>
-                        <form method="POST" enctype="multipart/form-data" class="needs-validation p-4" novalidate id="addProduct">
+                        <form method="POST" enctype="multipart/form-data" class="needs-validation" novalidate id="addProduct">
+
 
                             <div class="mb-3">
-                                <label for="" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" required name="prod_name" id="prod_name" placeholder="Nombre Producto" value="<?= $prod_name; ?>">
+                                <label for="prod_name" class="form-label">Producto</label>
+                                <input type="text" class="form-control" required name="prod_name" id="prod_name" placeholder="Nombre" value="<?= $prod_name; ?>">
+                           <small class="invalid-feedback">El nombre es obligatorio*</small>
                             </div>
+
                             <div class="mb-3">
                                 <label for="" class="form-label">Precio</label>
-                                <input type="text" class="form-control" required name="prod_price" placeholder="$ 0.00" value="<?= $prod_price ?>">
+                                <input type="text" class="form-control" required name="prod_price" placeholder="$0.00" value="<?= $prod_price ?>">
+                                <small class="invalid-feedback">El precio es obligatorio*</small>
+
                             </div>
 
 
                             <div class="mb-3">
                                 <label for="" class="form-label">Elegir imagen</label>
                                 <input type="file" class="form-control" id="image" name="image" required>
+                                <small class="invalid-feedback">El nombre es obligatorio*</small>
                             </div>
+
 
                             <div class="mb-3">
                                 <?php $sql = "SELECT UPPER(category_name) AS 'category_name', category_id FROM categories";
                                 $num = $conn->query($sql);
-                                if ($num->num_rows > 0) {
+                                if ($num->num_rows > 0) :
                                 ?>
-                                    <label class="form-label p-0">Categoria</label>
+                                    <label class="form-label p-0">Categoría</label>
                                     <select class="form-select" name="category" id="">
-                                        <option selected disabled>--Seleccione una categoria--</option>
+                                        <option selected disabled>--Seleccione una categoría--</option>
                                         <?php
                                         $row = $num->fetch_all(MYSQLI_ASSOC);
-                                        foreach ($row as $value) { ?>
+                                        foreach ($row as $value) : ?>
                                             <option value="<?php echo $value['category_id']; ?>"><?php echo $value['category_name']; ?></option>
-                                    <?php                   }
-                                    } else {
-                                        echo 'No rows';
-                                    }
+                                        <?php endforeach; ?>
+                                    <?php else :
+                                    echo "No hay categorias registradas";
+                                endif;
                                     ?>
                                     </select>
                             </div>
 
-                            <button class="btn btn-primary float-end" type="submit">Guardar<i class="fa-solid fa-save ps-2"></i></button>
+                            <button class="btn btn-primary w-100" type="submit">Guardar</button>
                         </form>
                     </div>
                 </div>

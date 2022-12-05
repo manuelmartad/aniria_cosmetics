@@ -56,7 +56,7 @@
             #no-more-tables tr,
             #no-more-tables td {
                 display: block;
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+                /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important; */
 
             }
 
@@ -72,7 +72,7 @@
                 position: relative;
                 padding-left: 50%;
                 border: none;
-                border: 1px solid #ccc;
+                border-bottom: 1px solid #ccc;
 
             }
 
