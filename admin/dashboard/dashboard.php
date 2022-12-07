@@ -61,6 +61,7 @@ include '../../includes/templates/nav.php';
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-6 col-lg-4 mb-3">
                     <div class="card p-3 shadow-lg" style="border-left: 4px solid #0d6efd;">
                         <div class="card-title text-center">
@@ -73,6 +74,24 @@ include '../../includes/templates/nav.php';
                                     <?php $users =  $conn->query("SELECT sum(total) AS total FROM orders");
                                     $sum = $users->fetch_assoc();
                                     echo number_format($sum['total'], 2); ?>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 mb-3">
+                    <div class="card p-3 shadow-lg" style="border-left: 4px solid #0d6efd;">
+                        <div class="card-title text-center">
+                            <span> Total de venta</span>
+                        </div>
+                        <div class="card-body fs-4 text-center card-animated">
+                            <a href="<?php echo ADMIN ?>orders/order_view.php">
+                                <i class='bx bx-dollar text-success' style="font-size:80px;"></i>
+                                <span class="text-danger align-middle pb-5">
+                                    <?php $products =  $conn->query("SELECT count(product_id) AS products FROM products");
+                                    $d = $products->fetch_assoc();
+                                    echo $d['products']; ?>
                                 </span>
                             </a>
                         </div>
