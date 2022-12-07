@@ -47,7 +47,7 @@ include '../../includes/templates/nav.php';
                                     <!-- <td><span class="badge bg-primary">En Proceso</span> -->
                                     <!-- </td>
                                     <td><button type="button" class="btn btn-primary py-1" data-bs-toggle="modal" data-bs-target="#modalId"><i class="fa-solid fa-magnifying-glass pe-1"></i>Visualizar</td> -->
-                                    <td>
+                                    <td data-title="Más información">
                                         <div class="btn-group">
                                             <button class="btn btn-danger btn-sm moreinfo" data-id="<?php echo $order['transaction_id'] ?>" type="button" data-bs-toggle="modal" data-bs-target="#modalId">
                                                 Ver </button>
