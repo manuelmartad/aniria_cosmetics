@@ -122,7 +122,7 @@ include '../../includes/templates/nav.php';
 
                             <div class="mb-3">
                                 <label for="" class="form-label">Elegir imagen</label>
-                                <input type="file" class="form-control" id="image" name="image" required>
+                                <input type="file" class="form-control" id="image" name="image">
                                 <small class="invalid-feedback">La imagen es obligatoria*</small>
                                 <img src="uploads/<?php echo $oldImage ?>" alt="" width="200" height="200" class="mt-4">
                             </div>
