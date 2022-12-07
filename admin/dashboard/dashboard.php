@@ -87,12 +87,12 @@ include '../../includes/templates/nav.php';
 
 
         </div>
+
     </section><!-- End Skills Section -->
 
     <!-- ======= Portfolio Section ======= -->
 
     <!-- End Portfolio Section -->
-
 
 
 </main><!-- End #main -->

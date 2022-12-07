@@ -9,9 +9,6 @@ $sql = "SELECT * FROM products LIMIT 6";
 $products = $conn->query($sql);
 
 include 'includes/templates/indexHeader.php';
-// echo '<code>';
-// print_r($_SERVER);
-// echo '</code>';
 
 ?>
 
@@ -146,7 +143,7 @@ include 'includes/templates/indexHeader.php';
 
 											<?php else : //var_dump($_SESSION) 
 											?>
-												<a href="auth/login.php" class="btn btn-primary my-3 px-4">Inicia sesión</a>
+												<a href="auth/login.php" class="btn btn-primary my-3 px-4 w-100">Inicia sesión</a>
 											<?php endif; ?>
 										</div>
 									</div>

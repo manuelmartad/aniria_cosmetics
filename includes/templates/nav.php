@@ -6,7 +6,7 @@
     <header id="header">
             <div class="d-flex flex-column">
 
-                    <?php $r = $conn->query("SELECT * FROM USERS");
+                    <?php $r = $conn->query("SELECT * FROM users WHERE id = {$_SESSION['id']}");
                         $d = $r->fetch_assoc() ?>
 
                     <div class="profile">
@@ -30,7 +30,7 @@
                                                     <span>Usuarios</span></a></li>
                                     <li><a href="<?php echo ADMIN ?>products/product_view.php" class="nav-link"><i class='bx bx-box'></i>
                                                     <span>Productos</span></a></li>
-                                    <li><a href="<?php echo ADMIN ?>stock/view_stock.php" class="nav-link"><i class='bx bx-coin-stack'></i>
+                                    <li><a href="<?php echo ADMIN ?>stock/view_stock.php" class="nav-link"><i class='bx bxs-shopping-bag'></i>
                                                     <span>Stock</span></a></li>
                                     <li><a href="<?php echo ADMIN ?>categories/category_view.php" class="nav-link"><i class='bx bx-category'></i>
                                                     <span>Categorias</span></a></li>

@@ -13,7 +13,7 @@ if ($_SESSION['role'] !== 'admin') {
     header('location: index.php');
 }
 
-$errors = [];
+$errors = array();
 
 $quantity = "";
 // $prod_price = "";
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors[] = "Todos los campos son obligatorios";
     }
 
-    $query = "SELECT * FROM PRODUCT_SPOT WHERE product_id = '$product' and SPOT_ID ='$salespot'";
+    $query = "SELECT * FROM product_spot WHERE product_id = '$product' and spot_id ='$salespot'";
     $a = $conn->query($query);
 
     // echo '<pre>';
@@ -56,10 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
         if ($sql->execute()) {
-            //     $_SESSION["success"] = '<div class="alert alert-success alert-dismissible show text-center" role="alert">
-            //     <small> <i class="fa-solid fa-check pe-2"></i>Stock agregado!</small>
-            // </div>';
-            // header("location:add_stock.php");
+          
         }
     }
 }

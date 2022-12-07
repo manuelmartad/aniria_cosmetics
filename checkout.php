@@ -41,6 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $sql->bind_param('ssssissisds', $transactionId, $name, $address, $address1, $zip, $city, $country, $sale_spot, $cartItems, $total, $date);
         if ($sql->execute()) {
             echo 201;
+
+            $notification = $conn->query("INSERT INTO notifications(text, active, spot_id) VALUES('Se realizo una compra', 'y', '{$_SESSION['spot']}')");
         } else {
             echo "bad";
         }

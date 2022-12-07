@@ -14,9 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("location:cart.php");
 }
 
-// echo '<pre>';
-// var_dump(($_SESSION['cart']));
-// echo '</pre>';
 include 'includes/templates/indexHeader.php';
 
 ?>
@@ -25,8 +22,6 @@ include 'includes/templates/indexHeader.php';
 <section class="products section bg-gray">
     <div class="container">
         <?php if (!empty($_SESSION['cart'])) { ?>
-
-
 
             <div class="table-responsive">
                 <table class="table border-dark  text-center align-middle" id="no-more-tables">
@@ -61,7 +56,6 @@ include 'includes/templates/indexHeader.php';
                                 <?php $subtotal = $subtotal + ($item["productQty"] * number_format($item["productPrice"], 2)); ?>
                             </tr> <?php
                                 endforeach; ?>
-
                     </tbody>
                     <tfoot>
                         <tr>

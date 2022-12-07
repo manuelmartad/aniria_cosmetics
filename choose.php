@@ -10,9 +10,7 @@ $errors = [];
 if (isset($_POST['spot'])) {
     $_SESSION['spot'] = $_POST['spot'];
     foreach ($_SESSION['cart'] as $item) {
-        // echo '<pre>';
-        // var_dump($item);
-        // echo '</pre>';
+
         $q = $conn->query("SELECT a.product_id, a.product_name, b.quantity, b.spot_id FROM products a
     JOIN product_spot b ON a.product_id = b.product_id 
     WHERE a.product_id = '{$item['productId']}' and spot_id = '{$_POST['spot']}'");

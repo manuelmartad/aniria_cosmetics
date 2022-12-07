@@ -13,16 +13,26 @@ if ($_SESSION['role'] !== 'admin') {
 
 $errors = array();
 
-$r = $conn->query("SELECT a.*,b.* FROM product_spot a
-JOIN products b ON a.product_id = b.product_id WHERE a.quantity < 5");
+$r = $conn->query("SELECT a.*,b.*,c.* FROM product_spot a
+JOIN products b ON a.product_id = b.product_id 
+JOIN sale_spot c ON a.spot_id = c.spot_id
+-- JOIN notifications d ON a.spot_id = d.spot_id
+WHERE a.quantity < 5");
 while ($data = $r->fetch_assoc()) {
+
     if ($data['quantity'] == 0) {
-        $errors[] = "El producto " . $data['product_name'] . " se encuentra agotado";
+        $errors[] = "El producto " . $data['product_name'] . " se encuentra agotado en punto de venta <strong>" . $data['sale_spot'] . "</strong>";
     }
     if ($data['quantity'] < 5) {
-        $errors[] = "El producto " . $data['product_name'] . " esta apunto de agotarse";
+        $errors[] = "El producto " . $data['product_name'] . " esta apunto de agotarse en punto de venta <strong>" . $data['sale_spot'] . "</strong>";
     }
-    // var_dump($data);
+}
+$q = $conn->query("SELECT * FROM notifications WHERE active = 'Y'");
+// var_dump($data);
+if ($q->num_rows > 0) {
+    while ($fetch = $q->fetch_assoc()) {
+        $errors[] = $fetch['text'];
+    }
 }
 
 

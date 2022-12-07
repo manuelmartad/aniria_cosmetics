@@ -9,11 +9,9 @@ $d = $q->fetch_assoc();
 $name = $d['category_name'];
 $oldImage = $d['category_image'];
 
-
 if (!intval($_GET['edit']) || $_GET['edit'] > $id) {
     header("location:../../404.html");
 }
-
 
 $errors = array();
 

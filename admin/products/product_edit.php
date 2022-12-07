@@ -1,10 +1,8 @@
 <?php
 
-// var_dump($msg);
 require_once '../../config/db.php';
 require '../../config/env.php';
 include '../../config/funciones.php';
-
 
 if ($_SESSION['login'] == false) {
     header('location:login.php');
@@ -13,21 +11,28 @@ if ($_SESSION['role'] !== 'admin') {
     header('location: index.php');
 }
 
-$errors = [];
+$id = $_GET['id'] ?? null;
+$q = $conn->query("SELECT * FROM products WHERE product_id = '$id'");
+$d = $q->fetch_assoc();
+$name = $d['product_name'];
+$price = $d['product_price'];
+$oldImage = $d['product_image'];
+$category = $d['category_id'];
 
-$prod_name = "";
-$prod_price = "";
-$category = "";
+$errors = array();
 
+if (!intval($_GET['id']) || intval($_GET['id']) > $d['product_id']) {
+    header("location:../../404.html");
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $prod_name = sanitizeData($_POST['prod_name']);
-    $prod_price =  sanitizeData($_POST['prod_price']);
+    $name = sanitizeData($_POST['prod_name']);
+    $price =  sanitizeData($_POST['prod_price']);
     $image = $_FILES['image'];
     $category = isset($_POST['category']) ? $_POST['category'] : '';
-    
-    if (empty($prod_name) || empty($prod_price) || empty($category)) {
+
+    if (empty($name) || empty($price) || empty($category)) {
         $errors[] = "Todos los campos son obligatorios";
     }
 
@@ -44,22 +49,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!is_dir($uploads)) {
             mkdir($uploads);
         }
-        // generar nombre unico
-        $image_name = md5(uniqid(rand(), true)) . ".jpg";
+        $image_name = "";
+        if ($image['name']) {
+            unlink($uploads . $oldImage);
 
-        // subir imagen
-        move_uploaded_file($image['tmp_name'], $uploads . $image_name);
+            // generar nombre unico
+            $image_name = md5(uniqid(rand(), true)) . ".jpg";
 
-        $sql = $conn->prepare("INSERT INTO products(product_name, product_price, product_image, category_id)VALUES(?,?,?,?)");
-        $sql->bind_param('sdsi', $prod_name, $prod_price, $image_name, $category);
-      
+            // subir imagen
+            move_uploaded_file($image['tmp_name'], $uploads . $image_name);
+        } else {
+            $image_name = $oldImage;
+        }
 
-            if ($sql->execute()) {
-                $_SESSION["success"] = '<div class="alert alert-success alert-dismissible show text-center" role="alert">
-            <small> <i class="fa-solid fa-check pe-2"></i>Producto Agregado</small>
-        </div>';
-                header("location:product_view.php");
-            
+
+
+        $r = $conn->query("UPDATE  products SET product_name = '$name', product_price = '$price', product_image = '$image_name', category_id = '$category'
+        WHERE product_id = '$id'");
+
+
+        if ($r) {
+            header("location:product_view.php");
         }
     }
 }
@@ -72,20 +82,19 @@ include '../../includes/templates/nav.php';
 
 <main id="main">
 
-
     <!-- ======= Skills Section ======= -->
     <section id="skills" class="skills section-bg">
         <div class="container">
             <div class="col-md-8 px-3 mx-auto">
 
                 <div class="card p-3 shadow-lg mt-3 mb-3">
-                <div class="d-flex justify-content-between">
-                    <a href="product_view.php" class="btn btn-outline-danger ms-3 py-1">
-                    <i class='bx bx-arrow-back fw-bold px-3' ></i></a>
-                    <span class="fs-4 me-3 d-block">Agregar Producto</span>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="product_view.php" class="btn btn-outline-danger ms-3 py-1">
+                            <i class='bx bx-arrow-back fw-bold px-3'></i></a>
+                        <span class="fs-4 me-3 d-block">Editar Producto</span>
 
-                </div>
-                <hr>
+                    </div>
+                    <hr>
 
                     <div class="card-body">
                         <?php foreach ($errors as $error) { ?>
@@ -99,13 +108,13 @@ include '../../includes/templates/nav.php';
 
                             <div class="mb-3">
                                 <label for="prod_name" class="form-label">Producto</label>
-                                <input type="text" class="form-control" required name="prod_name" id="prod_name" placeholder="Nombre" value="<?= $prod_name; ?>">
-                           <small class="invalid-feedback">El nombre es obligatorio*</small>
+                                <input type="text" class="form-control" required name="prod_name" id="prod_name" value="<?= $name; ?>">
+                                <small class="invalid-feedback">El nombre es obligatorio*</small>
                             </div>
 
                             <div class="mb-3">
                                 <label for="" class="form-label">Precio</label>
-                                <input type="text" class="form-control" required name="prod_price" placeholder="$0.00" value="<?= $prod_price ?>">
+                                <input type="text" class="form-control" required name="prod_price" value="<?= $price ?>">
                                 <small class="invalid-feedback">El precio es necesario*</small>
 
                             </div>
@@ -115,6 +124,7 @@ include '../../includes/templates/nav.php';
                                 <label for="" class="form-label">Elegir imagen</label>
                                 <input type="file" class="form-control" id="image" name="image" required>
                                 <small class="invalid-feedback">La imagen es obligatoria*</small>
+                                <img src="uploads/<?php echo $oldImage ?>" alt="" width="200" height="200" class="mt-4">
                             </div>
 
 
@@ -129,7 +139,7 @@ include '../../includes/templates/nav.php';
                                         <?php
                                         $row = $num->fetch_all(MYSQLI_ASSOC);
                                         foreach ($row as $value) : ?>
-                                            <option value="<?php echo $value['category_id']; ?>"><?php echo $value['category_name']; ?></option>
+                                            <option value="<?php echo $value['category_id']; ?>" <?php echo $value['category_id'] == $category ? 'selected' : '' ?>><?php echo $value['category_name']; ?></option>
                                         <?php endforeach; ?>
                                     <?php else :
                                     echo "No hay categorias registradas";

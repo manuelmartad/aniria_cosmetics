@@ -47,7 +47,7 @@ if (isset($_POST['stock'])) {
 if (isset($_POST['admin'])) {
     $id = $_POST['admin'];
 
-    $sql = "UPDATE users SET role = 'admin' WHERE id = '$id'";
+    $sql = "UPDATE users SET role = 'admin2' WHERE id = '$id'";
     if ($conn->query($sql)) {
         echo 200;
     }

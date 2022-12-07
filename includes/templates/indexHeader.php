@@ -346,7 +346,7 @@
         <div class="collapse navbar-collapse d-lg-flex" id="collapsibleNavId">
           <ul class="navbar-nav me-auto mt-2 mt-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" href="#" aria-current="page">Nosotros</a>
+              <a class="nav-link active" href="about.php" aria-current="page">Nosotros</a>
             </li>
 
 
@@ -366,7 +366,7 @@
               </li>
             <?php else : ?>
               <li class="nav-item dropdown">
-                <a class="nav-link" href="account.php" id="dropdownId">Mi Cuenta</a>
+                <a class="nav-link" href="account.php?id=<?php echo $_SESSION['id'] ?>" id="dropdownId">Mi Cuenta</a>
               </li>
               <li class="nav-item"> <a id="logout" class="dropdown-item" type="button">Cerrar sesión</a>
               </li> <?php endif  ?>

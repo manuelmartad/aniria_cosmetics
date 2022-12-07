@@ -12,7 +12,6 @@ include 'includes/templates/indexHeader.php';
 
 ?>
 
-
 <section class="products section bg-gray">
 	<div class="container">
 		<div class="row">
@@ -28,7 +27,6 @@ include 'includes/templates/indexHeader.php';
 					</svg></button>
 			</div>
 		</form>
-
 
 		<div id="products-response"></div>
 		<div class="row" id="hidden-card">
@@ -80,7 +78,6 @@ include 'includes/templates/indexHeader.php';
 									<div class="col-md-4 col-sm-6 col-xs-12">
 										<div class="mt-3">
 											<h2 class="fs-2"><?php echo $product['product_name'] ?></h2>
-											<!-- <p class="my-3 text-dark"> <span>A <?php //echo $product['stars'] ?> </span>les gusta este producto</p> -->
 											<p class="fs-3 my-3 text-dark">$<?php echo number_format($product['product_price'], 2) ?></p>
 											<p class="text-justify fs-6">
 												Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem iusto nihil cum. Illo laborum numquam rem aut officia dicta cumque.

@@ -4,4 +4,4 @@ session_start();
 session_destroy();
 session_unset();
 
-// header('location:login.php?you+have&been+logged&out');
+// header('location:index.php');
