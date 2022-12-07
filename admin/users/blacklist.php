@@ -29,15 +29,13 @@ if (isset($_POST['unblock'])) {
     }
 }
 
-if (isset($_POST['user'])) {
-    $id = $_POST['user'];
+if (isset($_POST['id'])) {
+    $id = $_POST['id'];
+    $q = $conn->query("SELECT * FROM users WHERE id = '$id'");
+    $d = $q->fetch_array();
+    
+    $sql = "DELETE FROM users WHERE id = '$id'";
+    $conn->query($sql);
+    unlink('uploads/' . $d['image']);
 
-    $sql = "DELETE FROM users WHERE id = $id";
-    // exit;
-    if ($conn->query($sql)) {
-        $msg = json_encode("El usuario ha sido eliminado");
-        echo trim($msg, '"');
-    } else {
-        echo json_encode(0);
-    }
 }

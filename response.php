@@ -7,41 +7,35 @@ session_start();
 
 if (isset($_POST['id'])) {
     $id = $_POST['id'];
-
-    $sql = "DELETE FROM products WHERE product_id = $id";
+    $q = $conn->query("SELECT * FROM products WHERE product_id = '$id'");
+    $d = $q->fetch_array();
+    $sql = "DELETE FROM products WHERE product_id = '$id'";
     $conn->query($sql);
-
-    // $msg = json_encode("El usuario ha sido bloqueado");
-    // echo trim($msg, '"');
-    $_SESSION["success"] = '<div class="alert alert-success alert-dismissible show text-center" role="alert">
-        <small> <i class="fa-solid fa-check"></i>Usuario Eliminado</small>
-    </div>';
-
-    echo json_encode($_SESSION["success"]);
+    unlink('admin/products/uploads/' . $d['product_image']);
 }
 
 if (isset($_POST['spotid'])) {
     $spotid = $_POST['spotid'];
 
-    $sql = "DELETE FROM sale_spot WHERE spot_id = $spotid";
+    $sql = "DELETE FROM sale_spot WHERE spot_id = '$spotid'";
     $conn->query($sql);
-
 }
 
 if (isset($_POST['category'])) {
     $category = $_POST['category'];
-
-    $sql = "DELETE FROM categories WHERE category_id = $category";
+    $q = $conn->query("SELECT * FROM categories WHERE category_id = '$category'");
+    $d = $q->fetch_array();
+    $sql = "DELETE FROM categories WHERE category_id = '$category'";
     $conn->query($sql);
+    unlink('admin/categories/uploads/category_pictures/' . $d['category_image']);
 
 }
 
 if (isset($_POST['stock'])) {
     $stock = $_POST['stock'];
 
-    $sql = "DELETE FROM product_spot WHERE id = $stock";
+    $sql = "DELETE FROM product_spot WHERE id = '$stock'";
     $conn->query($sql);
-
 }
 
 if (isset($_POST['admin'])) {

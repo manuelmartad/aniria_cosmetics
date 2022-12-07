@@ -116,7 +116,7 @@
 
           }))
 
-          $(document).on('click', '#delete__user', (function() {
+          $(document).on('click', '.deleteUser', (function() {
 
               Swal.fire({
                   title: '¿Estás seguro?',
@@ -128,12 +128,12 @@
                   cancelButtonText: 'Cancelar'
               }).then((result) => {
                   if (result.isConfirmed) {
-                      var user = $(this).attr('data-id');
+                      var id = $(this).attr('data-id');
                       $.ajax({
                           type: "post",
                           url: "blacklist.php",
                           data: {
-                              user: user
+                              id: id
                           },
                           success: function(response) {
                               $("#reload").load(location.href + " #reload>*");

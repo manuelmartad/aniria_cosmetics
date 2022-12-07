@@ -60,7 +60,7 @@ include '../../includes/templates/nav.php';
                       <td data-title="Usuario"><?php echo $uname ?></td>
                       <td data-title="Rol" class="<?php echo $role == 'admin' ? 'text-danger fw-bold' : 'fw-bold' ?>"><?php echo $role ?></td>
                       <td data-title="Acción" class="d-flex justify-content-center gap-1">
-                        <a type="button" id="delete__user" data-id="<?php echo $id; ?>"><i class='bx bx-trash text-danger fs-1 px-2'></i></a>
+                        <a type="button" class="deleteUser" data-id="<?php echo $id; ?>"><i class='bx bx-trash text-danger fs-1 px-2'></i></a>
                         <?php
                         $query = $conn->prepare("SELECT * FROM users WHERE blacklist = 'Y' AND username = ? and id = ?");
                         $query->bind_param('si', $uname, $id);
