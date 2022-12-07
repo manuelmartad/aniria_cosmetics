@@ -20,10 +20,43 @@ if (isset($_POST['id'])) {
     echo json_encode($_SESSION["success"]);
 }
 
+if (isset($_POST['spotid'])) {
+    $spotid = $_POST['spotid'];
+
+    $sql = "DELETE FROM sale_spot WHERE spot_id = $spotid";
+    $conn->query($sql);
+
+}
+
+if (isset($_POST['category'])) {
+    $category = $_POST['category'];
+
+    $sql = "DELETE FROM categories WHERE category_id = $category";
+    $conn->query($sql);
+
+}
+
+if (isset($_POST['stock'])) {
+    $stock = $_POST['stock'];
+
+    $sql = "DELETE FROM product_spot WHERE id = $stock";
+    $conn->query($sql);
+
+}
+
 if (isset($_POST['admin'])) {
     $id = $_POST['admin'];
 
-    $sql = "UPDATE users SET role = 'admin' WHERE id = $id";
+    $sql = "UPDATE users SET role = 'admin' WHERE id = '$id'";
+    if ($conn->query($sql)) {
+        echo 200;
+    }
+}
+
+if (isset($_POST['noadmin'])) {
+    $id = $_POST['noadmin'];
+
+    $sql = "UPDATE users SET role = 'user' WHERE id = '$id'";
     if ($conn->query($sql)) {
         echo 200;
     }

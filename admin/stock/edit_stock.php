@@ -12,18 +12,21 @@ if ($_SESSION['login'] == false) {
 if ($_SESSION['role'] !== 'admin') {
     header('location: index.php');
 }
+$id = $_GET['edit'] ?? null;
+$q = $conn->query("SELECT * FROM product_spot WHERE id = '$id'");
+$d = $q->fetch_assoc();
 
-$errors = [];
+$errors = array();
+$quantity = $d['quantity'];
+$product = $d['product_id'];
+$spot = $d['spot_id'];
 
-$quantity = "";
-// $prod_price = "";
-// $category = "";
-
+if (!intval($_GET['edit']) || intval($_GET['edit']) > $d['id']) {
+    header("location:../../404.html");
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    // var_dump($_POST);
-    // exit;
 
     $quantity = sanitizeData($_POST['quantity']);
     $product = isset($_POST['product']) ? $_POST['product'] : '';
@@ -33,33 +36,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors[] = "Todos los campos son obligatorios";
     }
 
-    $query = "SELECT * FROM PRODUCT_SPOT WHERE product_id = '$product' and SPOT_ID ='$salespot'";
-    $a = $conn->query($query);
+    // $query = "SELECT * FROM product_spot WHERE product_id = '$product' and spot_id ='$salespot'";
+    // $a = $conn->query($query);
 
-    // echo '<pre>';
-    // var_dump($a);
-    // echo '</pre>';
-    // // exit;
-
-    if ($a->num_rows > 0) {
-        $errors[] = "Este producto ya se encuentra dado de alta en un punto de venta";
-    }
-
-
-
+    // if ($a->num_rows > 0) {
+    //     $errors[] = "Este producto ya se encuentra dado de alta en un punto de venta";
+    // }
 
     if (empty($errors)) {
 
 
-        $sql = $conn->prepare("INSERT INTO product_spot(quantity, product_id, spot_id)VALUES(?,?,?)");
-        $sql->bind_param('iii', $quantity, $product, $salespot);
+        $r = $conn->query("UPDATE product_spot SET quantity = '$quantity', product_id = '$product',
+        spot_id = '$salespot' WHERE id = '$id'");
 
-
-        if ($sql->execute()) {
-            //     $_SESSION["success"] = '<div class="alert alert-success alert-dismissible show text-center" role="alert">
-            //     <small> <i class="fa-solid fa-check pe-2"></i>Stock agregado!</small>
-            // </div>';
-            // header("location:add_stock.php");
+        if ($r) {
+            header("location:view_stock.php");
         }
     }
 }
@@ -80,10 +71,10 @@ include '../../includes/templates/nav.php';
 
 
             <div class="card p-3 shadow-lg col-md-10 col-lg-6 mx-auto">
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between align-items-center">
                     <a href="view_stock.php" class="btn btn-outline-danger ms-3 py-1">
                         <i class='bx bx-arrow-back fw-bold px-3'></i></a>
-                    <span class="fs-4 me-3 d-block">Agregar Stock</span>
+                    <span class="fs-4 me-3 d-block">Editar Stock</span>
 
                 </div>
                 <hr class="mx-3">
@@ -96,13 +87,13 @@ include '../../includes/templates/nav.php';
 
                     <?php   } ?>
 
-                    <form method="POST" class="" novalidate action="add_stock.php">
+                    <form method="POST" class="" novalidate>
 
                         <small class="validateinput text-danger py-3"></small>
 
                         <div class="mb-3">
                             <label for="" class="form-label">Cantidad</label>
-                            <input type="number" class="form-control" min="0" required name="quantity" id="quantity" value="<? echo $quantity; ?>">
+                            <input type="number" class="form-control" min="0" required name="quantity" id="quantity" value="<?php echo $quantity; ?>">
                         </div>
 
                         <div class="mb-3">
@@ -116,7 +107,7 @@ include '../../includes/templates/nav.php';
                                     <?php
                                     $row = $num->fetch_all(MYSQLI_ASSOC);
                                     foreach ($row as $value) : ?>
-                                        <option value="<?php echo $value['product_id']; ?>"><?php echo $value['product_name']; ?></option>
+                                        <option value="<?php echo $value['product_id'] ?>" <?php echo $product == $value['product_id'] ? 'selected' : '' ?>><?php echo $value['product_name'] ?></option>
                                     <?php endforeach; ?>
                                 <?php else :
                                 echo "No hay productos registrados";
@@ -137,7 +128,7 @@ include '../../includes/templates/nav.php';
                                     <?php
                                     $row = $num->fetch_all(MYSQLI_ASSOC);
                                     foreach ($row as $value) : ?>
-                                        <option value="<?php echo $value['spot_id']; ?>"><?php echo $value['sale_spot']; ?></option>
+                                        <option value="<?php echo $value['spot_id']; ?>" <?php echo $value['spot_id'] == $spot ? 'selected' : '' ?>><?php echo $value['sale_spot']; ?></option>
                                     <?php endforeach; ?>
                                 <?php else :
                                 echo "No hay puntos de venta registrados";

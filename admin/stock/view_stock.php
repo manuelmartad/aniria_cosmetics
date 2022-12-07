@@ -10,7 +10,7 @@ if ($_SESSION['role'] !== 'admin') {
 }
 
 $sql = "SELECT a.product_id, a.product_name, a.product_price, a.product_image, b.category_name,
-d.sale_spot, c.quantity FROM products a
+d.sale_spot, c.quantity, c.id FROM products a
 JOIN product_spot c ON a.product_id = c.product_id
 JOIN sale_spot d ON d.spot_id = c.spot_id
 JOIN categories b ON a.category_id = b.category_id ORDER by a.product_id ASC";
@@ -37,8 +37,7 @@ include '../../includes/templates/nav.php';
                         <i class='bx bx-plus-medical py-1 me-1 align-middle'></i>Stock</a>
                 </div>
                 <div class="card-body">
-                    <!-- <?php echo $_SESSION["success"] ?? null;
-                            unset($_SESSION["success"]) ?> -->
+                  
                     <!-- <div id="response" class="alert alert-success text-center d-none"><small></small></div> -->
                     <table class="table table-bordered text-center" id="no-more-tables">
                         <thead class="fw-bold">
@@ -64,8 +63,8 @@ include '../../includes/templates/nav.php';
                                         <td data-title="Punto"><?php echo $row['sale_spot']; ?></td>
                                         <td data-title="Imagen"><img src="../products/uploads/<?php echo $row['product_image']; ?>" width="100" height="100" class="rounded-0 pe-3"></td>
 
-                                        <td data-title="Acción"><a href="product_edit.php?id=<?php echo $row['product_id'] ?>"><i class="bx bxs-edit fs-3 text-warning"></i></a> |
-                                            <a type="button" class="deleteProduct" name="deleteProduct" data-id="<?php echo $row['product_id'] ?>"><i class="bx bx-trash fs-3 text-danger"></i></a>
+                                        <td data-title="Acción"><a href="edit_stock.php?edit=<?php echo $row['id'] ?>"><i class="bx bxs-edit fs-3 text-warning"></i></a> |
+                                            <a type="button" class="deleteStock" data-id="<?php echo $row['id'] ?>"><i class="bx bx-trash fs-3 text-danger"></i></a>
                                         </td>
                                     </tr>
                             <?php }

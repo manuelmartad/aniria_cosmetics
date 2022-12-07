@@ -106,7 +106,7 @@ include '../../includes/templates/nav.php';
                             <div class="mb-3">
                                 <label for="" class="form-label">Precio</label>
                                 <input type="text" class="form-control" required name="prod_price" placeholder="$0.00" value="<?= $prod_price ?>">
-                                <small class="invalid-feedback">El precio es obligatorio*</small>
+                                <small class="invalid-feedback">El precio es necesario*</small>
 
                             </div>
 
@@ -114,7 +114,7 @@ include '../../includes/templates/nav.php';
                             <div class="mb-3">
                                 <label for="" class="form-label">Elegir imagen</label>
                                 <input type="file" class="form-control" id="image" name="image" required>
-                                <small class="invalid-feedback">El nombre es obligatorio*</small>
+                                <small class="invalid-feedback">La imagen es obligatoria*</small>
                             </div>
 
 

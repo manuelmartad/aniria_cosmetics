@@ -60,7 +60,7 @@ include '../../includes/templates/nav.php';
                       <td data-title="Usuario"><?php echo $uname ?></td>
                       <td data-title="Rol" class="<?php echo $role == 'admin' ? 'text-danger fw-bold' : 'fw-bold' ?>"><?php echo $role ?></td>
                       <td data-title="Acción" class="d-flex justify-content-center gap-1">
-                        <a type="button" id="delete__user" data-id="<?php echo $id; ?>"><i class='bx bx-trash text-danger fs-3 px-2'></i></a>
+                        <a type="button" id="delete__user" data-id="<?php echo $id; ?>"><i class='bx bx-trash text-danger fs-1 px-2'></i></a>
                         <?php
                         $query = $conn->prepare("SELECT * FROM users WHERE blacklist = 'Y' AND username = ? and id = ?");
                         $query->bind_param('si', $uname, $id);
@@ -69,15 +69,15 @@ include '../../includes/templates/nav.php';
                         $result->fetch_assoc();
 
                         if ($result->num_rows === 1) : ?>
-                          <a type="button" data-id="<?php echo $id; ?>" class="unblock"><i class='bx bx-lock-open-alt fs-3 px-2'></i></a>
+                          <a type="button" data-id="<?php echo $id; ?>" class="unblock"><i class='bx bx-lock-open-alt fs-1 px-2'></i></a>
                         <?php else : ?>
-                          <a type="button" data-id="<?php echo $id; ?>" class="blacklist"><i class='bx bx-lock-alt fs-3 text-warning px-2'></i></a>
+                          <a type="button" data-id="<?php echo $id; ?>" class="blacklist"><i class='bx bx-lock-alt fs-1 text-warning px-2'></i></a>
                         <?php endif; ?>
 
                         <?php if ($role == 'user') : ?>
-                          <a type="button" class="makemeadmin" data-id="<?php echo $id; ?>"><i class='bx bxl-android px-2 fs-2 text-danger'></i></a>
+                          <a type="button" class="makemeadmin" data-id="<?php echo $id; ?>"><i class='bx bx-toggle-left px-2 fs-1 text-danger'></i></a>
                         <?php else : ?>
-                          <a type="button" data-id="<?php echo $id; ?>"><i class='bx bx-cool px-2 fs-2'></i></a>
+                          <a type="button" class="makemenormaluser" data-id="<?php echo $id; ?>"><i class='bx bx-toggle-right text-success px-2 fs-1'></i></a>
                         <?php endif; ?>
                       </td>
                     </tr>

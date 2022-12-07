@@ -22,7 +22,6 @@
   <script src="<?php echo JS ?>scripts.js"></script>
   <script type="text/javascript" src="<?php echo ASSETS ?>vendor/datatables/datatables.min.js"></script>
 
-  <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 
 
@@ -183,6 +182,105 @@
 
           }))
 
+          $(document).on('click', '.deleteSpot', (function() {
+
+              Swal.fire({
+                  title: '¿Estás seguro?',
+                  icon: 'warning',
+                  text: 'Este punto de venta será eliminado',
+                  showCancelButton: true,
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Eliminar',
+                  cancelButtonText: 'Cancelar'
+              }).then((result) => {
+                  if (result.isConfirmed) {
+                      var spot = $(this).attr('data-id');
+                      $.ajax({
+                          type: "post",
+                          url: "../../response.php",
+                          data: {
+                              spotid: spot
+                          },
+                          success: function(response) {
+                              $("#portfolio").load(location.href + " #portfolio>*");
+                              Swal.fire(
+                                  'Eliminado!',
+                                  'El punto de venta ha sido eliminado.',
+                                  'success'
+                              );
+                          }
+                      });
+                  }
+              })
+
+          }));
+
+          $(document).on('click', '.deleteCategory', (function() {
+
+              Swal.fire({
+                  title: '¿Estás seguro?',
+                  icon: 'warning',
+                  text: 'Esta categoria será eliminada',
+                  showCancelButton: true,
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Eliminar',
+                  cancelButtonText: 'Cancelar'
+              }).then((result) => {
+                  if (result.isConfirmed) {
+                      var category = $(this).attr('data-id');
+                      $.ajax({
+                          type: "post",
+                          url: "../../response.php",
+                          data: {
+                              category: category
+                          },
+                          success: function(response) {
+                              $("#no-more-tables").load(location.href + " #no-more-tables>*");
+                              Swal.fire(
+                                  'Eliminado!',
+                                  'La categoria ha sido eliminada.',
+                                  'success'
+                              );
+                          }
+                      });
+                  }
+              })
+
+          }));
+
+          $(document).on('click', '.deleteStock', (function() {
+
+              Swal.fire({
+                  title: '¿Estás seguro?',
+                  icon: 'warning',
+                  text: 'Este producto será eliminado del inventario',
+                  showCancelButton: true,
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Eliminar',
+                  cancelButtonText: 'Cancelar'
+              }).then((result) => {
+                  if (result.isConfirmed) {
+                      var stock = $(this).attr('data-id');
+                      $.ajax({
+                          type: "post",
+                          url: "../../response.php",
+                          data: {
+                              stock: stock
+                          },
+                          success: function(response) {
+                              $("#no-more-tables").load(location.href + " #no-more-tables>*");
+                              Swal.fire(
+                                  'Eliminado!',
+                                  'El producto ha sido eliminado.',
+                                  'success'
+                              );
+                          }
+                      });
+                  }
+              })
+
+          }))
+
 
           //   toastr.options = {
           //       "closeButton": false,
@@ -228,6 +326,40 @@
                                   'El usuario ahora tiene privilegios de administrador.',
                                   'success'
                               )
+                              //   toastr.info('Are you the 6 fingered man?')
+                          }
+                      });
+                  }
+              })
+
+          }));
+
+          $(document).on('click', '.makemenormaluser', (function() {
+
+              Swal.fire({
+                  title: '¿Estás seguro?',
+                  icon: 'warning',
+                  text: '¿Deseas eliminar privilegios de administrador a este usuario?',
+                  showCancelButton: true,
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Aceptar',
+                  cancelButtonText: 'Cancelar'
+              }).then((result) => {
+                  if (result.isConfirmed) {
+                      var noadmin = $(this).attr('data-id');
+                      $.ajax({
+                          type: "post",
+                          url: "../../response.php",
+                          data: {
+                              noadmin: noadmin
+                          },
+                          success: function(response) {
+                              $("#no-more-tables").load(location.href + " #no-more-tables>*");
+                            //   Swal.fire(
+                            //       'Exito!',
+                            //       'Los permisos de administrador han sido removidos.',
+                            //       'success'
+                            //   )
                               //   toastr.info('Are you the 6 fingered man?')
                           }
                       });

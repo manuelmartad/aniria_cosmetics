@@ -38,7 +38,10 @@
     <!-- Template Main CSS File -->
     <link href="<?php echo CSS ?>style.css" rel="stylesheet">
 
+
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 
 
     <style>

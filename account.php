@@ -3,7 +3,7 @@ require 'config/env.php';
 require 'config/db.php';
 
 
-$user = $conn->query("SELECT a.* FROM users a WHERE a.id = {$_SESSION["id"]}");
+$user = $conn->query("SELECT a.* FROM users a WHERE a.id = '{$_SESSION["id"]}'");
 $user_data = $user->fetch_assoc();
 
 $error = "";

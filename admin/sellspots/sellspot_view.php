@@ -21,6 +21,12 @@ include '../../includes/templates/nav.php';
 
 
             <div class="card p-3 shadow-lg col-10 mx-auto">
+                <?php if (isset($_GET['updated']) && $_GET['updated'] == 1) {
+                    echo '<div class="alert alert-success alert-dismissible fade show p-3 text-center" role="alert">
+<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<small>Punto de venta actualizado</small></div>';
+                } ?>
+
                 <div class="card-title d-flex justify-content-between">
                     <!-- <span class="fs-4 ms-3">Administrar Categorias</span>
                     <a href="category_add.php" class="btn btn-link"><i class="fa-solid fa-plus me-1"></i> Agregar
@@ -40,8 +46,8 @@ include '../../includes/templates/nav.php';
                                             <iframe src="<?php echo $spot['location'] ?>" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="card-img-top" alt="image desc" width="400" height="300"></iframe>
                                             <div class="portfolio-links">
                                                 <a href="<?php echo $spot['location'] ?>" data-gallery="portfolioGallery" class="portfolio-lightbox" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="card-img-top" alt="image desc" width="400" height="300" data-gallery="portfolioGallery" class="portfolio-lightbox"><i class="fa-solid fa-eye"></i></a>
-                                                <a href="#" title="More Details"><i class="fa-solid fa-pen-alt"></i></a>
-                                                <a href="#" title="More Details"><i class="fa-solid fa-trash"></i></a>
+                                                <a href="sellspot_edit.php?edit=<?php echo $spot['spot_id'] ?>" title="More Details"><i class="fa-solid fa-pen-alt"></i></a>
+                                                <a type="button" class="deleteSpot" data-id="<?php echo $spot['spot_id'] ?>"><i class="fa-solid fa-trash"></i></a>
                                             </div>
                                         </div>
                                         <p class="text-center fs-5 mt-3"><?php echo $spot["spot_address"] ?></p>

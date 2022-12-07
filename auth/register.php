@@ -15,6 +15,7 @@ $lname = "";
 $username = "";
 $phone = "";
 $password = "";
+$email = "";
 $errors = array();
 
 if ($_SERVER["REQUEST_METHOD"] === 'POST') {
@@ -22,11 +23,12 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     $fname = $conn->real_escape_string(sanitizeData($_POST['fname']));
     $lname = $conn->real_escape_string(sanitizeData($_POST['lname']));
     $username = $conn->real_escape_string(sanitizeData($_POST['username']));
+    $email = $conn->real_escape_string(sanitizeData($_POST['email']));
     $password = $conn->real_escape_string(sanitizeData($_POST['password']));
     $password_two = $conn->real_escape_string(sanitizeData($_POST['password_two']));
     $phone = $conn->real_escape_string(sanitizeData($_POST['phone']));
 
-    if (empty($fname) || empty($lname) || empty($password) || empty($username) || empty($phone)) {
+    if (empty($email) || empty($fname) || empty($lname) || empty($password) || empty($username) || empty($phone)) {
         $errors[] = "Hay un error en los campos";
     } else {
         // password validation
@@ -56,9 +58,9 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
         if ($result->num_rows > 0) {
             $errors[] = "Este usuario ya existe";
         } else {
-            $sql = $conn->prepare("INSERT INTO users(fname,lname,username,password,phone) 
-            VALUES(?,?,?,?,?)");
-            $sql->bind_param("ssssi", $fname, $lname, $username, $hashed_pass, $phone);
+            $sql = $conn->prepare("INSERT INTO users(fname,lname,username,password,phone,email) 
+            VALUES(?,?,?,?,?,?)");
+            $sql->bind_param("ssssis", $fname, $lname, $username, $hashed_pass, $phone, $email);
 
             if ($sql->execute()) {
                 header("location:login.php?success=1");
@@ -75,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
 <section id="skills" class="skills vh-100 pt-2 pt-xxl-5" style="  background: linear-gradient(#fdfbfd, #ffacb3, #4b4b4b );">
     <div class="container">
 
-        <div class="card mb-3 p-2 shadow-lg border-0 mx-auto mt-0 col-lg-8 col-md-12" id="login-card">
+        <div class="card mb-3 p-2 pb-0 shadow-lg border-0 mx-auto mt-0 col-lg-8 col-md-12" id="login-card">
 
             <div class="row g-0">
                 <div class="col-md-6 d-none d-md-block">
@@ -110,6 +112,13 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
                             </div>
 
                             <div class="mb-3">
+                                <!-- <label for="" class="form-label">Username</label> -->
+                                <input type="text" class="form-control" name="email" id="" placeholder="johndoe@correo.com" required value="<?= $email ?>">
+                                <small class="invalid-feedback">Este campo es obligatorio</small>
+
+                            </div>
+
+                            <div class="mb-3">
                                 <!-- <label for="" class="form-label">Telefono</label> -->
                                 <input type="text" class="form-control" name="phone" id="" placeholder="Teléfono" required value="<?= $phone ?>">
                                 <small class="invalid-feedback">Este campo es obligatorio</small>
@@ -118,24 +127,24 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
 
                             <div class="mb-3">
                                 <!-- <label for="" class="form-label">Password</label> -->
-                                <input type="password" class="form-control" name="password" id="" placeholder="Contraseña" required value="<?= $password ?>">
+                                <input type="password" class="form-control" name="password" id="" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;" required value="<?= $password ?>">
                                 <small class="invalid-feedback">Este campo es obligatorio</small>
 
                             </div>
 
                             <div class="mb-3">
                                 <!-- <label for="" class="form-label">Repite Password</label> -->
-                                <input type="password" class="form-control" name="password_two" id="" placeholder="Repite tu Contraseña" required>
+                                <input type="password" class="form-control" name="password_two" id="" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;" required>
                                 <small class="invalid-feedback">Este campo es obligatorio</small>
 
                             </div>
 
-                            <div class="mt-4">
+                            <div class="mt-3">
                                 <button type="submit" class="btn btn-primary w-100">Registarse</button>
                             </div>
                         </form>
-                        <div class="text-center mt-3">
-                            <span class="d-block">¿Ya tienes una cuenta?</span><a href="login.php" class="btn btn-link">Iniciar sesión</a>
+                        <div class="text-center mt-2">
+                            <span class="d-block">¿Ya tienes cuenta?</span><a href="login.php" class="btn btn-link">Iniciar sesión</a>
                         </div>
                     </div>
                 </div>

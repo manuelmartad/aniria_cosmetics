@@ -41,11 +41,11 @@ include '../../includes/templates/nav.php';
                                     <td data-title="Nombre"><?php echo $category['category_name'] ?></td>
                                     <td data-title="Imagen"><img src="uploads/category_pictures/<?php echo $category['category_image'] ?>" alt="" width="80" height="80"></td>
 
-                                    <td data-title="Acción"><button class="btn btn-link"><i class="bx bxs-edit fs-3 text-warning animate"></i></button> |
-                                        <button class="btn btn-link"><i class="bx bx-trash fs-3 text-danger animate"></i></button>
+                                    <td data-title="Acción"><a href="category_edit.php?edit=<?php echo $category['category_id'] ?>" class="btn btn-link"><i class="bx bxs-edit fs-3 text-warning animate"></i></a> |
+                                        <button class="btn btn-link deleteCategory" data-id="<?php echo $category['category_id'] ?>"><i class="bx bx-trash fs-3 text-danger animate"></i></button>
                                     </td>
 
-                                  
+
                                 </tr>
                             <?php endwhile; ?>
                         </tbody>

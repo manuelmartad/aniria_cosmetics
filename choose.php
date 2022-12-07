@@ -4,7 +4,7 @@ require 'config/db.php';
 
 $errors = [];
 
-var_dump($_SESSION['spot']);
+// var_dump($_SESSION['spot']);
 // exit;
 
 if (isset($_POST['spot'])) {

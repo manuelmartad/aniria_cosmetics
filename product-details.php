@@ -136,7 +136,7 @@ include 'includes/templates/indexHeader.php';
                             <?php
                             $comments = $conn->query("SELECT a.*, b.* FROM comments a
                             JOIN users b ON a.user_id = b.id 
-                            WHERE product_id = '$id' ORDER BY date ASC");
+                            WHERE product_id = '$id' ORDER BY a.date DESC");
                             foreach ($comments as $comment) : // fetch data 
                                 // var_dump($_SESSION);
 

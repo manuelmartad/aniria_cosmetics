@@ -6,13 +6,12 @@ include '../config/funciones.php';
 if (isset($_SESSION['login'])) {
     header('location:index.php');
 }
-$error = "";
-$username = "";
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $username = $conn->real_escape_string(sanitizeData($_POST['username']));
-    $password = $conn->real_escape_string(sanitizeData($_POST['password']));
+    // $username = $conn->real_escape_string(sanitizeData($_POST['username']));
+    // $password = $conn->real_escape_string(sanitizeData($_POST['password']));
 
     if (!$username || !$password) {
         $error = "Hay un error en los campos.";
@@ -71,7 +70,7 @@ include '../includes/templates/header.php';
     <div class="container">
 
 
-        <div class="card p-2 shadow-lg border-0 col-lg-5 col-md-8 mx-auto mt-0" id="login-card">
+        <div class="card p-2 shadow-lg border-0 col-lg-7 col-md-10 mx-auto mt-0" id="login-card">
 
             <?php if (isset($_GET["success"]) == 1) : ?>
                 <div class="alert alert-success text-center">
@@ -79,39 +78,29 @@ include '../includes/templates/header.php';
                 </div>
 
             <?php endif; ?>
-            <div class="card-title">
-                <img src="<?php echo ASSETS ?>img/aniria.jpg" class="img-fluid" alt="aniria-logo">
+            <div class="card-title text-center pt-3">
+                <!-- <img src="<?php echo ASSETS ?>img/aniria.jpg" class="img-fluid" alt="aniria-logo"> -->
+                <h3>Aniria</h3>
             </div>
             <div class="card-body p-3">
-
-                <form method="post" class="needs-validation" novalidate>
-
-                    <div class="mb-3">
-                        <!-- <label for="" class="form-label">Usuario</label> -->
-                        <input type="text" class="form-control" name="username" id="username" required placeholder="Usuario">
-                        <small class="invalid-feedback">El usuario es obligatorio</small>
-
-                    </div>
-
+                <small class="mb-3">Por favor, introduzca la dirección de correo electrónico para su cuenta. Se le enviará un código de verificación. Una vez que haya recibido el código de verificación, podrá elegir una nueva contraseña para su cuenta.</small>
+                <form method="post" class="needs-validation mt-3" novalidate>
 
                     <div class="mb-3">
-                        <!-- <label for="" class="form-label">Password</label> -->
-                        <input type="password" class="form-control" name="password" id="password" required placeholder="Contraseña">
-                        <small class="invalid-feedback">La ccontraseña es obligatoria</small>
-
+                        <input type="email" class="form-control" id="floatingInput" required placeholder="name@example.com">
+                        <small class="invalid-feedback">El correo es necesario</small>
                     </div>
-                    <?php echo isset($mensaje) ? $mensaje : '';
-                    unset($mensaje) ?>
-                    <div class="mt-4">
-                        <button type="submit" class="btn btn-primary w-100">Iniciar sesión</button>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary w-50">Recuperar contraseña</button>
                     </div>
-                </form>
-                <div class="text-center d-grid mt-3">
-                    <small><a href="forgot-password.php"> ¿Has olvidado tu contraseña? </a></small>
-                    <small class="mt-2"> <a href="register.php">Registrarse</a></small>
-                </div>
             </div>
+            </form>
+            <div class="text-center">
+                <a href="login.php" class="btn btn-link"><small>Volver a inicio</small></a>
+            </div>
+
         </div>
+    </div>
 
 
 
