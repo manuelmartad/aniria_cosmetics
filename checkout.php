@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($sql->execute()) {
             echo 201;
 
-            $notification = $conn->query("INSERT INTO notifications(text, active, spot_id) VALUES('Se realizo una compra', 'y', '{$_SESSION['spot']}')");
+            $notification = $conn->query("INSERT INTO notifications(text, active, spot_id) VALUES('Se realizo una compra en ', 'y', '{$_SESSION['spot']}')");
         } else {
             echo "bad";
         }

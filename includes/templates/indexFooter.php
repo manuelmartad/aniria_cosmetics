@@ -4,11 +4,11 @@
 			<div class="col-md-12">
 				<ul class="social-media">
 					<li>
-						<a href="https://www.facebook.com/">
+						<a href="https://www.facebook.com/aniria.cosmetics">
 							<i class="fa-brands fw-bold fa-facebook-f"></i>
 					</li>
 					<li>
-						<a href="https://www.instagram.com/">
+						<a href="https://www.instagram.com/aniria.cosmetic/">
 							<i class="fa-brands fw-bold fa-instagram"></i> </a>
 					</li>
 				</ul>
@@ -188,24 +188,7 @@
 
 					}
 				});
-				promise.then(function() {
-					//
-					$.ajax({
-						url: "cartop.php",
-						type: "POST",
-						// data: {
-						// 	csrfmiddlewaretoken: csrftoken,
-						// 	placa: placa,
-						// },
-						success: function(data2) {
-							console.log(data2); // Debería imprimir {ajax2: true}
-						},
-						error: function(xhr, errmsg, err) {
-							console.log(xhr.status + ": " + xhr.responseText);
-						}
-					});
-					//
-				});
+			
 			});
 		}
 	}).render('#paypal-button-container');
