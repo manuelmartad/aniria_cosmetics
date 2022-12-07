@@ -83,7 +83,7 @@ include '../includes/templates/header.php';
                 <h3>Aniria</h3>
             </div>
             <div class="card-body p-3">
-                <small class="mb-3">Por favor, introduzca la dirección de correo electrónico para su cuenta. Se le enviará un código de verificación. Una vez que haya recibido el código de verificación, podrá elegir una nueva contraseña para su cuenta.</small>
+                <small class="mb-3">Por favor, introduzca su dirección de correo electrónico. Se le enviará una contraseña temporal por parte de un administrador. Una vez que haya recibido su contraseña temporal, podrá elegir una nueva contraseña para su cuenta.</small>
                 <form method="post" class="needs-validation mt-3" novalidate>
 
                     <div class="mb-3">
