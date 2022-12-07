@@ -62,6 +62,15 @@ if (isset($_POST['noadmin'])) {
     }
 }
 
+if (isset($_POST['dismiss'])) {
+    $id = $_POST['dismiss'];
+
+    $sql = "UPDATE notifications SET active = 'N' WHERE idnotification = '$id'";
+    if ($conn->query($sql)) {
+        echo 200;
+    }
+}
+
 if (isset($_POST['productId'])) {
     $productId = $_POST['productId'];
 

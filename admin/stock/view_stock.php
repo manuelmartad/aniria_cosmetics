@@ -53,6 +53,7 @@ include '../../includes/templates/nav.php';
                         </thead>
                         <tbody id="reload">
                             <?php if ($data->num_rows > 0) {
+                               
                                 while ($row = $data->fetch_assoc()) { ?>
                                     <tr class="align-middle">
                                         <!-- <td data-title="ID"><?php //echo $row['product_id']; 

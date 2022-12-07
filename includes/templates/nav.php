@@ -23,7 +23,9 @@
                                     <li><a href="<?php echo ADMIN ?>notifications/notifications.php" class="nav-link position-relative">
                                                     <i class='bx bx-bell'></i><span>Notificaciones</span>
                                                     <span class="position-absolute px-2 py-1 end-80 top-10 start-40 translate-middle badge rounded-pill bg-danger">
-                                                            <span>99+</span> </a></li>
+                                                            <span><?php $r = $conn->query("SELECT active FROM notifications
+                                                            WHERE active = 'Y'");
+                                                                        echo ($r->num_rows) ?></span> </a></li>
                                     <li><a href="<?php echo ADMIN ?>orders/order_view.php" class="nav-link"><i class='bx bx-cart'></i>
                                                     <span>Pedidos</span></a></li>
                                     <li><a href="<?php echo ADMIN ?>users/user_view.php" class="nav-link"><i class='bx bx-user'></i>

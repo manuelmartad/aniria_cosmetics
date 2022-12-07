@@ -355,18 +355,28 @@
                           },
                           success: function(response) {
                               $("#no-more-tables").load(location.href + " #no-more-tables>*");
-                            //   Swal.fire(
-                            //       'Exito!',
-                            //       'Los permisos de administrador han sido removidos.',
-                            //       'success'
-                            //   )
-                              //   toastr.info('Are you the 6 fingered man?')
+
                           }
                       });
                   }
               })
 
           }));
+
+          $(document).on('click', '.dismissnotification', function() {
+              var dismiss = $(this).attr('data-id')
+              $.ajax({
+                  type: "post",
+                  url: "../../response.php",
+                  data: {
+                      dismiss: dismiss
+                  },
+                  success: function(response) {
+                    $("#skills").load(location.href + " #skills>*");
+                    $("#navbar").load(location.href + " #navbar>*");
+                  }
+              });
+          })
 
 
           $('#addnewstock').click(function() {
