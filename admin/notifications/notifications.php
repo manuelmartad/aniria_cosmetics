@@ -69,7 +69,7 @@ include '../../includes/templates/nav.php';
 
                         // foreach ($errors as $error) {
                         echo '<div class="alert alert-success alert-dismissible show fade p-3" role="alert">
-                            <button type="button" class="btn-close dismissnotification" data-id="' . $id . '" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <button type="button" class="ps-2 btn-close dismissnotification" data-id="' . $id . '" data-bs-dismiss="alert" aria-label="Close"></button>
                             <small class="text-dark"> <i class="bx bx-bell align-middle fs-3 me-1"></i>' . $text . '</small> <span class="fw-bold text-dark pe-4">' . $spot . '</span></div>';
                         // }
                     }
