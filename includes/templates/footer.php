@@ -20,7 +20,6 @@
   <script src="<?php echo ASSETS ?>vendor/jquery/jquery.js"></script>
   <script src="<?php echo ASSETS ?>vendor/sweetalert/sweetalert2.min.js"></script>
   <script src="<?php echo JS ?>scripts.js"></script>
-  <script type="text/javascript" src="<?php echo ASSETS ?>vendor/datatables/datatables.min.js"></script>
 
 
 
@@ -282,24 +281,6 @@
           }))
 
 
-          //   toastr.options = {
-          //       "closeButton": false,
-          //       "debug": false,
-          //       "newestOnTop": false,
-          //       "progressBar": false,
-          //       "positionClass": "toast-top-full-width",
-          //       "preventDuplicates": true,
-          //       "onclick": null,
-          //       "showDuration": "300",
-          //       "hideDuration": "1000",
-          //       "timeOut": "5000",
-          //       "extendedTimeOut": "2000",
-          //       "showEasing": "swing",
-          //       "hideEasing": "linear",
-          //       "showMethod": "fadeIn",
-          //       "hideMethod": "fadeOut"
-          //   }
-
           $(document).on('click', '.makemeadmin', (function() {
 
               Swal.fire({
@@ -372,8 +353,8 @@
                       dismiss: dismiss
                   },
                   success: function(response) {
-                    $("#skills").load(location.href + " #skills>*");
-                    $("#navbar").load(location.href + " #navbar>*");
+                      $("#skills").load(location.href + " #skills>*");
+                      $("#navbar").load(location.href + " #navbar>*");
                   }
               });
           })
@@ -384,29 +365,6 @@
               var qty = $('#qty').val()
               var product = $('#product').val()
               var salespot = $('#salespot').val()
-
-
-              //   if (qty == 0) {
-              //       $('#qty').css('border-color', 'red');
-              //       $(".validateinput").text("Este campo es obligatorio");
-              //   } else {
-              //       $('#qty').css('border-color', '#000');
-              //       $(".validateinput").text("");
-              //   }
-
-              //   if (!product) {
-              //       $('#product').css('border-color', 'red');
-              //       $(".validateinput").text("Este campo es obligatorio");
-
-              //   } else {
-              //       $('#product').css('border-color', '#000');
-              //       $(".validateinput").text("");
-              //   }
-
-              //   if (!salespot) {
-              //       $('select#salespot').css('border-color', 'red');
-              //       $(".validateinput").text("Este campo es obligatorio");
-
 
 
               if (qty == 0 || product == null || salespot == null) {
@@ -464,6 +422,8 @@
       });
   </script>
 
+
+ 
   </body>
 
   </html>

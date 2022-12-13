@@ -59,7 +59,6 @@
             #no-more-tables tr,
             #no-more-tables td {
                 display: block;
-                /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important; */
 
             }
 

@@ -2,7 +2,6 @@
 require_once '../../config/env.php';
 require_once '../../config/db.php';
 
-
 $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -20,12 +19,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = 'La imagen es muy grande';
     }
 
+    $ext = pathinfo($image['name'], PATHINFO_EXTENSION);
+
+    // validar que solo se suban imagenes
+    if (!in_array($ext, ['jpg', 'jpeg', 'png'])) {
+        $errors[] = 'Solo imagenes son permitidas';
+    }
 
     if (empty($errors)) {
 
         // directorio de subir archivos
         $uploads = 'uploads/category_pictures/';
-        //var_dump($uploads);
+
         // validar si no existe el directorio para crearlo
         if (!is_dir($uploads)) {
             mkdir($uploads);
@@ -39,14 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sql = $conn->prepare("INSERT INTO categories(category_name, category_image)VALUES(?,?)");
         $sql->bind_param('ss', $category, $image_name);
 
-
         if ($sql->execute()) {
-            $_SESSION['msg'] = '<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            <strong class="text-uppercase">Nueva categoria agregada!</strong>
-            </div>';
-
-            header("location:category_view.php");
+            header("location:category_view.php?categoria_agregada=true");
         }
     }
 }
@@ -56,10 +55,7 @@ include '../../includes/templates/header.php';
 include '../../includes/templates/nav.php';
 ?>
 
-
 <main id="main">
-
-
     <!-- ======= Skills Section ======= -->
     <section id="skills" class="skills section-bg">
         <div class="container">
@@ -68,30 +64,30 @@ include '../../includes/templates/nav.php';
             <div class="card p-3 shadow-lg col-md-10 col-lg-6 mx-auto">
                 <div class="d-flex justify-content-between">
                     <a href="category_view.php" class="btn btn-outline-danger ms-3 py-1">
-                    <i class='bx bx-arrow-back fw-bold' ></i></a>
+                        <i class='bx bx-arrow-back fw-bold'></i></a>
                     <span class="fs-4 me-3 d-block">Agregar Categoria</span>
 
                 </div>
                 <hr>
                 <div class="card-body">
-                    <?php foreach ($errors as $error) { ?>
+                    <?php foreach ($errors as $error) : ?>
                         <div class="alert alert-danger alert-dismissible show text-center" role="alert">
                             <small> <i class="fa-solid fa-triangle-exclamation"></i> <?php echo $error ?></small>
                         </div>
+                    <?php endforeach; ?>
 
-                    <?php   } ?>
                     <form action="" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
 
                         <div class="mb-4">
                             <label for="" class="form-label">Nombre Categoria</label>
-                            <input type="text" class="form-control" name="category_name" id="" aria-describedby="helpId" placeholder="" required>
+                            <input type="text" class="form-control" name="category_name" id="" placeholder="" required>
                             <small class="invalid-feedback">La categoria es obligatoria*</small>
                         </div>
 
 
                         <div class="mb-3">
                             <!-- <label for="" class="form-label">Imagen</label> -->
-                            <input type="file" class="form-control" name="imagen" id="" placeholder="" required>
+                            <input type="file" class="form-control" name="imagen" id="" required>
                             <small class="invalid-feedback">La imagen es obligatoria*</small>
                         </div>
 
@@ -101,15 +97,9 @@ include '../../includes/templates/nav.php';
                 </div>
             </div>
 
-
-
-
-
         </div>
     </section>
 
 </main><!-- End #main -->
-
-
 
 <?php include '../../includes/templates/footer.php'; ?>

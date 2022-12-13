@@ -1,9 +1,8 @@
 <?php
 
-// var_dump($msg);
 require_once '../../config/db.php';
-require '../../config/env.php';
-include '../../config/funciones.php';
+require_once '../../config/env.php';
+require_once '../../config/funciones.php';
 
 
 if ($_SESSION['login'] == false) {
@@ -26,13 +25,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $prod_price =  sanitizeData($_POST['prod_price']);
     $image = $_FILES['image'];
     $category = isset($_POST['category']) ? $_POST['category'] : '';
-    
+
     if (empty($prod_name) || empty($prod_price) || empty($category)) {
         $errors[] = "Todos los campos son obligatorios";
     }
 
     if ($image['size'] > 1000000) {
         $errors[] = 'La imagen es muy pesada';
+    }
+
+    $ext = pathinfo($image['name'], PATHINFO_EXTENSION);
+
+    // validar que solo se suban imagenes
+    if (!in_array($ext, ['jpg', 'jpeg', 'png'])) {
+        $errors[] = 'Solo imagenes son permitidas';
     }
 
     if (empty($errors)) {
@@ -52,14 +58,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $sql = $conn->prepare("INSERT INTO products(product_name, product_price, product_image, category_id)VALUES(?,?,?,?)");
         $sql->bind_param('sdsi', $prod_name, $prod_price, $image_name, $category);
-      
 
-            if ($sql->execute()) {
-                $_SESSION["success"] = '<div class="alert alert-success alert-dismissible show text-center" role="alert">
-            <small> <i class="fa-solid fa-check pe-2"></i>Producto Agregado</small>
-        </div>';
-                header("location:product_view.php");
-            
+
+        if ($sql->execute()) {
+            header("location:product_view.php?producto_agregado=true");
         }
     }
 }
@@ -79,28 +81,28 @@ include '../../includes/templates/nav.php';
             <div class="col-md-8 px-3 mx-auto">
 
                 <div class="card p-3 shadow-lg mt-3 mb-3">
-                <div class="d-flex justify-content-between">
-                    <a href="product_view.php" class="btn btn-outline-danger ms-3 py-1">
-                    <i class='bx bx-arrow-back fw-bold px-3' ></i></a>
-                    <span class="fs-4 me-3 d-block">Agregar Producto</span>
+                    <div class="d-flex justify-content-between">
+                        <a href="product_view.php" class="btn btn-outline-danger ms-3 py-1">
+                            <i class='bx bx-arrow-back fw-bold px-3'></i></a>
+                        <span class="fs-4 me-3 d-block">Agregar Producto</span>
 
-                </div>
-                <hr>
+                    </div>
+                    <hr>
 
                     <div class="card-body">
-                        <?php foreach ($errors as $error) { ?>
+
+                        <?php foreach ($errors as $error) : ?>
                             <div class="alert alert-danger alert-dismissible show text-center" role="alert">
                                 <small> <i class="fa-solid fa-triangle-exclamation"></i> <?php echo $error ?></small>
                             </div>
+                        <?php endforeach; ?>
 
-                        <?php   } ?>
                         <form method="POST" enctype="multipart/form-data" class="needs-validation" novalidate id="addProduct">
-
 
                             <div class="mb-3">
                                 <label for="prod_name" class="form-label">Producto</label>
                                 <input type="text" class="form-control" required name="prod_name" id="prod_name" placeholder="Nombre" value="<?= $prod_name; ?>">
-                           <small class="invalid-feedback">El nombre es obligatorio*</small>
+                                <small class="invalid-feedback">El nombre es obligatorio*</small>
                             </div>
 
                             <div class="mb-3">
@@ -118,7 +120,7 @@ include '../../includes/templates/nav.php';
                             </div>
 
 
-                            <div class="mb-3">
+                            <div class="mb-3 pt-3">
                                 <?php $sql = "SELECT UPPER(category_name) AS 'category_name', category_id FROM categories";
                                 $num = $conn->query($sql);
                                 if ($num->num_rows > 0) :
@@ -132,13 +134,15 @@ include '../../includes/templates/nav.php';
                                             <option value="<?php echo $value['category_id']; ?>"><?php echo $value['category_name']; ?></option>
                                         <?php endforeach; ?>
                                     <?php else :
-                                    echo "No hay categorias registradas";
+                                    echo "<select class='form-select text-danger'>
+                                    <option>No hay categorias registradas</option>
+                                    </select>";
                                 endif;
                                     ?>
                                     </select>
                             </div>
 
-                            <button class="btn btn-primary w-100" type="submit">Guardar</button>
+                            <button class="btn btn-primary w-100 mt-3" type="submit">Guardar</button>
                         </form>
                     </div>
                 </div>
